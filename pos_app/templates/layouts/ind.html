@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="dashboard-main-wrapper">
+            {% include 'inc/header.html' %}
+
+            {% include 'inc/sidenav.html' %}
+
+            <div class="dashboard-wrapper">
+                <div class="dashboard-ecommerce">
+                    <div class="container-fluid dashboard-content ">
+                        <!-- ============================================================== -->
+                        <!-- pageheader  -->
+                        <!-- ============================================================== -->
+
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Everyday Sales Total</h5>
+                                            <h2 class="mb-0">₵{{ total }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-header">
+                                    <h2 class="pageheader-title">Everyday Sales Total</h2>
+{#                                    <form action="" method="post">#}
+{#                                        {% csrf_token %}#}
+{#                                       <button type="submit" class="btn btn-outline-primary d-flex ml-auto">Close the Day</button>#}
+{#                                    </form>#}
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Everyday Sales</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">All Sales</h5>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="myTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Total Sales</th>
+                                                    <th>Checked</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {% if sales %}
+                                                    {% for sale in sales %}
+                                                        <tr>
+                                                            <td>{{ sale.day }}</td>
+                                                            <td>₵{{ sale.total_sales }}</td>
+                                                            {% if sale.checked %}
+                                                                <td><i style="color: green" class="fa fa-fw fa-check"></i></td>
+                                                            {% else %}
+                                                                <td><i style="color: red" class="fa fa-fw fa-times"></i></td>
+                                                            {% endif %}
+                                                            {% if sale.checked %}
+                                                            <td>Checked</td>
+                                                            {% else %}
+                                                            <td><a href="{% url 'check_sale' pk=sale.id %}" class="badge badge-success">Check</a></td>
+                                                            {% endif %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <p>No sales available yet</p>
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- Dashboard Content End -->
+                </div>
+            </div>
+
+        </div>
+{% endblock %}

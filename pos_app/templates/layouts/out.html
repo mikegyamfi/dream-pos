@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="dashboard-main-wrapper">
+            {% include 'inc/header.html' %}
+
+            {% include 'inc/sidenav.html' %}
+
+            <div class="dashboard-wrapper">
+                <div class="dashboard-ecommerce">
+                    <div class="container-fluid dashboard-content ">
+                        <!-- ============================================================== -->
+                        <!-- pageheader  -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-header">
+                                    <h2 class="pageheader-title">Products out of stock</h2>
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Out of Stock</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Products Out of Stock</h5>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="myTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Category</th>
+                                                    <th>Name</th>
+                                                    <th>Quantity Available</th>
+                                                    <th>Size</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {% if products %}
+                                                    {% for product in products %}
+                                                        <tr>
+                                                            <td>{{ product.category }}</td>
+                                                            <td class="font-bold">{{ product.name }}</td>
+                                                            <td>{{ product.quantity_available }}</td>
+                                                            <td>{{ product.size }}</td>
+                                                            <td><span class="font-weight-bold">₵</span>{{ product.price }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <p>No products available yet</p>
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- Dashboard Content End -->
+                </div>
+            </div>
+
+        </div>
+{% endblock %}

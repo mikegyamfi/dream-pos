@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="dashboard-main-wrapper">
+            {% include 'inc/header.html' %}
+
+            {% include 'inc/sidenav.html' %}
+
+            <div class="dashboard-wrapper">
+                <div class="dashboard-ecommerce">
+                    <div class="container-fluid dashboard-content ">
+                        <!-- ============================================================== -->
+                        <!-- pageheader  -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-header">
+                                    <h2 class="pageheader-title">All Products</h2>
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Product List</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Shop Total</h5>
+                                            <h2 class="mb-0">₵{{ shop_total }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Products out of stock</h5>
+                                            <h2 class="mb-0">{{ out }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+{#                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">#}
+{#                                <div class="card">#}
+{#                                    <div class="card-body">#}
+{#                                        <div class="d-inline-block">#}
+{#                                            <h5 class="text-muted">No. of goods sold</h5>#}
+{#                                            <h2 class="mb-0"> 30</h2>#}
+{#                                        </div>#}
+{#                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">#}
+{#                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Product List</h5>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="myTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Category</th>
+                                                    <th>Name</th>
+                                                    <th>Quantity Available</th>
+                                                    <th>Size</th>
+                                                    <th>Price</th>
+                                                    <th>Action</th>
+                                                    <th>Action</th>
+                                                    <th>Action</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {% if products %}
+                                                    {% for product in products %}
+                                                        <tr>
+                                                            <td>{{ product.category }}</td>
+                                                            <td class="font-bold">{{ product.name }}</td>
+                                                            {% if product.quantity_available == 0 %}
+                                                                <td><small class="badge badge-danger">Out of stock</small></td>
+                                                            {% else %}
+                                                                <td>{{ product.quantity_available }}</td>
+                                                            {% endif %}
+                                                            <td>{{ product.size }}</td>
+                                                            <td><span class="font-weight-bold">₵</span>{{ product.price }}</td>
+                                                            <td><a href="{% url 'edit_product' pk=product.id %}"><i class="fa fa-fw fa-edit"></i></a></td>
+                                                            <td><a href="{% url 'restock_product' pk=product.id %}"><i class="fa fa-fw fa-box-open"></i></a></td>
+                                                            <td><a href="{% url 'delete_product' pk=product.id %}"><i class="fa fa-fw fa-trash"></i></a></td>
+                                                            {% csrf_token %}
+                                                            <input type="hidden" class="prod_id" value="{{ product.id }}">
+                                                            <td><i class="fa fa-fw fa-cart-plus addToCart"></i></td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <p>No products available yet</p>
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- Dashboard Content End -->
+                </div>
+            </div>
+
+        </div>
+{% endblock %}

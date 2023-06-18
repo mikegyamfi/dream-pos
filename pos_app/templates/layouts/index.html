@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        {% include 'inc/header.html' %}
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        {% include 'inc/sidenav.html' %}
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Welcome {{ request.user.first_name }}({{ request.user.role }}) </h2>
+                                <span>Happy Selling!😊🥳</span>
+                                <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Summary</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="ecommerce-widget">
+
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Shop Total</h5>
+                                            <h2 class="mb-0">₵{{ shop_total }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Total Earned for the Day</h5>
+                                            <h2 class="mb-0">₵{{ day_total }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+{#                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">#}
+{#                                <div class="card">#}
+{#                                    <div class="card-body">#}
+{#                                        <div class="d-inline-block">#}
+{#                                            <h5 class="text-muted">No. of goods sold</h5>#}
+{#                                            <h2 class="mb-0"> 30</h2>#}
+{#                                        </div>#}
+{#                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">#}
+{#                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+                        </div>
+                        <div class="row">
+                            <!-- ============================================================== -->
+                      
+                            <!-- ============================================================== -->
+
+                                          <!-- recent orders  -->
+                            <!-- ============================================================== -->
+                            <div class="col-xl-9 col-lg-12 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Products</h5>
+                                    <div class="card-body p-2">
+                                        <div class="table-responsive">
+                                            <table class="table" id="myTable">
+                                                <thead class="bg-light">
+                                                    <tr class="border-0">
+                                                        <th class="border-0">Product Name</th>
+                                                        <th class="border-0">Quantity Available</th>
+                                                        <th class="border-0">Price</th>
+                                                        <th class="border-0">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-body">
+                                                    {% if products %}
+                                                        {% for product in products %}
+                                                            <tr>
+                                                                <td>{{ product.name }}</td>
+                                                                {% if product.quantity_available == 0 %}
+                                                                    <td><small class="badge badge-danger">Out of stock</small></td>
+                                                                {% else %}
+                                                                    <td>{{ product.quantity_available }}</td>
+                                                                {% endif %}
+                                                                <td>₵{{ product.price }}</td>
+                                                                {% csrf_token %}
+                                                                <input type="hidden" class="prod_id" value="{{ product.id }}">
+                                                                <td><label class="badge badge-success addToCartFromHome">Add to cart</label></td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ============================================================== -->
+                            <!-- end recent orders  -->
+
+    
+                            <!-- ============================================================== -->
+                            <!-- ============================================================== -->
+                            <!-- customer acquistion  -->
+                            <!-- ============================================================== -->
+                            <!--<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">-->
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card cart-box">
+                                    <div class="card-header">
+                                        <h4 class="d-flex justify-content-between align-items-center mb-0">
+                                                    <span class="text-muted">Cart</span>
+                                      <span class="badge badge-secondary badge-pill">{{ count }}</span>
+                                             </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="" method="post">
+                                        {% csrf_token %}
+                                        {% if cart_items %}
+                                            <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
+                                            <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
+                                            <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
+                                            <hr>
+                                        {% endif %}
+                                        <ul class="list-group mb-3">
+                                            {% if cart_items %}
+                                                {% for cart_item in cart_items %}
+                                                    <li class="list-group-item d-flex justify-content-between cart-list-item">
+                                                    {% csrf_token %}
+                                                        <input type="hidden" value="{{ cart_item.id }}" class="cart_item_id">
+                                                        <div>
+                                                            <h6 class="my-0">{{ cart_item.product.name }}</h6>
+                                                            <small class="text-muted">Qty: {{ cart_item.product_qty }}</small>
+                                                        </div>
+                                                        <span class="text-muted">₵{{ cart_item.product.price }}</span>
+                                                        <a class="text-muted"><i class="fa fa-fw fa-minus deleteCartItem"></i></a>
+                                                    </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Total (GHS)</span>
+                                                <input class="cart-total" value="{{ cart_total }}" type="hidden">
+                                                <strong class="cart-total">₵{{ cart_total }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Balance (GHS)</span>
+                                                <strong class="cart-balance"></strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-end">
+                                                {% if cart_items %}
+                                                   <button type="submit" class="btn btn-sm btn-success">Sell</button>
+                                                {% else %}
+                                                    <button disabled class="btn btn-sm btn-success">Sell</button>
+                                                {% endif %}
+
+                                            </li>
+                                        </ul>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ============================================================== -->
+                            <!-- end customer acquistion  -->
+                            <!-- ============================================================== -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                             Copyright © 2023 de Dream Team. All rights reserved. Dashboard by <a href="#">The Michaelson</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- end wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <!-- jquery 3.3.1 -->
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        let amount = document.querySelector(".customer-amount")
+        amount.onkeyup = function (){
+        let amount_entered = this.value
+        if (amount_entered === ""){
+            document.querySelector(".cart-balance").textContent =  "₵0"
+        }else{
+            let cart_total = document.querySelector(".cart-total").value
+        let balance = amount_entered - cart_total
+        document.querySelector(".cart-balance").textContent =  "₵" + balance
+        }
+   }
+    </script>
+{% endblock %}

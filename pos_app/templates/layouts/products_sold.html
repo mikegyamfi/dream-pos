@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+        <div class="dashboard-main-wrapper">
+            {% include 'inc/header.html' %}
+
+            {% include 'inc/sidenav.html' %}
+
+            <div class="dashboard-wrapper">
+                <div class="dashboard-ecommerce">
+                    <div class="container-fluid dashboard-content ">
+                        <!-- ============================================================== -->
+                        <!-- pageheader  -->
+                        <!-- ============================================================== -->
+
+                          <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Day's Sales</h5>
+                                            <h2 class="mb-0">₵{{ total }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Items Count</h5>
+                                            <h2 class="mb-0">{{ count }}</h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-header">
+                                    <h2 class="pageheader-title">Today's Sales</h2>
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                       <button type="submit" class="btn btn-outline-primary d-flex ml-auto">Close the Day</button>
+                                    </form>
+                                    <div class="page-breadcrumb">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Product Sold</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Today's Sales</h5>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="myTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Date</th>
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit Price</th>
+                                                    <th>Total Price</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {% if sales %}
+                                                    {% for sale in sales %}
+                                                        <tr>
+                                                            <td>{{ sale.sale_reference }}</td>
+                                                            <td>{{ sale.date_created }}</td>
+                                                            <td>{{ sale.product }}</td>
+                                                            <td>{{ sale.quantity }}</td>
+                                                            <td><span class="font-weight-bold">₵</span>{{ sale.price }}</td>
+                                                            <td>₵{{ sale.total_price }}</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <p>No sales available yet</p>
+                                                {% endif %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- Dashboard Content End -->
+                </div>
+            </div>
+
+        </div>
+{% endblock %}

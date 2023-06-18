@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="dashboard-main-wrapper">
+        {% include 'inc/header.html' %}
+
+        {% include 'inc/sidenav.html' %}
+
+
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- ============================================================== -->
+                    <!-- pageheader  -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">Restock Product ({{ product.name }}) </h2>
+                                <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
+                                            <li class="breadcrumb-item" aria-current="page">Restock Product</li>
+                                            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="card">
+                            <h5 class="card-header">Fill the form below</h5>
+                            <div class="card-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="category">Category</label>
+                                        {{ form.category }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-form-label">Product Name</label>
+                                        {{ form.name }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity">Quantity</label>
+                                        {{ form.quantity }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price" class="col-form-label">Price</label>
+                                        {{form.price}}
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Restock Product</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div> <!-- Dashboard Content End -->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
