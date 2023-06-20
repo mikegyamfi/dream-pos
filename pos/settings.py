@@ -45,7 +45,7 @@ JAZZMIN_SETTINGS = {
     # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
     "site_brand": "de Dream POS",
     "copyright": "de Dream Team",
-    "login_logo": "assets/images/pos.png",
+    "login_logo": "assets/images/admin.png",
     "welcome_sign": "Welcome to the de Dream POS Admin",
     "custom_css": 'css/admin.css',
     "user_avatar": 'user',
