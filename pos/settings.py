@@ -37,6 +37,20 @@ INSTALLED_APPS = [
     'pos_app'
 ]
 
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "de Dream POS",
+    "site_header": "de Dream POS",
+    "site_logo": "assets/images/pos.png",
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "de Dream POS",
+    "copyright": "de Dream Team",
+    "login_logo": "assets/images/pos.png",
+    "welcome_sign": "Welcome to the de Dream POS Admin",
+    "custom_css": 'css/admin.css',
+    "user_avatar": 'user',
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

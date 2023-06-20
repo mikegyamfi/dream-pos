@@ -135,6 +135,7 @@ def login_page(request):
                 messages.success(request, 'Log in Successful')
                 return redirect('home')
             else:
+                print("here")
                 messages.error(request, 'Invalid username or password')
                 return redirect('login')
     return render(request, "auth/login.html")
