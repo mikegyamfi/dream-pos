@@ -11,10 +11,11 @@ TEMPLATE_DIR = BASE_DIR / 'pos_app/templates'
 SECRET_KEY = 'django-insecure-2%gbx!nj=f(3=h1mt20=uc9@5)5tr-)hmocg)tlrr1-rv!#akl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'dream-pos-92d64b642aaf.herokuapp.com'
+    'dream-pos-92d64b642aaf.herokuapp.com',
+    '127.0.0.1'
 ]
 
 
@@ -22,6 +23,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'jazzmin',
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,7 +112,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'pos_app/static']
-STATIC_ROOT = BASE_DIR / 'assets/'
+STATIC_ROOT = BASE_DIR / 'assets'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

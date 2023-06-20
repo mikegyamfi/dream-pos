@@ -152,7 +152,7 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         Swal.fire({text: response.status, position: 'top-end', timer: 1000, showConfirmButton:false, icon:response.icon});
-        $(".cart-box").load(location.href + " .cart-box");
+        $("body").load(location.href + " .cart-box");
       },
     });
   });
@@ -176,6 +176,8 @@ jQuery(document).ready(function($) {
    //        },
    //      });
    // })
+
+
 
    $("body").on('click', '.deleteCartItem', function(e) {
     e.preventDefault();

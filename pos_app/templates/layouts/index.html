@@ -114,7 +114,7 @@
                                                     {% if products %}
                                                         {% for product in products %}
                                                             <tr>
-                                                                <td>{{ product.name }}</td>
+                                                                <td>{{ product.name }} {{ product.size }}</td>
                                                                 {% if product.quantity_available == 0 %}
                                                                     <td><small class="badge badge-danger">Out of stock</small></td>
                                                                 {% else %}
@@ -143,7 +143,8 @@
                             <!-- ============================================================== -->
                             <!--<div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">-->
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <div class="card cart-box">
+                                <div class="cart-box">
+                                <div class="card">
                                     <div class="card-header">
                                         <h4 class="d-flex justify-content-between align-items-center mb-0">
                                                     <span class="text-muted">Cart</span>
@@ -195,6 +196,7 @@
                                         </form>
                                     </div>
                                 </div>
+                                </div>
                             </div>
 
                             <!-- ============================================================== -->
@@ -241,8 +243,8 @@
 {% block scripts %}
     <script>
         let amount = document.querySelector(".customer-amount")
-        amount.onkeyup = function (){
-        let amount_entered = this.value
+        $("body").on("keyup", ".customer-amount", function () {
+            let amount_entered = this.value
         if (amount_entered === ""){
             document.querySelector(".cart-balance").textContent =  "₵0"
         }else{
@@ -250,6 +252,6 @@
         let balance = amount_entered - cart_total
         document.querySelector(".cart-balance").textContent =  "₵" + balance
         }
-   }
+        } )
     </script>
 {% endblock %}

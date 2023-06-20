@@ -116,5 +116,17 @@ class IndividualDaySale(models.Model):
     time_of_check = models.DateTimeField(auto_now_add=True)
 
 
+class RestockHistory(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    domain = models.CharField(max_length=200, null=False, blank=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(null=False,blank=False)
+    price = models.FloatField(null=False, blank=False)
+    restock_date = models.DateTimeField(auto_now_add=True)
 
 
+class Timeline(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    domain = models.CharField(max_length=200, null=False, blank=False)
+    activity = models.CharField(max_length=500, null=False, blank=False)
+    time = models.DateTimeField(auto_now_add=True)

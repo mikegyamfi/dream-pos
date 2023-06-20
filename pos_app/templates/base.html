@@ -61,23 +61,27 @@
     <script src="{% static 'assets/vendor/charts/c3charts/d3-5.4.0.min.js' %}"></script>
     <script src="{% static 'assets/vendor/charts/c3charts/C3chartjs.js' %}"></script>
     <script src="{% static 'assets/libs/js/dashboard-ecommerce.js' %}"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <script>
         {% for msg in messages %}
             {% if msg.tags == "success" %}
             Swal.fire({
                 text: '{{ msg }}',
-                icon: 'success'
+                icon: 'success',
+                timer: 1000
             })
             {% elif msg.tags == "info" %}
             Swal.fire({
                 text: '{{ msg }}',
-                icon: 'info'
+                icon: 'info',
+                timer: 1000
             })
             {% else %}
             Swal.fire({
                 text: '{{ msg }}',
-                icon: 'error'
+                icon: 'error',
+                timer: 1000
             })
             {% endif %}
         {% endfor %}

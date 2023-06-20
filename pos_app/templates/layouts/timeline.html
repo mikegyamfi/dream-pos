@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+   <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+       <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        {% include 'inc/header.html' %}
+        <!-- ============================================================== -->
+        {% include 'inc/sidenav.html' %}
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <!-- ============================================================== -->
+                    <!-- pageheader -->
+                    <!-- ============================================================== -->
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                           <h2 class="pageheader-title">Timeline </h2>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">Timeline</li>
+                                      </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- end pageheader -->
+                    <!-- ============================================================== -->
+                      <!-- ============================================================== -->
+                    <!-- timeline  -->
+                    <!-- ============================================================== -->
+                
+                    <section class="cd-timeline js-cd-timeline">
+                        <div class="cd-timeline__container">
+                            {% for timeline in timelines %}
+                            <div class="cd-timeline__block js-cd-block">
+                                <!-- cd-timeline__img -->
+                                <div class="cd-timeline__content js-cd-content">
+                                    <h4 class="mb-0">{{ timeline.activity }}</h4>
+                                    <span>-{{ timeline.user }}</span>
+                                    <span class="cd-timeline__date">{{ timeline.time }}</span>
+                                </div>
+                                <!-- cd-timeline__content -->
+                            </div>
+                            {% endfor %}
+                            <!-- cd-timeline__block -->
+                            <!-- cd-timeline__block -->
+
+                            <!-- cd-timeline__block -->
+                        </div>
+                    </section>
+                    <!-- cd-timeline -->
+               
+                  <!-- ============================================================== -->
+                    <!-- end timeline  -->
+                    <!-- ============================================================== -->
+            </div>
+               <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        Copyright © 2023 de Dream Team. All rights reserved. Dashboard by <a href="#">The Michaelson</a>.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end footer -->
+        <!-- ============================================================== -->
+        </div>
+      
+    </div>
+   <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+  {% endblock %}

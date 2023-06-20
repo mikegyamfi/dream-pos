@@ -22,11 +22,14 @@ urlpatterns = [
     path('everyday_sales', views.individual_sales, name='everyday_sales'),
     path('check_sales/<int:pk>', views.check_sale, name='check_sale'),
     path('invoice/<str:sale_reff>/<str:name>/<str:phone>/<str:amount_paid>', views.invoice, name='invoice'),
+    path('restock_history', views.restock_history, name='restock_history'),
+    path('timeline', views.timeline, name='timeline'),
 
     path('add_category', views.add_category, name='add_category'),
 
     path('login', views.login_page, name='login'),
     path('logout', views.logout_page, name='logout'),
-    path('sign_up', views.sign_up, name='signup')
+    path('sign_up', views.sign_up, name='signup'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 

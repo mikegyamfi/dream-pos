@@ -51,10 +51,16 @@ def home(request):
             sale.save()
         cart_items.delete()
         messages.success(request, "Items sold")
+        new_timeline = models.Timeline.objects.create(
+            user=request.user,
+            domain=shop.domain,
+            activity="Sold items"
+        )
+        new_timeline.save()
         if customer_name == '' or customer_phone == '':
             return redirect('invoice', sale_reff=sales[0].sale_reference, name="Null", phone="Null", amount_paid=amount_paid)
         return redirect('invoice', sale_reff=sales[0].sale_reference, name=customer_name, phone=customer_phone, amount_paid=amount_paid)
-    products = models.Product.objects.filter(domain=user.domain)
+    products = models.Product.objects.filter(domain=user.domain).order_by('name')
     day_sales = models.DaysSale.objects.filter(domain=user.domain)
     cart = models.Cart.objects.filter(domain=user.domain)
     cart_count = models.Cart.objects.filter(domain=user.domain).count()
@@ -176,6 +182,12 @@ def add_product(request):
             )
 
             new_product.save()
+            new_timeline = models.Timeline.objects.create(
+                user=request.user,
+                domain=shop.domain,
+                activity=f"Added {name} {size} to stock"
+            )
+            new_timeline.save()
             messages.success(request, "Product Saved")
             return redirect('add_product')
     context = {'form': form, 'shop_name': shop_name}
@@ -201,7 +213,13 @@ def add_category(request):
                 domain=shop.domain
             )
             new_category.save()
-            messages.success(request, "Saved")
+            new_timeline = models.Timeline.objects.create(
+                user=request.user,
+                domain=shop.domain,
+                activity=f"Added new category - {name}"
+            )
+            new_timeline.save()
+            messages.success(request, "Category Saved")
             return redirect("add_category")
     context = {'form': form, 'shop_name': shop_name}
     return render(request, "layouts/add_category.html", context=context)
@@ -245,6 +263,13 @@ def edit_product(request, pk):
             product_to_be_edited.user = request.user
             product_to_be_edited.save()
 
+            new_timeline = models.Timeline.objects.create(
+                user=request.user,
+                domain=shop.domain,
+                activity=f"{product_to_be_edited} was edited"
+            )
+            new_timeline.save()
+
             messages.success(request, "Product Edited Successfully")
             return redirect("product_list")
     context = {'form': form, 'product': product_to_be_edited, 'shop_name': shop_name}
@@ -277,6 +302,23 @@ def restock_product(request, pk):
             product_to_be_stocked.user = request.user
             product_to_be_stocked.save()
 
+            new_restock_history = models.RestockHistory.objects.create(
+                user=request.user,
+                product=product_to_be_stocked,
+                quantity=form.cleaned_data["quantity"],
+                domain=shop.domain,
+                price=form.cleaned_data["price"]
+            )
+
+            new_restock_history.save()
+
+            new_timeline = models.Timeline.objects.create(
+                user=request.user,
+                domain=shop.domain,
+                activity=f"{product_to_be_stocked} was restocked"
+            )
+            new_timeline.save()
+
             messages.success(request, "Product Restocked Successfully")
             return redirect("product_list")
     context = {'form': form, 'product': product_to_be_stocked, 'shop_name': shop_name}
@@ -289,6 +331,12 @@ def delete_product(request, pk):
     shop = models.StoreInfo.objects.get(domain=user.domain)
     product_to_be_deleted = models.Product.objects.filter(id=pk, domain=shop.domain).first()
     product_to_be_deleted.delete()
+    new_timeline = models.Timeline.objects.create(
+        user=request.user,
+        domain=shop.domain,
+        activity=f"{product_to_be_deleted} was deleted."
+    )
+    new_timeline.save()
     messages.success(request, "Product deleted successfully")
     return redirect('product_list')
 
@@ -418,6 +466,12 @@ def days_sales(request):
             domain=shop.domain
         )
         new_day_sale.save()
+        new_timeline = models.Timeline.objects.create(
+            user=request.user,
+            domain=shop.domain,
+            activity=f"Sale was closed for {today_date}"
+        )
+        new_timeline.save()
         messages.success(request, f"Sales for the day closed. Total Sales for {today_date}: ₵{total}")
         return redirect('sales_for_the_day')
     context = {'sales': sales_for_the_day, 'total': total, 'count': sales_for_the_day.count(), 'shop_name': shop_name}
@@ -462,6 +516,12 @@ def check_sale(request, pk):
         return redirect('everyday_sales')
     day_to_be_checked.checked = True
     day_to_be_checked.save()
+    new_timeline = models.Timeline.objects.create(
+        user=request.user,
+        domain=shop.domain,
+        activity=f"{day_to_be_checked} sales was checked successfully."
+    )
+    new_timeline.save()
     messages.success(request, f"Sales checked successfully. GHS{money} received.")
     return redirect('everyday_sales')
 
@@ -495,10 +555,34 @@ def out_of_stock(request):
     return render(request, "layouts/out.html", context=context)
 
 
+def restock_history(request):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+    restock_history_items = models.RestockHistory.objects.filter(domain=shop.domain).order_by('restock_date').reverse()
+
+    context = {
+        'items': restock_history_items,
+        'shop_name': shop.name
+    }
+
+    return render(request, "layouts/restock_history.html", context=context)
 
 
+def timeline(request):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+
+    timeline_items = models.Timeline.objects.filter(domain=shop.domain).order_by('time').reverse()
+
+    context = {
+        'shop_name': shop.name,
+        'timelines': timeline_items
+    }
+
+    return render(request, "layouts/timeline.html", context=context)
 
 
-
+def not_found_404_page(request, exception):
+    return render(request, "404.html")
 
 
