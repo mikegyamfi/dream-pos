@@ -101,6 +101,7 @@ def sign_up(request):
         if form.is_valid():
             print("true")
             domain = shop.domain
+            print("why")
             username = form.cleaned_data["username"]
             new_username = f"{username}@{domain}"
             form.save()
