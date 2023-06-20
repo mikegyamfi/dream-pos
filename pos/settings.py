@@ -14,7 +14,8 @@ SECRET_KEY = 'django-insecure-2%gbx!nj=f(3=h1mt20=uc9@5)5tr-)hmocg)tlrr1-rv!#akl
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'dream-pos-92d64b642aaf.herokuapp.com',
+    'dream-pos-dalw5.ondigitalocean.app',
+    'pos.dedreamteam.com',
     '127.0.0.1'
 ]
 
