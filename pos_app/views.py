@@ -80,7 +80,7 @@ def home(request):
         'cart_items': cart,
         'count': cart_count,
         'cart_total': total,
-        'shop_total': shop_total,
+        'shop_total': '{:,.2f}'.format(shop_total),
         'day_total': day_total,
         'shop_name': shop_name
     }
@@ -239,7 +239,7 @@ def product_list(request):
         total += prod.quantity_available * prod.price
         if prod.quantity_available == 0:
             out_of_stock_count += 1
-    context = {'products': all_products, 'shop_total': total, 'out': out_of_stock_count, 'shop_name': shop_name}
+    context = {'products': all_products, 'shop_total': '{:,.2f}'.format(total), 'out': out_of_stock_count, 'shop_name': shop_name}
     return render(request, "layouts/product_list.html", context=context)
 
 
@@ -476,7 +476,7 @@ def days_sales(request):
         new_timeline.save()
         messages.success(request, f"Sales for the day closed. Total Sales for {today_date}: ₵{total}")
         return redirect('sales_for_the_day')
-    context = {'sales': sales_for_the_day, 'total': total, 'count': sales_for_the_day.count(), 'shop_name': shop_name}
+    context = {'sales': sales_for_the_day, 'total': '{:,.2f}'.format(total), 'count': sales_for_the_day.count(), 'shop_name': shop_name}
     return render(request, "layouts/products_sold.html", context=context)
 
 
@@ -490,7 +490,7 @@ def all_sales(request):
     for sale in all_sales_items:
         total += sale.total_price
 
-    context = {'sales': all_sales_items, 'total': total, 'shop_name': shop_name}
+    context = {'sales': all_sales_items, 'total': '{:,.2f}'.format(total), 'shop_name': shop_name}
     return render(request, "layouts/all_sales.html", context=context)
 
 
@@ -503,7 +503,7 @@ def individual_sales(request):
     total = 0
     for sale in individual_sales_items:
         total += sale.total_sales
-    context = {'sales': individual_sales_items, 'total': total, 'shop_name': shop_name}
+    context = {'sales': individual_sales_items, 'total': '{:,.2f}'.format(total), 'shop_name': shop_name}
     return render(request, "layouts/ind.html", context=context)
 
 
