@@ -81,7 +81,11 @@
                                                             {% if sale.checked %}
                                                             <td>Checked</td>
                                                             {% else %}
-                                                            <td><a href="{% url 'check_sale' pk=sale.id %}" class="badge badge-success">Check</a></td>
+                                                            {% if request.user.role == 'Admin' %}
+                                                                <td><a href="{% url 'check_sale' pk=sale.id %}" class="badge badge-success">Check</a></td>
+                                                            {% else %}
+                                                                <td><button disabled class="badge badge-success">Check</button></td>
+                                                            {% endif %}
                                                             {% endif %}
                                                         </tr>
                                                     {% endfor %}
