@@ -84,7 +84,7 @@
                                                             {% if request.user.role == 'Admin' %}
                                                                 <td><a href="{% url 'check_sale' pk=sale.id %}" class="badge badge-success">Check</a></td>
                                                             {% else %}
-                                                                <td><button disabled class="btn btn-sm btn-success">Sell</button></td>
+                                                                <td><button disabled class="btn btn-sm btn-success">Check</button></td>
                                                             {% endif %}
                                                             {% endif %}
                                                         </tr>
