@@ -109,7 +109,7 @@ def sign_up(request):
             user.username = new_username
             user.domain = domain
             user.save()
-            messages.info(request, f"Sign Up Successful. Your new username is {new_username}\n Log in with that as your username")
+            messages.info(request, f"Sign Up Successful. Your new username is {new_username} NB: Log in with that as your username")
             return redirect('login')
         else:
             print("nope")
