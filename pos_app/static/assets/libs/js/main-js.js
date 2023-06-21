@@ -152,7 +152,7 @@ jQuery(document).ready(function($) {
       },
       success: function (response) {
         Swal.fire({text: response.status, position: 'top-end', timer: 1000, showConfirmButton:false, icon:response.icon});
-        $("body").load(location.href + " .cart-box");
+        $(".cart-box").load(location.href + " .cart-box");
       },
     });
   });
