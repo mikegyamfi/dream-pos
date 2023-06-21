@@ -104,6 +104,7 @@
                                             <table class="table" id="myTable">
                                                 <thead class="bg-light">
                                                     <tr class="border-0">
+                                                        <th class="border-0">Category</th>
                                                         <th class="border-0">Product Name</th>
                                                         <th class="border-0">Quantity Available</th>
                                                         <th class="border-0">Price</th>
@@ -114,6 +115,7 @@
                                                     {% if products %}
                                                         {% for product in products %}
                                                             <tr>
+                                                                <td>{{ product.category }}</td>
                                                                 <td>{{ product.name }} {{ product.size }}</td>
                                                                 {% if product.quantity_available == 0 %}
                                                                     <td><small class="badge badge-danger">Out of stock</small></td>
