@@ -95,7 +95,7 @@ def sign_up(request):
         code = int(request.POST.get("code"))
         shop_exists = models.StoreInfo.objects.filter(code=code).exists()
         if not shop_exists:
-            messages.info(request, "Invalid Authorization Code. Contact Admin")
+            messages.warning(request, "Invalid Authorization Code. Contact Admin")
             return redirect('signup')
         shop = models.StoreInfo.objects.get(code=code)
         if form.is_valid():
@@ -109,7 +109,7 @@ def sign_up(request):
             user.username = new_username
             user.domain = domain
             user.save()
-            messages.success(request, f"Sign Up Successful. Your new username is {new_username}\n Log in with that as your username")
+            messages.info(request, f"Sign Up Successful. Your new username is {new_username}\n Log in with that as your username")
             return redirect('login')
         else:
             print("nope")
@@ -137,7 +137,7 @@ def login_page(request):
                 return redirect('home')
             else:
                 print("here")
-                messages.error(request, 'Invalid username or password')
+                messages.info(request, 'Invalid username or password')
                 return redirect('login')
     return render(request, "auth/login.html")
 
@@ -170,7 +170,7 @@ def add_product(request):
             print(quantity)
 
             if models.Product.objects.filter(name=name, size=size, category=category).exists():
-                messages.info(request, "Product already exists.")
+                messages.warning(request, "Product already exists.")
                 return redirect('add_product')
 
             new_product = models.Product.objects.create(
@@ -357,7 +357,7 @@ def add_to_cart(request):
             cart_item = models.Cart.objects.filter(product=product_to_be_added_to_cart, domain=shop.domain).first()
             new_quantity = cart_item.product_qty + 1
             if new_quantity > product_to_be_added_to_cart.quantity_available:
-                return JsonResponse({'status': 'More of the product is not available', 'icon': 'info'})
+                return JsonResponse({'status': 'More of the product is not available', 'icon': 'warning()'})
             cart_item.product_qty += 1
             cart_item.total_price = product_to_be_added_to_cart.price * new_quantity
             cart_item.save()
@@ -514,7 +514,7 @@ def check_sale(request, pk):
     day_to_be_checked = models.IndividualDaySale.objects.filter(id=pk, domain=shop.domain).first()
     money = day_to_be_checked.total_sales
     if day_to_be_checked.checked:
-        messages.info(request, "Day has been checked already")
+        messages.warning(request, "Day has been checked already")
         return redirect('everyday_sales')
     day_to_be_checked.checked = True
     day_to_be_checked.save()

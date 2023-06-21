@@ -71,11 +71,17 @@
                 icon: 'success',
                 timer: 1000
             })
-            {% elif msg.tags == "info" %}
+            {% elif msg.tags == "warning" %}
             Swal.fire({
                 text: '{{ msg }}',
                 icon: 'info',
-                timer: 1000
+                timer: 1500
+            })
+
+                {% elif msg.tags == "info" %}
+            Swal.fire({
+                text: '{{ msg }}',
+                icon: 'info',
             })
             {% else %}
             Swal.fire({
