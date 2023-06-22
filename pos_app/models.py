@@ -54,7 +54,7 @@ class Product(models.Model):
         ("S/S", "S/S"),
         ("Q/S", "Q/S"),
         ("M/S", "M/S"),
-        ("A/S", "A/S")
+        ("A/S", "A/S"),
         ("B/S", "B/S"),
         ("E/L", "E/L")
     )
