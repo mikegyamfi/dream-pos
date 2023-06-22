@@ -54,7 +54,9 @@ class Product(models.Model):
         ("S/S", "S/S"),
         ("Q/S", "Q/S"),
         ("M/S", "M/S"),
-        ("B/S", "B/S")
+        ("A/S", "A/S")
+        ("B/S", "B/S"),
+        ("E/L", "E/L")
     )
     size = models.CharField(max_length=100, choices=choices)
     date_added = models.DateTimeField(auto_now_add=True)

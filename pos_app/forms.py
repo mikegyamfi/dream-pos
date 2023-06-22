@@ -26,7 +26,7 @@ class AddProductForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None, widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
-    size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("B/S", "B/S")))
+    size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
     quantity = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
     def __init__(self, domain, *args, **kwargs):
