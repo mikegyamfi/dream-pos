@@ -81,8 +81,8 @@
                                                 <tr>
                                                     <th>Category</th>
                                                     <th>Name</th>
-                                                    <th>Quantity Available</th>
                                                     <th>Size</th>
+                                                    <th>Quantity Available</th>
                                                     <th>Price</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
@@ -97,12 +97,12 @@
                                                         <tr>
                                                             <td>{{ product.category }}</td>
                                                             <td class="font-bold">{{ product.name }}</td>
+                                                            <td>{{ product.size }}</td>
                                                             {% if product.quantity_available == 0 %}
                                                                 <td><small class="badge badge-danger">Out of stock</small></td>
                                                             {% else %}
                                                                 <td>{{ product.quantity_available }}</td>
                                                             {% endif %}
-                                                            <td>{{ product.size }}</td>
                                                             <td><span class="font-weight-bold">₵</span>{{ product.price }}</td>
                                                             <td><a href="{% url 'edit_product' pk=product.id %}"><i class="fa fa-fw fa-edit"></i></a></td>
                                                             <td><a href="{% url 'restock_product' pk=product.id %}"><i class="fa fa-fw fa-box-open"></i></a></td>
