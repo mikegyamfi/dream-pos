@@ -208,6 +208,10 @@ def add_category(request):
             name = form.cleaned_data["name"]
             description = form.cleaned_data["description"]
 
+            if models.Category.objects.filter(name=name).exists():
+                messages.info(request, "Category already exists")
+                return redirect('add_category')
+
             new_category = models.Category.objects.create(
                 user=request.user,
                 name=name,
@@ -225,6 +229,41 @@ def add_category(request):
             return redirect("add_category")
     context = {'form': form, 'shop_name': shop_name}
     return render(request, "layouts/add_category.html", context=context)
+
+
+@login_required(login_url='login')
+def add_size(request):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+    shop_name = shop.name
+    form = forms.AddSizeForm()
+    if request.method == "POST":
+        form = forms.AddSizeForm(data=request.POST)
+        if form.is_valid():
+            name = form.cleaned_data["name"]
+            description = form.cleaned_data["description"]
+
+            if models.Size.objects.filter(name=name).exists():
+                messages.info(request, "Size already exists")
+                return redirect('add_size')
+
+            new_size = models.Size.objects.create(
+                user=request.user,
+                name=name,
+                description=description,
+                domain=shop.domain
+            )
+            new_size.save()
+            new_timeline = models.Timeline.objects.create(
+                user=request.user,
+                domain=shop.domain,
+                activity=f"Added new size - {name}"
+            )
+            new_timeline.save()
+            messages.success(request, "Size Saved")
+            return redirect("add_size")
+    context = {'form': form, 'shop_name': shop_name}
+    return render(request, "layouts/add_size.html", context=context)
 
 
 @login_required(login_url='login')
@@ -255,6 +294,9 @@ def edit_product(request, pk):
         initial={
             'category': product_to_be_edited.category,
             'name': product_to_be_edited.name,
+            'price': product_to_be_edited.price,
+            'quantity': product_to_be_edited.quantity_available,
+            'size': product_to_be_edited.size
         }
     )
     if request.method == "POST":
@@ -262,6 +304,9 @@ def edit_product(request, pk):
         if form.is_valid():
             product_to_be_edited.category = form.cleaned_data["category"]
             product_to_be_edited.name = form.cleaned_data["name"]
+            product_to_be_edited.quantity_available = form.cleaned_data["quantity"]
+            product_to_be_edited.price = form.cleaned_data["price"]
+            product_to_be_edited.size = form.cleaned_data["size"]
             product_to_be_edited.user = request.user
             product_to_be_edited.save()
 
@@ -290,23 +335,26 @@ def restock_product(request, pk):
         initial={
             'category': product_to_be_stocked.category,
             'name': product_to_be_stocked.name,
-            'quantity': product_to_be_stocked.quantity_available,
-            'price': product_to_be_stocked.price
+            'price': product_to_be_stocked.price,
+            'size': product_to_be_stocked.size
         }
     )
     if request.method == "POST":
         form = forms.RestockProductForm(domain=shop.domain, data=request.POST)
         if form.is_valid():
+            previous_quantity = product_to_be_stocked.quantity_available
             product_to_be_stocked.category = form.cleaned_data["category"]
             product_to_be_stocked.name = form.cleaned_data["name"]
             product_to_be_stocked.price = form.cleaned_data["price"]
-            product_to_be_stocked.quantity_available = form.cleaned_data["quantity"]
+            product_to_be_stocked.quantity_available += int(form.cleaned_data["quantity"])
+            product_to_be_stocked.size = form.cleaned_data["size"]
             product_to_be_stocked.user = request.user
             product_to_be_stocked.save()
 
             new_restock_history = models.RestockHistory.objects.create(
                 user=request.user,
                 product=product_to_be_stocked,
+                previous_quantity=previous_quantity,
                 quantity=form.cleaned_data["quantity"],
                 domain=shop.domain,
                 price=form.cleaned_data["price"]
@@ -357,7 +405,7 @@ def add_to_cart(request):
             cart_item = models.Cart.objects.filter(product=product_to_be_added_to_cart, domain=shop.domain).first()
             new_quantity = cart_item.product_qty + 1
             if new_quantity > product_to_be_added_to_cart.quantity_available:
-                return JsonResponse({'status': 'More of the product is not available', 'icon': 'warning()'})
+                return JsonResponse({'status': 'More of the product is not available', 'icon': 'warning'})
             cart_item.product_qty += 1
             cart_item.total_price = product_to_be_added_to_cart.price * new_quantity
             cart_item.save()

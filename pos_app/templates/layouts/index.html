@@ -125,7 +125,7 @@
                                                                 <td>₵{{ product.price }}</td>
                                                                 {% csrf_token %}
                                                                 <input type="hidden" class="prod_id" value="{{ product.id }}">
-                                                                <td><label class="badge badge-success addToCartFromHome">Add to cart</label></td>
+                                                                <td class="addToCartFromHome"><i class="fa fa-fw fa-cart-plus text-success"></i></td>
                                                             </tr>
                                                         {% endfor %}
                                                     {% endif %}

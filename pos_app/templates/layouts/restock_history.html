@@ -40,6 +40,7 @@
                                                     <th>Date</th>
                                                     <th>Personnel</th>
                                                     <th>Product</th>
+                                                    <th>Previous Quantity</th>
                                                     <th>Quantity Stocked</th>
                                                     <th>Price</th>
                                                 </tr>
@@ -52,6 +53,7 @@
                                                             <td>{{ item.restock_date }}</td>
                                                             <td class="font-bold">{{ item.user }}</td>
                                                             <td>{{ item.product }}</td>
+                                                            <td>{{ item.previous_quantity }}</td>
                                                             <td>{{ item.quantity }}</td>
                                                             <td><span class="font-weight-bold">₵</span>{{ item.price }}</td>
                                                         </tr>

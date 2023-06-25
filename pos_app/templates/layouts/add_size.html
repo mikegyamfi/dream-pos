@@ -17,13 +17,12 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">Restock Product ({{ product.name }}) </h2>
+                                <h2 class="pageheader-title">Add Size</h2>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
-                                            <li class="breadcrumb-item" aria-current="page">Restock Product</li>
-                                            <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Size</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Add Size</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -38,40 +37,24 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label for="category">Category</label>
-                                        {{ form.category }}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name" class="col-form-label">Product Name</label>
+                                        <label for="name" class="col-form-label">Size Name</label>
                                         {{ form.name }}
                                     </div>
                                     <div class="form-group">
-                                        <label for="quantity">Quantity</label>
-                                        <div class="input-group mb-3">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">{{ product.quantity_available }}+</span>
-                                          </div>
-                                          {{ form.quantity }}
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price" class="col-form-label">Price</label>
-                                        {{form.price}}
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price" class="col-form-label">Size</label>
-                                        {{form.size}}
+                                        <label for="description">Description</label>
+                                        {{ form.description }}
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-primary">Restock Product</button>
+                                        <button type="submit" class="btn btn-primary">Add</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                    </div>
+
                 </div> <!-- Dashboard Content End -->
             </div>
+        </div>
         </div>
     </div>
 
