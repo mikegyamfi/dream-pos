@@ -60,16 +60,16 @@ class Product(models.Model):
     name = models.CharField(max_length=250, null=False, blank=False)
     price = models.FloatField(null=False, blank=False)
     quantity_available = models.PositiveIntegerField(null=False, blank=False)
-    # choices = (
-    #     ("S/S", "S/S"),
-    #     ("Q/S", "Q/S"),
-    #     ("M/S", "M/S"),
-    #     ("A/S", "A/S"),
-    #     ("B/S", "B/S"),
-    #     ("E/L", "E/L")
-    # )
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    # size = models.CharField(max_length=200, choices=choices)
+    choices = (
+        ("S/S", "S/S"),
+        ("Q/S", "Q/S"),
+        ("M/S", "M/S"),
+        ("A/S", "A/S"),
+        ("B/S", "B/S"),
+        ("E/L", "E/L")
+    )
+    # size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    size = models.CharField(max_length=200, choices=choices)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

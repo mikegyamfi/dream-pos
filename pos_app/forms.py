@@ -35,16 +35,16 @@ class AddProductForm(forms.ModelForm):
                                       widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
-    size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
-                                  widget=forms.Select(attrs={'class': 'form-control'}))
-    # size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
-    #     ("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
+    # size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
+    #                               widget=forms.Select(attrs={'class': 'form-control'}))
+    size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
+        ("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
     quantity = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
 
     def __init__(self, domain, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].queryset = models.Category.objects.filter(domain=domain)
-        self.fields['size'].queryset = models.Size.objects.filter(domain=domain)
+        # self.fields['size'].queryset = models.Size.objects.filter(domain=domain)
 
     class Meta:
         model = models.Product
@@ -57,15 +57,15 @@ class EditProductForm(forms.Form):
     category = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
                                       widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    # size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
-    #     ("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
-    size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
-                                  widget=forms.Select(attrs={'class': 'form-control'}))
+    size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
+        ("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
+    # size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
+    #                               widget=forms.Select(attrs={'class': 'form-control'}))
 
     def __init__(self, domain, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].queryset = models.Category.objects.filter(domain=domain)
-        self.fields['size'].queryset = models.Size.objects.filter(domain=domain)
+        # self.fields['size'].queryset = models.Size.objects.filter(domain=domain)
 
 
 class RestockProductForm(forms.Form):
@@ -75,15 +75,15 @@ class RestockProductForm(forms.Form):
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
     quantity = forms.CharField(
         widget=forms.NumberInput(attrs={'class': 'form-control', 'aria-describedby': 'basic-addon1'}))
-    # size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
-    #     ("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
-    size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
-                                  widget=forms.Select(attrs={'class': 'form-control'}))
+    size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
+        ("S/S", "S/S"), ("Q/S", "Q/S"), ("M/S", "M/S"), ("A/S", "A/S"), ("B/S", "B/S"), ("E/L", "E/L")))
+    # size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
+    #                               widget=forms.Select(attrs={'class': 'form-control'}))
 
     def __init__(self, domain, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['category'].queryset = models.Category.objects.filter(domain=domain)
-        self.fields['size'].queryset = models.Size.objects.filter(domain=domain)
+        # self.fields['size'].queryset = models.Size.objects.filter(domain=domain)
 
 
 class AddCategoryForm(forms.Form):
