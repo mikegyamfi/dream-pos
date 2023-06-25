@@ -57,7 +57,7 @@ def home(request):
         new_timeline = models.Timeline.objects.create(
             user=request.user,
             domain=shop.domain,
-            activity=f"Sold items worth {cart_total}"
+            activity=f"Sold items worth GHS{cart_total}"
         )
         new_timeline.save()
         if customer_name == '' or customer_phone == '':
