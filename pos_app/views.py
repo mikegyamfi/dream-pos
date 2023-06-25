@@ -232,41 +232,6 @@ def add_category(request):
 
 
 @login_required(login_url='login')
-def add_size(request):
-    user = models.CustomUser.objects.get(id=request.user.id)
-    shop = models.StoreInfo.objects.get(domain=user.domain)
-    shop_name = shop.name
-    form = forms.AddSizeForm()
-    if request.method == "POST":
-        form = forms.AddSizeForm(data=request.POST)
-        if form.is_valid():
-            name = form.cleaned_data["name"]
-            description = form.cleaned_data["description"]
-
-            if models.Size.objects.filter(name=name).exists():
-                messages.info(request, "Size already exists")
-                return redirect('add_size')
-
-            new_size = models.Size.objects.create(
-                user=request.user,
-                name=name,
-                description=description,
-                domain=shop.domain
-            )
-            new_size.save()
-            new_timeline = models.Timeline.objects.create(
-                user=request.user,
-                domain=shop.domain,
-                activity=f"Added new size - {name}"
-            )
-            new_timeline.save()
-            messages.success(request, "Size Saved")
-            return redirect("add_size")
-    context = {'form': form, 'shop_name': shop_name}
-    return render(request, "layouts/add_size.html", context=context)
-
-
-@login_required(login_url='login')
 def product_list(request):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)

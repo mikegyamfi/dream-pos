@@ -95,10 +95,4 @@ class AddCategoryForm(forms.Form):
         fields = ['name', 'description']
 
 
-class AddSizeForm(forms.Form):
-    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    description = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-    class Meta:
-        model = models.Size
-        fields = ['name', 'description']
