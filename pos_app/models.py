@@ -43,16 +43,6 @@ class Category(models.Model):
         return self.name
 
 
-class Size(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    domain = models.CharField(max_length=250, null=False, blank=False)
-    name = models.CharField(max_length=200, null=False, blank=False)
-    description = models.CharField(max_length=200, null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Product(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -68,7 +58,6 @@ class Product(models.Model):
         ("B/S", "B/S"),
         ("E/L", "E/L")
     )
-    # size = models.ForeignKey(Size, on_delete=models.CASCADE)
     size = models.CharField(max_length=200, choices=choices)
     date_added = models.DateTimeField(auto_now_add=True)
 
