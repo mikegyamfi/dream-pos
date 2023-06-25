@@ -26,6 +26,9 @@ def home(request):
         else:
             amount_paid = 0
         cart_items = models.Cart.objects.filter(domain=shop.domain)
+        cart_total = 0
+        for i in cart_items:
+            cart_total += i.total_price
         sales = []
         sale_ref = helper.ref_generator(shop.name)
         for item in cart_items:
@@ -54,7 +57,7 @@ def home(request):
         new_timeline = models.Timeline.objects.create(
             user=request.user,
             domain=shop.domain,
-            activity="Sold items"
+            activity=f"Sold items worth {cart_total}"
         )
         new_timeline.save()
         if customer_name == '' or customer_phone == '':
