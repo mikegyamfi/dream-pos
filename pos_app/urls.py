@@ -26,7 +26,6 @@ urlpatterns = [
     path('timeline', views.timeline, name='timeline'),
 
     path('add_category', views.add_category, name='add_category'),
-    path('add_size', views.add_size, name='add_size'),
 
     path('login', views.login_page, name='login'),
     path('logout', views.logout_page, name='logout'),
