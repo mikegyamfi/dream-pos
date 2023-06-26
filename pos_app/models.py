@@ -123,7 +123,7 @@ class RestockHistory(models.Model):
     domain = models.CharField(max_length=200, null=False, blank=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(null=False, blank=False)
-    # previous_quantity = models.PositiveIntegerField(null=True, blank=True)
+    previous_quantity = models.PositiveIntegerField(null=True, blank=True)
     price = models.FloatField(null=False, blank=False)
     restock_date = models.DateTimeField(auto_now_add=True)
 

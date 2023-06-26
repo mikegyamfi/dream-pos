@@ -322,6 +322,7 @@ def restock_product(request, pk):
             new_restock_history = models.RestockHistory.objects.create(
                 user=request.user,
                 product=product_to_be_stocked,
+                previous_quantity=previous_quantity,
                 quantity=form.cleaned_data["quantity"],
                 domain=shop.domain,
                 price=form.cleaned_data["price"]
