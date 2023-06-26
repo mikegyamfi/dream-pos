@@ -604,3 +604,8 @@ def not_found_404_page(request, exception):
     return render(request, "404.html")
 
 
+def verification(request):
+    return render(request, "google272847792544ccb7.html")
+
+
+
