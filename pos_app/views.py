@@ -211,7 +211,7 @@ def add_category(request):
             name = form.cleaned_data["name"]
             description = form.cleaned_data["description"]
 
-            if models.Category.objects.filter(name=name).exists():
+            if models.Category.objects.filter(name=name, domain=shop.domain).exists():
                 messages.info(request, "Category already exists")
                 return redirect('add_category')
 
