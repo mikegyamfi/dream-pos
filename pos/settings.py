@@ -14,7 +14,7 @@ TEMPLATE_DIR = BASE_DIR / 'pos_app/templates'
 SECRET_KEY = 'django-insecure-2%gbx!nj=f(3=h1mt20=uc9@5)5tr-)hmocg)tlrr1-rv!#akl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'dream-pos-dalw5.ondigitalocean.app',
