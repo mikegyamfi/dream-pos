@@ -35,6 +35,7 @@ class AddProductForm(forms.ModelForm):
                                       widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
+    original_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}), required=False)
     # size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
     #                               widget=forms.Select(attrs={'class': 'form-control'}))
     size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
@@ -48,11 +49,12 @@ class AddProductForm(forms.ModelForm):
 
     class Meta:
         model = models.Product
-        fields = ['category', 'name', 'price', 'quantity']
+        fields = ['category', 'name', 'price', 'original_price', 'quantity']
 
 
 class EditProductForm(forms.Form):
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
+    original_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}), required=False)
     quantity = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     category = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
                                       widget=forms.Select(attrs={'class': 'form-control'}))
@@ -73,6 +75,8 @@ class RestockProductForm(forms.Form):
                                       widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
+    original_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}),
+                                      required=False)
     quantity = forms.CharField(
         widget=forms.NumberInput(attrs={'class': 'form-control', 'aria-describedby': 'basic-addon1'}))
     size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(

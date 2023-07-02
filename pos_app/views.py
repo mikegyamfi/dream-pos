@@ -263,6 +263,7 @@ def edit_product(request, pk):
             'category': product_to_be_edited.category,
             'name': product_to_be_edited.name,
             'price': product_to_be_edited.price,
+            'original_price': product_to_be_edited.original_price,
             'quantity': product_to_be_edited.quantity_available,
             'size': product_to_be_edited.size
         }
@@ -275,6 +276,8 @@ def edit_product(request, pk):
             product_to_be_edited.quantity_available = form.cleaned_data["quantity"]
             product_to_be_edited.price = form.cleaned_data["price"]
             product_to_be_edited.size = form.cleaned_data["size"]
+            if form.cleaned_data["original_price"]:
+                product_to_be_edited.original_price = form.cleaned_data["original_price"]
             product_to_be_edited.user = request.user
             product_to_be_edited.save()
 
@@ -304,6 +307,7 @@ def restock_product(request, pk):
             'category': product_to_be_stocked.category,
             'name': product_to_be_stocked.name,
             'price': product_to_be_stocked.price,
+            'original_price': product_to_be_stocked.original_price,
             'size': product_to_be_stocked.size
         }
     )
@@ -316,6 +320,8 @@ def restock_product(request, pk):
             product_to_be_stocked.price = form.cleaned_data["price"]
             product_to_be_stocked.quantity_available += int(form.cleaned_data["quantity"])
             product_to_be_stocked.size = form.cleaned_data["size"]
+            if form.cleaned_data["original_price"]:
+                product_to_be_stocked.original_price = form.cleaned_data["original_price"]
             product_to_be_stocked.user = request.user
             product_to_be_stocked.save()
 

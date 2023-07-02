@@ -16,7 +16,18 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h2 class="pageheader-title">All Products</h2>
+                                    <div class="col-12" style="display: flex; justify-content: space-between">
+                                        <div>
+                                           <h2 class="pageheader-title">All Products</h2>
+                                        </div>
+                                        <div>
+                                            <span style="alignment-baseline: center">Original Price</span>
+                                            <div class="switch-button switch-button-success">
+                                                <input onclick="performAction(this)" type="checkbox" value="display_original_price" name="switch16" id="switch16"><span>
+                                                <label for="switch16"></label></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
@@ -82,8 +93,9 @@
                                                     <th>Category</th>
                                                     <th>Name</th>
                                                     <th>Size</th>
-                                                    <th>Quantity Available</th>
+                                                    <th>Qty. Available</th>
                                                     <th>Price</th>
+                                                    <th class="op" style="display: none">Orig. Price</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
@@ -104,6 +116,7 @@
                                                                 <td>{{ product.quantity_available }}</td>
                                                             {% endif %}
                                                             <td><span class="font-weight-bold">₵</span>{{ product.price }}</td>
+                                                            <td class="opd" style="display: none"><span class="font-weight-bold">₵</span>{{ product.original_price }}</td>
                                                             <td><a href="{% url 'edit_product' pk=product.id %}"><i class="fa fa-fw fa-edit"></i></a></td>
                                                             <td><a href="{% url 'restock_product' pk=product.id %}"><i class="fa fa-fw fa-box-open"></i></a></td>
                                                             {% if request.user.role == 'Admin' %}
@@ -130,4 +143,33 @@
             </div>
 
         </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+           function performAction(checkbox){
+   if (checkbox.checked){
+       console.log("checked")
+       let all_op = $(".opd")
+       let op = $(".op")
+
+       op.css('display', 'table-cell')
+
+       console.log(op)
+       console.log(all_op)
+
+       all_op.css('display', 'table-cell')
+   }else{
+       let all_op = $(".opd")
+       let op = $(".op")
+
+       op.css('display', 'none')
+
+       console.log(op)
+       console.log(all_op)
+
+       all_op.css('display', 'none')
+   }
+   }
+    </script>
 {% endblock %}
