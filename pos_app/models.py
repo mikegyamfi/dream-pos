@@ -49,7 +49,7 @@ class Product(models.Model):
     domain = models.CharField(max_length=250, null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False)
     price = models.FloatField(null=False, blank=False)
-    original_price = models.FloatField(null=True, blank=True)
+    original_price = models.FloatField(null=True, blank=True, default=0.0)
     quantity_available = models.PositiveIntegerField(null=False, blank=False)
     choices = (
         ("S/S", "S/S"),
