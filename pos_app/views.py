@@ -475,6 +475,7 @@ def days_sales(request):
                 customer_phone=sale.customer_phone,
                 amount_paid=sale.amount_paid,
                 balance=sale.balance,
+                payment_mode=sale.payment_mode,
                 product=sale.product,
                 quantity=sale.quantity,
                 price=sale.price,
