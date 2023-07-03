@@ -281,8 +281,7 @@ def edit_product(request, pk):
             product_to_be_edited.quantity_available = form.cleaned_data["quantity"]
             product_to_be_edited.price = form.cleaned_data["price"]
             product_to_be_edited.size = form.cleaned_data["size"]
-            if form.cleaned_data["cost_price"]:
-                product_to_be_edited.original_price = form.cleaned_data["cost_price"]
+            product_to_be_edited.cost_price = form.cleaned_data["cost_price"]
             product_to_be_edited.user = request.user
             product_to_be_edited.save()
 
@@ -325,8 +324,7 @@ def restock_product(request, pk):
             product_to_be_stocked.price = form.cleaned_data["price"]
             product_to_be_stocked.quantity_available += int(form.cleaned_data["quantity"])
             product_to_be_stocked.size = form.cleaned_data["size"]
-            if form.cleaned_data["original_price"]:
-                product_to_be_stocked.original_price = form.cleaned_data["original_price"]
+            product_to_be_stocked.cost_price = form.cleaned_data["cost_price"]
             product_to_be_stocked.user = request.user
             product_to_be_stocked.save()
 
