@@ -100,6 +100,12 @@ class DaysSale(models.Model):
     customer_phone = models.CharField(max_length=50, null=True, blank=True)
     amount_paid = models.FloatField(null=True, blank=True)
     balance = models.FloatField(null=True, blank=True)
+    choices = (
+        ("Cash", "Cash"),
+        ("Momo", "Momo"),
+        ("Card", "Card")
+    )
+    payment_mode = models.CharField(max_length=100, null=False, blank=False, choices=choices, default="Cash")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)

@@ -21,7 +21,7 @@ urlpatterns = [
     path('all_sales', views.all_sales, name='all_sales'),
     path('everyday_sales', views.individual_sales, name='everyday_sales'),
     path('check_sales/<int:pk>', views.check_sale, name='check_sale'),
-    path('invoice/<str:sale_reff>/<str:name>/<str:phone>/<str:amount_paid>', views.invoice, name='invoice'),
+    path('invoice/<str:sale_reff>/<str:name>/<str:phone>/<str:amount_paid>/<str:mode>', views.invoice, name='invoice'),
     path('restock_history', views.restock_history, name='restock_history'),
     path('timeline', views.timeline, name='timeline'),
 

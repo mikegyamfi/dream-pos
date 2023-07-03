@@ -21,6 +21,7 @@ def home(request):
         customer_phone = request.POST.get("customer-phone")
         customer_name = request.POST.get("customer-name")
         amount_paid = request.POST.get("customer-amount")
+        mode = request.POST.get("payment-mode")
         if amount_paid != "":
             amount_paid = float(amount_paid)
         else:
@@ -41,6 +42,7 @@ def home(request):
                 sale_reference=sale_ref,
                 product=item.product,
                 quantity=item.product_qty,
+                payment_mode=mode,
                 price=item.product.price,
                 total_price=item.product_qty * item.product.price,
                 domain=shop.domain
@@ -61,8 +63,8 @@ def home(request):
         )
         new_timeline.save()
         if customer_name == '' or customer_phone == '':
-            return redirect('invoice', sale_reff=sales[0].sale_reference, name="Null", phone="Null", amount_paid=amount_paid)
-        return redirect('invoice', sale_reff=sales[0].sale_reference, name=customer_name, phone=customer_phone, amount_paid=amount_paid)
+            return redirect('invoice', sale_reff=sales[0].sale_reference, name="Null", phone="Null", amount_paid=amount_paid, mode=mode)
+        return redirect('invoice', sale_reff=sales[0].sale_reference, name=customer_name, phone=customer_phone, amount_paid=amount_paid, mode=mode)
     products = models.Product.objects.filter(domain=user.domain).order_by('name')
     day_sales = models.DaysSale.objects.filter(domain=user.domain)
     cart = models.Cart.objects.filter(domain=user.domain)
@@ -420,7 +422,7 @@ def sell_items(request):
     return redirect('invoice', sale_reff=sales[0].sale_reference)
 
 
-def invoice(request, sale_reff, name, phone, amount_paid):
+def invoice(request, sale_reff, name, phone, amount_paid, mode):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
     customer_goods = models.DaysSale.objects.filter(domain=user.domain, sale_reference=sale_reff)
@@ -446,7 +448,8 @@ def invoice(request, sale_reff, name, phone, amount_paid):
         'name': name,
         'phone': phone,
         'amount_paid': amount_paid,
-        'balance': balance
+        'balance': balance,
+        'mode': mode
     }
 
     return render(request, "layouts/invoice.html", context=context)
