@@ -95,7 +95,7 @@
                                                     <th>Size</th>
                                                     <th>Qty. Available</th>
                                                     <th>Price</th>
-                                                    <th class="op" style="display: none">Orig. Price</th>
+{#                                                    <th class="op" style="display: none">Orig. Price</th>#}
                                                     <th>Action</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
@@ -116,7 +116,7 @@
                                                                 <td>{{ product.quantity_available }}</td>
                                                             {% endif %}
                                                             <td><span class="font-weight-bold">₵</span>{{ product.price }}</td>
-                                                            <td class="opd" style="display: none"><span class="font-weight-bold">₵</span>{{ product.original_price }}</td>
+{#                                                            <td class="opd" style="display: none"><span class="font-weight-bold">₵</span>{{ product.original_price }}</td>#}
                                                             <td><a href="{% url 'edit_product' pk=product.id %}"><i class="fa fa-fw fa-edit"></i></a></td>
                                                             <td><a href="{% url 'restock_product' pk=product.id %}"><i class="fa fa-fw fa-box-open"></i></a></td>
                                                             {% if request.user.role == 'Admin' %}
