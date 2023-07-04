@@ -634,8 +634,10 @@ def shop_info(request):
         shop.shop_contact = contact
         shop.address = address
         if request.POST.get("has_cashier", True):
+            print(True)
             shop.has_cashier = True
         else:
+            print(False)
             shop.has_cashier = False
         shop.save()
         messages.success(request, "Details Updated")
