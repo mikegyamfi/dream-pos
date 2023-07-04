@@ -627,7 +627,7 @@ def shop_info(request):
         name = request.POST.get("shop_name")
         email = request.POST.get("shop_email")
         contact = request.POST.get("shop_contact")
-        address = request.POST.get("address")
+        address = request.POST.get("shop_address")
 
         shop.name = name
         shop.shop_email = email
