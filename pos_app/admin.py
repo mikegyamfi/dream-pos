@@ -24,7 +24,7 @@ class StoreInfoAdmin(admin.ModelAdmin):
 
 
 class CartAdmin(admin.ModelAdmin):
-    list_display = ['domain', 'product', 'product_qty']
+    list_display = ['user', 'domain', 'product', 'product_qty']
 
 
 class CategoryAdmin(admin.ModelAdmin):
