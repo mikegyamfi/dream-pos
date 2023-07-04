@@ -625,6 +625,7 @@ def shop_info(request):
 
     context = {
         'shop': shop,
+        'shop_name': shop.name,
         'personnels': personnels
     }
     return render(request, 'layouts/profile.html', context=context)
