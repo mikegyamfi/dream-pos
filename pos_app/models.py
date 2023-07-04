@@ -33,11 +33,11 @@ class CustomUser(AbstractUser):
 class StoreInfo(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
     domain = models.CharField(max_length=200, null=False, blank=False)
-    # has_cashier = models.BooleanField(default=False)
-    # address = models.CharField(max_length=250, null=True, blank=True)
-    # shop_contact = models.PositiveBigIntegerField(null=True, blank=False)
-    # shop_email = models.EmailField(null=True, blank=True)
-    # shop_receipt_generation_prefix = models.CharField(max_length=100, null=True, blank=True)
+    has_cashier = models.BooleanField(default=False)
+    address = models.CharField(max_length=250, null=True, blank=True)
+    shop_contact = models.PositiveBigIntegerField(null=True, blank=False)
+    shop_email = models.EmailField(null=True, blank=True)
+    shop_receipt_generation_prefix = models.CharField(max_length=100, null=True, blank=True)
     code = models.PositiveIntegerField(null=False, blank=False)
 
 
@@ -59,7 +59,7 @@ class Product(models.Model):
     domain = models.CharField(max_length=250, null=False, blank=False)
     name = models.CharField(max_length=250, null=False, blank=False)
     price = models.FloatField(null=False, blank=False)
-    # cost_price = models.FloatField(null=False, blank=True, default=0.0)
+    cost_price = models.FloatField(null=False, blank=True, default=0.0)
     quantity_available = models.PositiveIntegerField(null=False, blank=False)
     choices = (
         ("S/S", "S/S"),
@@ -77,8 +77,8 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=get_user)
-    # cart_reference = models.CharField(max_length=200, null=True, blank=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=get_user)
+    cart_reference = models.CharField(max_length=200, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     product_qty = models.PositiveIntegerField()
