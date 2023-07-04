@@ -108,28 +108,34 @@
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
                                         <div class="card p-4 mt-4">
-                                            <form class="m-0 p-0">
+                                            <form class="m-0 p-0" method="post">
                                                 <div class="row">
                                                 <div class="form-group col-lg-6 col-12">
                                                     <label for="inputText3" class="">Shop Name</label>
-                                                    <input id="inputText3" type="text" class="form-control" value="{{ shop.name }}">
+                                                    <input name="shop_name" id="inputText3" type="text" class="form-control" value="{{ shop.name }}">
                                                 </div>
                                                 <div class="form-group col-lg-6 col-12">
                                                     <label for="inputEmail">Email address</label>
-                                                    <input id="inputEmail" value="{{ shop.shop_email }}" type="email" placeholder="name@example.com" class="form-control">
+                                                    <input name="shop_email" id="inputEmail" value="{{ shop.shop_email }}" type="email" placeholder="name@example.com" class="form-control">
                                                 </div>
+
                                                 <div class="form-group col-12">
                                                     <label for="inputText4" class="">Phone</label>
-                                                    <input id="inputText4" value="{{ shop.shop_contact }}" type="number" class="form-control" placeholder="Numbers">
+                                                    <input name="shop_contact" id="inputText4" value="{{ shop.shop_contact }}" type="number" class="form-control" placeholder="Numbers">
                                                 </div>
                                                 <div class="form-group col-12">
-                                                    <label for="address"><Address></Address></label>
-                                                    <input id="address" value="{{ shop.address }}" type="text" class="form-control">
+                                                    <label for="address">Address</label>
+                                                    <input name="shop_address" id="address" value="{{ shop.address }}" type="text" class="form-control">
+                                                </div>
+                                                    <div class="form-group col-12">
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input name="has_cashier" type="checkbox" class="custom-control-input"><span class="custom-control-label">Cashier Present</span>
+                                                    </label>
                                                 </div>
                                             </div>
                                             </form>
                                             <div class="d-flex justify-content-end">
-                                                <button class="btn btn-primary">Update</button>
+                                                <button type="submit" class="btn btn-primary">Update</button>
                                             </div>
                                         </div>
                                     </div>
@@ -176,7 +182,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                             Copyright © 2023 de Dream Team. All rights reserved.
+                            <a href="https://michael.dedreamteam.com">Copyright © 2023 de Dream Team. All rights reserved.</a>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="text-md-right footer-links d-none d-sm-block">

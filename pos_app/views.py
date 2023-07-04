@@ -623,6 +623,23 @@ def shop_info(request):
     shop = models.StoreInfo.objects.get(domain=user.domain)
     personnels = models.CustomUser.objects.filter(domain=shop.domain)
 
+    if request.method == "POST":
+        name = request.POST.get("shop_name")
+        email = request.POST.get("shop_email")
+        contact = request.POST.get("shop_contact")
+        address = request.POST.get("address")
+        has_cashier = request.POST.get("has_cashier")
+
+        shop.name = name
+        shop.shop_email = email
+        shop.shop_contact = contact
+        shop.address = address
+        shop.has_cashier = has_cashier
+
+        shop.save()
+        messages.success(request, "Details Updated")
+        return redirect('shop_info')
+
     context = {
         'shop': shop,
         'shop_name': shop.name,
