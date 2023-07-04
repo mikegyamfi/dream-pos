@@ -19,7 +19,7 @@ class CustomUserForm(UserCreationForm):
     phone_number = forms.CharField(
         widget=forms.NumberInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Phone Number'}))
     role = forms.ChoiceField(widget=forms.Select({'class': 'form-control form-control-lg', 'placeholder': 'Role'}),
-                             choices=(('Admin', 'Admin'), ('Sales Personnel', 'Sales Personnel')))
+                             choices=(('Admin', 'Admin'), ('Sales Personnel', 'Sales Personnel'), ('Cashier', 'Cashier')))
     password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Password'}))
     password2 = forms.CharField(

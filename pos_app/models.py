@@ -14,7 +14,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(null=True, blank=True)
     choices = (
         ("Sales Personnel", "Sales Personnel"),
-        ("Admin", "Admin")
+        ("Admin", "Admin"),
+        ("Cashier", "Cashier"),
     )
     role = models.CharField(max_length=200, null=False, blank=False, choices=choices, default="Sales Personnel")
     phone_number = models.PositiveBigIntegerField(blank=True, null=True)
@@ -28,6 +29,11 @@ class CustomUser(AbstractUser):
 class StoreInfo(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
     domain = models.CharField(max_length=200, null=False, blank=False)
+    has_cashier = models.BooleanField(default=False)
+    address = models.CharField(max_length=250, null=True, blank=True)
+    shop_contact = models.PositiveBigIntegerField(null=True, blank=False)
+    shop_email = models.EmailField(null=True, blank=True)
+    shop_receipt_generation_prefix = models.CharField(max_length=100, null=True, blank=True)
     code = models.PositiveIntegerField(null=False, blank=False)
 
 
@@ -67,6 +73,8 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    cart_reference = models.CharField(max_length=200, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     product_qty = models.PositiveIntegerField()
