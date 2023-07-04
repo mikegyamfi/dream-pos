@@ -630,6 +630,8 @@ def shop_info(request):
         address = request.POST.get("address")
         has_cashier = request.POST.get("has_cashier")
 
+        print(has_cashier)
+
         shop.name = name
         shop.shop_email = email
         shop.shop_contact = contact
