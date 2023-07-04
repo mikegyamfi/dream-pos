@@ -4,8 +4,10 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 # Create your models here.
+
+
 def get_user():
-    return CustomUser.objects.get(id=1).id
+    return CustomUser.objects.get_or_create(id=1)[0].id
 
 
 class CustomUser(AbstractUser):
