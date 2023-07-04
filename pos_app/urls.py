@@ -31,6 +31,8 @@ urlpatterns = [
     path('logout', views.logout_page, name='logout'),
     path('sign_up', views.sign_up, name='signup'),
 
+    path('shop_info', views.shop_info, name='shop_info'),
+
     path('google272847792544ccb7.html', views.verification, name='google272847792544ccb7.html')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

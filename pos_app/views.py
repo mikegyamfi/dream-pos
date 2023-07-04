@@ -618,4 +618,16 @@ def verification(request):
     return render(request, "google272847792544ccb7.html")
 
 
+def shop_info(request):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+    personnels = models.CustomUser.objects.filter(domain=shop.domain)
+
+    context = {
+        'shop': shop,
+        'personnels': personnels
+    }
+    return render(request, 'layouts/profile.html', context=context)
+
+
 
