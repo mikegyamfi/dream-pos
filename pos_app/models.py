@@ -6,6 +6,10 @@ from django.db import models
 # Create your models here.
 
 
+def get_user():
+    return CustomUser.objects.get(id=1).id
+
+
 class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=200, blank=False, null=False)
     last_name = models.CharField(max_length=200, blank=False, null=False)
@@ -73,7 +77,7 @@ class Product(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=get_user())
     cart_reference = models.CharField(max_length=200, null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
