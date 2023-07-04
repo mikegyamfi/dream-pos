@@ -33,7 +33,7 @@ class CustomUser(AbstractUser):
 class StoreInfo(models.Model):
     name = models.CharField(max_length=200, null=False, blank=False)
     domain = models.CharField(max_length=200, null=False, blank=False)
-    has_cashier = models.BooleanField(default=False)
+    has_cashier = models.BooleanField(default=False, null=True, blank=True)
     address = models.CharField(max_length=250, null=True, blank=True)
     shop_contact = models.PositiveBigIntegerField(null=True, blank=False)
     shop_email = models.EmailField(null=True, blank=True)
