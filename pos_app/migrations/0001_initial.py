@@ -78,6 +78,7 @@ class Migration(migrations.Migration):
                 ('domain', models.CharField(max_length=250)),
                 ('name', models.CharField(max_length=250)),
                 ('price', models.FloatField()),
+                ('cost_price', models.FloatField()),
                 ('quantity_available', models.PositiveIntegerField()),
                 ('size', models.CharField(choices=[('S/S', 'S/S'), ('Q/S', 'Q/S'), ('M/S', 'M/S'), ('A/S', 'A/S'), ('B/S', 'B/S'), ('E/L', 'E/L')], max_length=200)),
                 ('date_added', models.DateTimeField(auto_now_add=True)),
