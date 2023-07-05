@@ -157,14 +157,16 @@
                                         <form action="" method="post">
                                         {% csrf_token %}
                                         {% if cart_items %}
-                                            <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
-                                            <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
-                                            <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
-                                            <select name="payment-mode" class="form-control">
-                                                <option>Cash</option>
-                                                <option>MoMo</option>
-                                                <option>Card</option>
-                                            </select>
+                                            {% if not shop.has_cashier %}
+                                                <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
+                                                <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
+                                                <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
+                                                <select name="payment-mode" class="form-control">
+                                                    <option>Cash</option>
+                                                    <option>MoMo</option>
+                                                    <option>Card</option>
+                                                </select>
+                                                {% endif %}
                                             <hr>
                                         {% endif %}
                                         <ul class="list-group mb-3">
