@@ -38,7 +38,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-lg-6 col-12 p-3">
-                            <div class="card p-2">
+                            <div class="card p-5">
                                 <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
                                 <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
                                 <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
@@ -91,8 +91,8 @@
                                             {% for item in items %}
                                                 <tr>
                                                     <td style="width: 70%" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
-                                                    <td style="width: 10%" class="right">{{ item.price }}</td>
-                                                    <td style="width: 10%" class="center">{{ item.quantity }}</td>
+                                                    <td style="width: 10%" class="right">{{ item.unit_price }}</td>
+                                                    <td style="width: 10%" class="center">{{ item.product_qty }}</td>
                                                     <td style="width: 10%" class="right">{{ item.total_price }}</td>
                                                 </tr>
                                             {% endfor %}
