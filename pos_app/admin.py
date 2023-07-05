@@ -27,8 +27,8 @@ class CartAdmin(admin.ModelAdmin):
     list_display = ['user', 'cart_reference', 'domain', 'product', 'product_qty']
 
 
-# class CashierCartAdmin(admin.ModelAdmin):
-#     list_display = ['user', 'cart_reference', 'domain', 'product', 'product_qty']
+class CashierCartAdmin(admin.ModelAdmin):
+    list_display = ['user', 'cart_reference', 'domain', 'product', 'product_qty']
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -46,4 +46,4 @@ admin.site.register(models.IndividualDaySale, IndividualDaySaleAdmin)
 admin.site.register(models.StoreInfo, StoreInfoAdmin)
 admin.site.register(models.RestockHistory)
 admin.site.register(models.Timeline)
-# admin.site.register(models.CashierCart, CashierCartAdmin)
+admin.site.register(models.CashierCart, CashierCartAdmin)
