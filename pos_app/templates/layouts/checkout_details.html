@@ -174,10 +174,10 @@
 {% block scripts %}
     <script>
     function saveAndPrint(){
-        let name = $(".customer-name")
-        let contact = $(".customer-phone")
-        let amount_paid = $(".customer-amount")
-        let method = $(".payment-mode")
+        let name = $(".customer-name").val()
+        let contact = $(".customer-phone").val()
+        let amount_paid = $(".customer-amount").val()
+        let method = $(".payment-mode").val()
 
         console.log(name)
         console.log(contact)
