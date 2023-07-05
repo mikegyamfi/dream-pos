@@ -28,7 +28,7 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
-                                <h2 class="pageheader-title">{{ ref }}</h2>
+                                <h2 class="pageheader-title">#{{ ref }}</h2>
                                 <div class="page-breadcrumb">
                                 </div>
                             </div>
@@ -37,19 +37,21 @@
 
 
                     <div class="row justify-content-center">
-                        <div class="col-lg-6 col-12 card p-3">
-                            <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
-                            <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
-                            <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
-                            <select name="payment-mode" class="form-control">
-                                <option>Cash</option>
-                                <option>MoMo</option>
-                                <option>Card</option>
-                            </select>
+                        <div class="col-lg-6 col-12 p-3">
+                            <div class="card p-2">
+                                <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
+                                <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
+                                <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
+                                <select name="payment-mode" class="form-control">
+                                    <option>Cash</option>
+                                    <option>MoMo</option>
+                                    <option>Card</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <div class="mx-auto card p-2 invoice-card" id="invoice">
+                            <div class="mx-auto card p-2 invoice-card" id="invoice" style="width: 20rem">
                                 <div class="card-header p-4">
                                      <h3 class="pt-2 d-inline-block mb-0">{{ shop_name }}</h3>
                                     {% if shop.address %}
