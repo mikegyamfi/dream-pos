@@ -166,8 +166,8 @@
                                                     <option>MoMo</option>
                                                     <option>Card</option>
                                                 </select>
+                                                <hr>
                                                 {% endif %}
-                                            <hr>
                                         {% endif %}
                                         <ul class="list-group mb-3">
                                             {% if cart_items %}
@@ -189,10 +189,12 @@
                                                 <input class="cart-total" value="{{ cart_total }}" type="hidden">
                                                 <strong class="cart-total">₵{{ cart_total }}</strong>
                                             </li>
+                                            {% if not shop.has_cashier %}
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <span>Balance (GHS)</span>
                                                 <strong class="cart-balance"></strong>
                                             </li>
+                                            {% endif %}
                                             <li class="list-group-item d-flex justify-content-end">
                                                 {% if cart_items %}
                                                     {% if shop.has_cashier %}
