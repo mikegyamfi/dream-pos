@@ -98,7 +98,9 @@
                                                     <th class="op" style="display: none">Orig. Price</th>
                                                     <th>Action</th>
                                                     <th>Action</th>
-                                                    <th>Action</th>
+                                                    {% if request.user.role == "Admin" %}
+                                                        <th>Action</th>
+                                                    {% endif %}
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
