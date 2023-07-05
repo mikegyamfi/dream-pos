@@ -52,10 +52,7 @@
                                 <div class="card-header p-4">
                                      <h3 class="pt-2 d-inline-block">{{ shop_name }}</h3>
                                     {% if shop.address %}
-                                        <small>{{ shop.address }}</small>
-                                    {% endif %}
-                                    {% if shop.address %}
-                                        <small>{{ shop.shop_email }}</small>
+                                        <small class="m-0" style="display: block">{{ shop.shop_email }}</small>
                                     {% endif %}
                                     <div class=""> <h4 class="mb-0">Invoice #{{ num }}</h4>
                                     Date: {{ date }}</div>
@@ -68,7 +65,7 @@
                                          
 {#                                            <div><p>{{ shop_name }}</p></div>#}
                                             {% if shop.shop_contact %}
-                                            <div><h6>Phone: 233{{ request.user.phone_number }}</h6></div>
+                                            <div><h6>Phone: 233{{ shop.shop_contact }}</h6></div>
                                             {% endif %}
                                         </div>
                                         <div class="col-sm-6">
@@ -143,7 +140,10 @@
                                     </div>
                                 </div>
                                 <div class="card-footer bg-white">
-                                    <p class="mb-0">Thank you! Come back again.</p>
+                                    {% if shop.address %}
+                                        <p class="mb-1">{{ shop.address }}</p>
+                                    {% endif %}
+                                    <p class="m-0">Thank you! Come back again.</p>
                                 </div>
                             </div>
                         </div>
