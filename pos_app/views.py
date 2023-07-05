@@ -628,13 +628,14 @@ def shop_info(request):
         email = request.POST.get("shop_email")
         contact = request.POST.get("shop_contact")
         address = request.POST.get("shop_address")
+        has_cashier = request.POST.get('has_cashier', '') == 'on'
 
         shop.name = name
         shop.shop_email = email
         shop.shop_contact = contact
         shop.address = address
-        has_cashier = request.POST.get('has_cashier', '') == 'on'
         print(has_cashier)
+        shop.has_cashier - has_cashier
         shop.save()
         messages.success(request, "Details Updated")
         return redirect('shop_info')
