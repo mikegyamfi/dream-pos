@@ -390,6 +390,7 @@ def add_to_cart(request):
             return JsonResponse({'status': 'Quantity Updated', 'icon': ''})
         reference = helper.ref_generator(shop.shop_receipt_generation_prefix)
         new_cart_object = models.Cart.objects.create(
+            user=user,
             product=product_to_be_added_to_cart,
             product_qty=1,
             cart_reference=reference,
