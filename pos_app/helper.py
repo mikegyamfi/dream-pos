@@ -1,8 +1,8 @@
 import random
 
 
-def ref_generator(shop_name):
+def ref_generator(prefix):
     number = random.randint(11111, 99999)
-    letter = shop_name[0].upper()
-    return f"{letter}{number}"
+    prefix = prefix
+    return f"{prefix}{number}"
 

@@ -27,11 +27,12 @@ def home(request):
         else:
             amount_paid = 0
         cart_items = models.Cart.objects.filter(domain=shop.domain)
+        reference = cart_items[0].cart_reference
         cart_total = 0
         for i in cart_items:
             cart_total += i.total_price
         sales = []
-        sale_ref = helper.ref_generator(shop.name)
+        sale_ref = reference
         for item in cart_items:
             new_day_sale = models.DaysSale.objects.create(
                 user=request.user,
@@ -87,7 +88,8 @@ def home(request):
         'cart_total': total,
         'shop_total': '{:,.2f}'.format(shop_total),
         'day_total': day_total,
-        'shop_name': shop_name
+        'shop_name': shop_name,
+        'shop': shop
     }
 
     return render(request, "layouts/index.html", context=context)
@@ -386,9 +388,11 @@ def add_to_cart(request):
             cart_item.total_price = product_to_be_added_to_cart.price * new_quantity
             cart_item.save()
             return JsonResponse({'status': 'Quantity Updated', 'icon': ''})
+        reference = helper.ref_generator(shop.shop_receipt_generation_prefix)
         new_cart_object = models.Cart.objects.create(
             product=product_to_be_added_to_cart,
             product_qty=1,
+            cart_reference=reference,
             unit_price=product_to_be_added_to_cart.price,
             total_price=product_to_be_added_to_cart.price,
             domain=shop.domain
