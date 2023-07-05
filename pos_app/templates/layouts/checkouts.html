@@ -25,6 +25,12 @@
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
+                    {% for checkout in checkouts %}
+                        <div class="card pb-4 justify-content-lg-start">
+                            <h3>{{ checkout.cart_reference }}</h3>
+                            <p>{{ checkout.created_at }}</p>
+                        </div>
+                    {% endfor %}
 
                 </div>
             </div>

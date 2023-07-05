@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from . import views
+from . import views, cashier_views
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -32,6 +32,9 @@ urlpatterns = [
     path('sign_up', views.sign_up, name='signup'),
 
     path('shop_info', views.shop_info, name='shop_info'),
+
+    path('cashier/checkouts', cashier_views.checkouts, name='checkouts'),
+    path('send_to_cashier', cashier_views.send_to_cashier, name='send_to_cashier'),
 
     path('google272847792544ccb7.html', views.verification, name='google272847792544ccb7.html')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
