@@ -157,3 +157,18 @@ class Timeline(models.Model):
     domain = models.CharField(max_length=200, null=False, blank=False)
     activity = models.CharField(max_length=500, null=False, blank=False)
     time = models.DateTimeField(auto_now_add=True)
+
+
+class CashierCart(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=get_user)
+    cart_reference = models.CharField(max_length=200, null=True, blank=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    domain = models.CharField(max_length=250, null=False, blank=False)
+    product_qty = models.PositiveIntegerField()
+    unit_price = models.FloatField()
+    total_price = models.FloatField()
+
+
+
+
+
