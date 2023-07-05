@@ -47,7 +47,7 @@
                                 <h3>#{{ checkout.cart_reference }}</h3>
                                 <p class="mb-1">{{ checkout.created_at }}</p>
                                 <p>Total Amount: GHS{{ checkout.total_price }}</p>
-                                <button href="{% url 'checkout_details' ref=checkout.cart_reference %}" class="btn btn-sm btn-success">Checkout</button>
+                                <a href="{% url 'checkout_details' ref=checkout.cart_reference %}" class="btn btn-sm btn-success">Checkout</a>
                             </div>
                         </div>
                     {% endfor %}
