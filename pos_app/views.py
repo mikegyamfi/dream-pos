@@ -170,8 +170,7 @@ def add_product(request):
             price = form.cleaned_data["price"]
             quantity = form.cleaned_data["quantity"]
             size = form.cleaned_data["size"]
-            if form.cleaned_data["cost_price"]:
-                cost_price = form.cleaned_data["cost_price"]
+            cost_price = form.cleaned_data["cost_price"]
 
             print(category)
             print(name)
