@@ -633,12 +633,8 @@ def shop_info(request):
         shop.shop_email = email
         shop.shop_contact = contact
         shop.address = address
-        if request.POST.get("has_cashier", True):
-            print(True)
-            shop.has_cashier = True
-        else:
-            print(False)
-            shop.has_cashier = False
+        has_cashier = request.POST.get('has_cashier', '') == 'on'
+        print(has_cashier)
         shop.save()
         messages.success(request, "Details Updated")
         return redirect('shop_info')
