@@ -26,9 +26,12 @@
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
                     {% for checkout in checkouts %}
-                        <div class="card pb-4 justify-content-lg-start">
-                            <h3>{{ checkout.cart_reference }}</h3>
-                            <p>{{ checkout.created_at }}</p>
+                        <div class="row justify-content-center">
+                            <div class="card p-4 justify-content-lg-start col-lg-6 col-12">
+                                <h3>#{{ checkout.cart_reference }}</h3>
+                                <p>{{ checkout.created_at }}</p>
+                                <p>Total Amount: {{ checkout.total_price }}</p>
+                            </div>
                         </div>
                     {% endfor %}
 
