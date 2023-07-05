@@ -26,7 +26,7 @@ def home(request):
             amount_paid = float(amount_paid)
         else:
             amount_paid = 0
-        cart_items = models.Cart.objects.filter(domain=shop.domain)
+        cart_items = models.Cart.objects.filter(domain=shop.domain, user=request.user)
         reference = cart_items[0].cart_reference
         cart_total = 0
         for i in cart_items:
@@ -455,7 +455,8 @@ def invoice(request, sale_reff, name, phone, amount_paid, mode):
         'phone': phone,
         'amount_paid': amount_paid,
         'balance': balance,
-        'mode': mode
+        'mode': mode,
+        'shop': shop
     }
 
     return render(request, "layouts/invoice.html", context=context)

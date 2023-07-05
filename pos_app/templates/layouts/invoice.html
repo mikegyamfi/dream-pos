@@ -51,7 +51,12 @@
                             <div class="mx-auto card invoice-card" style="width: 20rem" id="invoice">
                                 <div class="card-header p-4">
                                      <h3 class="pt-2 d-inline-block">{{ shop_name }}</h3>
-                                   
+                                    {% if shop.address %}
+                                        <small>{{ shop.address }}</small>
+                                    {% endif %}
+                                    {% if shop.address %}
+                                        <small>{{ shop.shop_email }}</small>
+                                    {% endif %}
                                     <div class=""> <h4 class="mb-0">Invoice #{{ num }}</h4>
                                     Date: {{ date }}</div>
                                 </div>
@@ -62,7 +67,9 @@
                                             <h6 class="text-dark mb-1">{{ request.user }}</h6>
                                          
 {#                                            <div><p>{{ shop_name }}</p></div>#}
+                                            {% if shop.shop_contact %}
                                             <div><h6>Phone: 233{{ request.user.phone_number }}</h6></div>
+                                            {% endif %}
                                         </div>
                                         <div class="col-sm-6">
                                             <h5 class="mb-3">To:</h5>
