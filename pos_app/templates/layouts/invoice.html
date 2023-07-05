@@ -87,7 +87,7 @@
                                             <tbody>
                                             {% for item in items %}
                                                 <tr>
-                                                    <td style="width: 70%" class="left strong">{{ item.product }}({{item.product.category}})</td>
+                                                    <td style="width: 70%" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
                                                     <td style="width: 10%" class="right">{{ item.price }}</td>
                                                     <td style="width: 10%" class="center">{{ item.quantity }}</td>
                                                     <td style="width: 10%" class="right">{{ item.total_price }}</td>

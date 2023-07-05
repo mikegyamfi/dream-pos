@@ -110,7 +110,7 @@
                                                     {% for product in products %}
                                                         <tr>
                                                             <td>{{ product.category }}</td>
-                                                            <td class="font-bold">{{ product.name }}</td>
+                                                            <td class="font-bold">{{ product.name|capfirst }}</td>
                                                             <td>{{ product.size }}</td>
                                                             {% if product.quantity_available == 0 %}
                                                                 <td><small class="badge badge-danger">Out of stock</small></td>

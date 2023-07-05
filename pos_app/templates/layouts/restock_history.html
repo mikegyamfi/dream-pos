@@ -51,7 +51,7 @@
                                                         <tr>
                                                             <td>{{ item.restock_date }}</td>
                                                             <td class="font-bold">{{ item.user }}</td>
-                                                            <td>{{ item.product }}</td>
+                                                            <td>{{ item.product | capfirst }}</td>
                                                             <td>{{ item.quantity }}</td>
                                                             <td><span class="font-weight-bold">₵</span>{{ item.price }}</td>
                                                         </tr>

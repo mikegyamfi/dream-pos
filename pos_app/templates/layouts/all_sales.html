@@ -73,7 +73,7 @@
                                                     {% for sale in sales %}
                                                         <tr>
                                                             <td>{{ sale.date_created }}</td>
-                                                            <td>{{ sale.product }}</td>
+                                                            <td>{{ sale.product | capfirst }}</td>
                                                             <td>{{ sale.quantity }}</td>
                                                             <td><span class="font-weight-bold">₵</span>{{ sale.price }}</td>
                                                             <td>₵{{ sale.total_price }}</td>

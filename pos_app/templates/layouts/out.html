@@ -50,7 +50,7 @@
                                                     {% for product in products %}
                                                         <tr>
                                                             <td>{{ product.category }}</td>
-                                                            <td class="font-bold">{{ product.name }}</td>
+                                                            <td class="font-bold">{{ product.name | capfirst }}</td>
                                                             <td>{{ product.quantity_available }}</td>
                                                             <td>{{ product.size }}</td>
                                                             <td><span class="font-weight-bold">₵</span>{{ product.price }}</td>

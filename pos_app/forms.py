@@ -35,7 +35,7 @@ class AddProductForm(forms.ModelForm):
                                       widget=forms.Select(attrs={'class': 'form-control'}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
-    cost_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}), required=False)
+    cost_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}), required=False, initial=0)
     # size = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
     #                               widget=forms.Select(attrs={'class': 'form-control'}))
     size = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=(
