@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -18,6 +20,29 @@ def checkouts(request):
             'shop_name': shop.name,
         }
         return render(request, 'layouts/checkouts.html', context=context)
+
+
+@login_required(login_url='login')
+def checkout_details(request, ref):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+    items = models.CashierCart.objects.filter(cart_reference=ref)
+    date = datetime.datetime.now()
+
+    total = 0
+
+    for i in items:
+        total += i.total_price
+
+    context = {
+        'shop_name': shop.name,
+        'shop': shop,
+        'items': items,
+        'ref': ref,
+        'date': date
+    }
+
+    return render(request, "layouts/checkout_details.html", context=context)
 
 
 @login_required(login_url='login')

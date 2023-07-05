@@ -45,8 +45,9 @@
                         <div class="row justify-content-center">
                             <div class="card p-4 justify-content-lg-start col-lg-6 col-12">
                                 <h3>#{{ checkout.cart_reference }}</h3>
-                                <p>{{ checkout.created_at }}</p>
-                                <p>Total Amount: {{ checkout.total_price }}</p>
+                                <p class="mb-1">{{ checkout.created_at }}</p>
+                                <p>Total Amount: GHS{{ checkout.total_price }}</p>
+                                <button href="{% url 'checkout_details' ref=checkout.cart_reference %}" class="btn btn-sm btn-success">Checkout</button>
                             </div>
                         </div>
                     {% endfor %}

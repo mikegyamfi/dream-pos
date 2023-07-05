@@ -25,6 +25,134 @@
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">{{ ref }}</h2>
+                                <div class="page-breadcrumb">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-12 card p-3">
+                            <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
+                            <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
+                            <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
+                            <select name="payment-mode" class="form-control">
+                                <option>Cash</option>
+                                <option>MoMo</option>
+                                <option>Card</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="mx-auto card p-2 invoice-card" id="invoice">
+                                <div class="card-header p-4">
+                                     <h3 class="pt-2 d-inline-block mb-0">{{ shop_name }}</h3>
+                                    {% if shop.address %}
+                                        <small class="m-0 mb-3" style="display: block">{{ shop.shop_email }}</small>
+                                    {% endif %}
+                                    <div class=""> <h4 class="mb-0">Invoice #{{ ref }}</h4>
+                                    Date: {{ date }}</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <div class="col-sm-6">
+                                            <h5 class="mb-3">From:</h5>
+                                            <h6 class="text-dark mb-1">{{ request.user }}</h6>
+
+{#                                            <div><p>{{ shop_name }}</p></div>#}
+                                            {% if shop.shop_contact %}
+                                            <div><h6>Phone: 233{{ shop.shop_contact }}</h6></div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h5 class="mb-3">To:</h5>
+                                            <h6 class="text-dark mb-1">{{ name }}</h6>
+                                            <div><h6>Phone: {{ phone }}</h6></div>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive-sm">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Item</th>
+                                                    <th class="right">Unit Cost(₵)</th>
+                                                    <th class="center">Qty</th>
+                                                    <th class="right">Total(₵)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for item in items %}
+                                                <tr>
+                                                    <td style="width: 70%" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
+                                                    <td style="width: 10%" class="right">{{ item.price }}</td>
+                                                    <td style="width: 10%" class="center">{{ item.quantity }}</td>
+                                                    <td style="width: 10%" class="right">{{ item.total_price }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-5">
+                                        </div>
+                                        <div class="col-lg-4 col-sm-5">
+                                            <table class="table table-clear">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="left">
+                                                            <strong class="text-dark">Total</strong>
+                                                        </td>
+                                                        <td class="right">
+                                                            <strong class="text-dark">GHS{{ total }}</strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="left">
+                                                            <strong class="text-dark">Paid</strong>
+                                                        </td>
+                                                        <td class="right">
+                                                            <strong class="text-dark"></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="left">
+                                                            <strong class="text-dark">Payment Mode</strong>
+                                                        </td>
+                                                        <td class="right">
+                                                            <strong class="text-dark"></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="left">
+                                                            <strong class="text-dark">Balance</strong>
+                                                        </td>
+                                                        <td class="right">
+                                                            <strong class="text-dark"></strong>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white">
+                                    {% if shop.address %}
+                                        <p class="mb-1">{{ shop.address }}</p>
+                                    {% endif %}
+                                    <p class="m-0">Thank you! Come back again.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
 
                 </div>
             </div>
