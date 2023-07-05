@@ -635,7 +635,7 @@ def shop_info(request):
         shop.shop_contact = contact
         shop.address = address
         print(has_cashier)
-        shop.has_cashier - has_cashier
+        shop.has_cashier = has_cashier
         shop.save()
         messages.success(request, "Details Updated")
         return redirect('shop_info')
