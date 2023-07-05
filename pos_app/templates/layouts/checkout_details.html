@@ -41,14 +41,19 @@
                             <div class="card p-4">
                                 <h3 class="mb-1">Purchase Details</h3>
                                 <hr class="mb-3">
-                                <input name="customer-name" class="form-control mb-2" type="text" placeholder="Customer Name">
-                                <input name="customer-phone" class="form-control mb-2" type="text" placeholder="Customer Phone">
-                                <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
-                                <select name="payment-mode" class="form-control">
-                                    <option>Cash</option>
-                                    <option>MoMo</option>
-                                    <option>Card</option>
-                                </select>
+
+                                <form action="">
+                                    <input name="customer-name" class="form-control mb-2 customer-name" type="text" placeholder="Customer Name">
+                                    <input name="customer-phone" class="form-control mb-2 customer-phone" type="text" placeholder="Customer Phone">
+                                    <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
+                                    <select name="payment-mode" class="form-control payment-mode">
+                                        <option>Cash</option>
+                                        <option>MoMo</option>
+                                        <option>Card</option>
+                                    </select>
+
+                                    <button onclick="saveAndPrint()" class="btn btn-success" type="submit">Save and Print</button>
+                                </form>
                             </div>
                         </div>
 
@@ -165,3 +170,29 @@
 
 
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+    function saveAndPrint(){
+        let name = $(".customer-name")
+        let contact = $(".customer-phone")
+        let amount_paid = $(".customer-amount")
+        let method = $(".payment-mode")
+
+        console.log(name)
+        console.log(contact)
+        console.log(amount_paid)
+        console.log(method)
+        //$.ajax({
+        //    method: "POST",
+        //    url: 'save_details_of_purchase',
+        //    data : {
+        //        'name': name,
+        //        'contact': contact,
+        //        'amount_paid': amount_paid,
+        //        'mode': method
+        //    }
+        //})
+    }
+    </script>
+{% endblock %}
