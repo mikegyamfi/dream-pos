@@ -40,7 +40,7 @@
                         <div class="col-lg-6 col-12">
                             <div class="card p-4">
                                 <h3 class="mb-0">Purchase Details</h3>
-                                <hr class="mb-3">>
+                                <hr class="mb-3">
                                     <input name="customer-name" class="form-control mb-2 customer-name" type="text" placeholder="Customer Name">
                                     <input name="customer-phone" class="form-control mb-2 customer-phone" type="text" placeholder="Customer Phone">
                                     <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
@@ -77,8 +77,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <h5 class="mb-3">To:</h5>
-                                            <h6 class="text-dark mb-1">{{ name }}</h6>
-                                            <div><h6>Phone: {{ phone }}</h6></div>
+                                            <h6 class="text-dark mb-1 receipt-name"></h6>
+                                            <div><h6 class="receipt-phone">Phone: </h6></div>
                                         </div>
                                     </div>
                                     <div class="table-responsive-sm">
@@ -122,7 +122,7 @@
                                                             <strong class="text-dark">Paid</strong>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark"></strong>
+                                                            <strong class="text-dark amount-paid"></strong>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -130,7 +130,7 @@
                                                             <strong class="text-dark">Payment Mode</strong>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark"></strong>
+                                                            <strong class="text-dark mode"></strong>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -175,6 +175,22 @@
         let contact = $(".customer-phone").val()
         let amount_paid = $(".customer-amount").val()
         let method = $(".payment-mode").val()
+
+        $('body').on('keyup', ".customer-name", function(){
+            $(".receipt-name").text($(this).val())
+        })
+
+        $('body').on('keyup', ".customer-phone", function(){
+            $(".receipt-phone").text($(this).val())
+        })
+
+        $('body').on('keyup', ".customer-amount", function(){
+            $(".amount_paid").text($(this).val())
+        })
+
+        $('body').on('keyup', ".payment-mode", function(){
+            $(".mode").text($(this).val())
+        })
 
         console.log(name)
         console.log(contact)
