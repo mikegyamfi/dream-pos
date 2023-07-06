@@ -194,9 +194,9 @@
         })
 
         $('body').on('change', ".payment-mode", function(){
-            let entered_value = $(this).val()
+            let entered_value = this.value
             console.log(entered_value)
-            $(".mode").val($(this).val())
+            document.querySelector(".mode").textContent = this.value
         })
     function saveAndPrint(){
         //$.ajax({
