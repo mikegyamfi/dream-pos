@@ -63,16 +63,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-4">
-                                        <div class="col-sm-6">
-                                            <h5 class="mb-0">From:</h5>
-                                            <h6 class="text-dark mb-1">{{ request.user.first_name }}</h6>
-
-{#                                            <div><p>{{ shop_name }}</p></div>#}
-                                            {% if shop.shop_contact %}
-                                            <div><h6>233{{ shop.shop_contact }}</h6></div>
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-6" style="display: none">
                                             <h5 class="mb-0">To:</h5>
                                             <h6 class="text-dark mb-1 receipt-name"></h6>
                                             <h6 class="receipt-phone"></h6>
