@@ -195,8 +195,8 @@
             let balance = entered_value - cart_total
             console.log(balance)
             console.log(entered_value)
-            document.querySelector(".amount-paid").textContent = this.value
-            document.querySelector(".balance").textContent = balance.toString()
+            document.querySelector(".amount-paid").textContent = "GHS" + this.value
+            document.querySelector(".balance").textContent = "GHS" + balance.toString()
         })
 
         $('body').on('change', ".payment-mode", function(){
