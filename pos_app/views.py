@@ -580,7 +580,7 @@ def delete_cart_item(request):
 def out_of_stock(request):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
-    products_out_of_stock = models.Product.objects.filter(quantity_available=0)
+    products_out_of_stock = models.Product.objects.filter(quantity_available=0, domain=shop.domain)
     context = {
         'products': products_out_of_stock,
         'shop_name': shop.name
