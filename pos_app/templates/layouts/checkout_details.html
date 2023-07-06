@@ -177,10 +177,12 @@
         let method = $(".payment-mode").val()
 
         $('body').on('keyup', ".customer-name", function(){
+            console.log("up")
             $(".receipt-name").text(name)
         })
 
         $('body').on('keyup', ".customer-phone", function(){
+            console.log("up")
             $(".receipt-phone").text(contact)
         })
 
