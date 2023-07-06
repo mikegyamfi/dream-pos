@@ -176,23 +176,27 @@
         let method = $(".payment-mode").val()
 
         $('body').on('keyup', ".customer-name", function(){
-            console.log("up")
             let entered_value = this.value
             console.log(entered_value)
             document.querySelector(".receipt-name").textContent = this.value
         })
 
         $('body').on('keyup', ".customer-phone", function(){
-            console.log("up")
-            $(".receipt-phone").text(contact)
+            let entered_value = this.value
+            console.log(entered_value)
+            document.querySelector(".receipt-phone").textContent = this.value
         })
 
         $('body').on('keyup', ".customer-amount", function(){
-            $(".amount_paid").text(amount_paid)
+            let entered_value = this.value
+            console.log(entered_value)
+            document.querySelector(".amount-paid").textContent = this.value
         })
 
         $('body').on('keyup', ".payment-mode", function(){
-            $(".mode").text(method)
+            let entered_value = this.value
+            console.log(entered_value)
+            document.querySelector(".mode").textContent = this.value
         })
     function saveAndPrint(){
         //$.ajax({
