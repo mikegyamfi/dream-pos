@@ -194,9 +194,9 @@
         })
 
         $('body').on('keyup', ".payment-mode", function(){
-            let entered_value = this.value
+            let entered_value = $(this).val()
             console.log(entered_value)
-            document.querySelector(".mode").textContent = this.value
+            $(".mode").val($(this).val())
         })
     function saveAndPrint(){
         //$.ajax({
