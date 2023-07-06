@@ -14,7 +14,7 @@ def checkouts(request):
         messages.info(request, "Access Restricted")
         return redirect('home')
     else:
-        all_checkouts = models.CashierCart.objects.order_by('cart_reference', 'created_at').distinct('cart_reference')
+        all_checkouts = models.CashierCart.objects.filter(domain=shop.domain, user=user).order_by('cart_reference', 'created_at').distinct('cart_reference')
         context = {
             'checkouts': all_checkouts,
             'shop_name': f"{shop.name} (Cashier Portal)",
