@@ -170,8 +170,7 @@
 
 {% block scripts %}
     <script>
-    function saveAndPrint(){
-        let name = $(".customer-name").val()
+    let name = $(".customer-name").val()
         let contact = $(".customer-phone").val()
         let amount_paid = $(".customer-amount").val()
         let method = $(".payment-mode").val()
@@ -196,11 +195,7 @@
         $('body').on('keyup', ".payment-mode", function(){
             $(".mode").text(method)
         })
-
-        console.log(name)
-        console.log(contact)
-        console.log(amount_paid)
-        console.log(method)
+    function saveAndPrint(){
         //$.ajax({
         //    method: "POST",
         //    url: 'save_details_of_purchase',
