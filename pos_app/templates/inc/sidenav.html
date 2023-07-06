@@ -10,6 +10,7 @@
                             <li class="nav-divider">
                                 <a href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
                             </li>
+                            {% if not request.user.role == "Cashier" %}
                             <li class="nav-divider">
                                <i class="fa fa-fw fa-box-open"></i> Products
                             </li>
@@ -53,7 +54,16 @@
                                     </ul>
                                 </div>
                             </li>
+                            {% endif %}
 
+                        {% if request.user.role == "Cashier" %}
+                            <div>Cashier Portal</div>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'checkouts' %}">Checkouts</a>
+                                </li>
+                            </ul>
+                        {% endif %}
 
                             <li class="nav-divider">
                                 Admin Panel

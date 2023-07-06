@@ -17,7 +17,7 @@ def checkouts(request):
         all_checkouts = models.CashierCart.objects.order_by('cart_reference', 'created_at').distinct('cart_reference')
         context = {
             'checkouts': all_checkouts,
-            'shop_name': shop.name,
+            'shop_name': f"{shop.name} (Cashier Portal)",
         }
         return render(request, 'layouts/checkouts.html', context=context)
 
@@ -35,7 +35,7 @@ def checkout_details(request, ref):
         total += i.total_price
 
     context = {
-        'shop_name': shop.name,
+        'shop_name': f"{shop.name} (Cashier Portal)",
         'shop': shop,
         'items': items,
         'ref': ref,
