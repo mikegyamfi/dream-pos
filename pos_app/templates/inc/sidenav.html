@@ -59,6 +59,7 @@
                         {% if request.user.role == "Cashier" %}
                             <ul class="nav flex-column">
                                 <li class="nav-item">
+                                    <i class="fa fa-fw fa-cash-register"></i>
                                     <a class="nav-link" href="{% url 'checkouts' %}">Checkouts</a>
                                 </li>
                             </ul>
