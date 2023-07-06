@@ -78,7 +78,7 @@
                                         <div class="col-sm-6">
                                             <h5 class="mb-3">To:</h5>
                                             <h6 class="text-dark mb-1 receipt-name"></h6>
-                                            <div><h6 class="receipt-phone">Phone: </h6></div>
+                                            <h6 class="receipt-phone">Phone: </h6>
                                         </div>
                                     </div>
                                     <div class="table-responsive-sm">
@@ -179,8 +179,7 @@
             console.log("up")
             let entered_value = this.value
             console.log(entered_value)
-            document.querySelector(".receipt-name").textContent = entered_value
-            $(".receipt-name").text(name)
+            document.querySelector(".receipt-name").textContent = this.value
         })
 
         $('body').on('keyup', ".customer-phone", function(){
