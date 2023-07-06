@@ -177,19 +177,19 @@
         let method = $(".payment-mode").val()
 
         $('body').on('keyup', ".customer-name", function(){
-            $(".receipt-name").text($(this).val())
+            $(".receipt-name").text(name)
         })
 
         $('body').on('keyup', ".customer-phone", function(){
-            $(".receipt-phone").text($(this).val())
+            $(".receipt-phone").text(contact)
         })
 
         $('body').on('keyup', ".customer-amount", function(){
-            $(".amount_paid").text($(this).val())
+            $(".amount_paid").text(amount_paid)
         })
 
         $('body').on('keyup', ".payment-mode", function(){
-            $(".mode").text($(this).val())
+            $(".mode").text(method)
         })
 
         console.log(name)
