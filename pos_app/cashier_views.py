@@ -39,7 +39,8 @@ def checkout_details(request, ref):
         'shop': shop,
         'items': items,
         'ref': ref,
-        'date': date
+        'date': date,
+        'total': total
     }
 
     return render(request, "layouts/checkout_details.html", context=context)

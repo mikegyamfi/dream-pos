@@ -115,7 +115,7 @@
                                                         </td>
                                                         <td class="right">
                                                             <strong class="text-dark">GHS{{ total }}</strong>
-                                                            <input type="hidden" class="cart-total" value="{{ total }}">
+                                                            <input class="cart-total" value="{{ total }}" type="hidden">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -191,11 +191,12 @@
         $('body').on('keyup', ".customer-amount", function(){
             let entered_value = this.value
             let cart_total = document.querySelector(".cart-total").value
+            console.log(cart_total)
             let balance = entered_value - cart_total
             console.log(balance)
             console.log(entered_value)
             document.querySelector(".amount-paid").textContent = this.value
-            document.querySelector(".balance").textContent = balance
+            document.querySelector(".balance").textContent = balance.toString()
         })
 
         $('body').on('change', ".payment-mode", function(){
