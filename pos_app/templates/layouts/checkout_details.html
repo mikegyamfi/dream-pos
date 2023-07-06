@@ -115,6 +115,7 @@
                                                         </td>
                                                         <td class="right">
                                                             <strong class="text-dark">GHS{{ total }}</strong>
+                                                            <input type="hidden" class="cart-total" value="{{ total }}">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -127,18 +128,18 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="left">
-                                                            <strong class="text-dark">Payment Mode</strong>
+                                                            <strong class="text-dark">Balance</strong>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark mode"></strong>
+                                                            <strong class="text-dark balance"></strong>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="left">
-                                                            <strong class="text-dark">Balance</strong>
+                                                            <strong class="text-dark">Payment Mode</strong>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark"></strong>
+                                                            <strong class="text-dark mode"></strong>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -189,8 +190,12 @@
 
         $('body').on('keyup', ".customer-amount", function(){
             let entered_value = this.value
+            let cart_total = document.querySelector(".cart-total").value
+            let balance = entered_value - cart_total
+            console.log(balance)
             console.log(entered_value)
             document.querySelector(".amount-paid").textContent = this.value
+            document.querySelector(".balance").textContent = balance
         })
 
         $('body').on('change', ".payment-mode", function(){
