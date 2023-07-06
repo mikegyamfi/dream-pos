@@ -193,7 +193,7 @@
             document.querySelector(".amount-paid").textContent = this.value
         })
 
-        $('body').on('keyup', ".payment-mode", function(){
+        $('body').on('change', ".payment-mode", function(){
             let entered_value = $(this).val()
             console.log(entered_value)
             $(".mode").val($(this).val())
