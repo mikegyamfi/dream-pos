@@ -92,10 +92,7 @@ def home(request):
         'shop': shop
     }
     if user.role == "Cashier":
-        context = {
-            'shop_name': f"{shop.name} (Cashier Portal)"
-        }
-        return render(request, "layouts/checkouts.html")
+        return redirect('checkouts')
     else:
         return render(request, "layouts/index.html", context=context)
 
