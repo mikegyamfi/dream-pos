@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-4">
-                                        <div class="col-sm-6" style="display: none">
+                                        <div class="col-sm-6 to_display" style="display: none">
                                             <h5 class="mb-0">To:</h5>
                                             <h6 class="text-dark mb-1 receipt-name"></h6>
                                             <h6 class="receipt-phone"></h6>
@@ -166,8 +166,13 @@
 
         $('body').on('keyup', ".customer-name", function(){
             let entered_value = this.value
-            console.log(entered_value)
-            document.querySelector(".receipt-name").textContent = this.value
+            if (entered_value !== "") {
+                console.log(entered_value)
+                $(".to_display").css('display', 'block')
+                document.querySelector(".receipt-name").textContent = this.value
+            }else{
+                $(".to_display").css('display', 'none')
+            }
         })
 
         $('body').on('keyup', ".customer-phone", function(){
