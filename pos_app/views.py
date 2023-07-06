@@ -91,8 +91,13 @@ def home(request):
         'shop_name': shop_name,
         'shop': shop
     }
-
-    return render(request, "layouts/index.html", context=context)
+    if user.role == "Cashier":
+        context = {
+            'shop_name': f"{shop.name} (Cashier Portal)"
+        }
+        return render(request, "layouts/checkouts.html")
+    else:
+        return render(request, "layouts/index.html", context=context)
 
 
 def sign_up(request):
