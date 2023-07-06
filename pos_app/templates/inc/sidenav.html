@@ -57,7 +57,6 @@
                             {% endif %}
 
                         {% if request.user.role == "Cashier" %}
-                            <div>Cashier Portal</div>
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'checkouts' %}">Checkouts</a>
