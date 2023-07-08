@@ -36,6 +36,7 @@ urlpatterns = [
     path('cashier/checkouts', cashier_views.checkouts, name='checkouts'),
     path('send_to_cashier', cashier_views.send_to_cashier, name='send_to_cashier'),
     path('checkout_details/<str:ref>', cashier_views.checkout_details, name='checkout_details'),
+    path('delete_checkout/<str:ref>', cashier_views.delete_checkout, name='delete_checkout'),
 
     path('google272847792544ccb7.html', views.verification, name='google272847792544ccb7.html')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

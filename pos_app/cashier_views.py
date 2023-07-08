@@ -67,3 +67,22 @@ def send_to_cashier(request):
     cart_items.delete()
     messages.info(request, "Sent to Cashier")
     return redirect('home')
+
+
+@login_required(login_url='login')
+def delete_checkout(request, ref):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+    if user.role != "Cashier":
+        messages.success(request, "Access Denied")
+        return redirect("home")
+    else:
+        checkout_to_be_deleted = models.CashierCart.objects.filter(domain=shop.domain, cart_reference=ref)
+        if checkout_to_be_deleted:
+            checkout_to_be_deleted.delete()
+            messages.info(request, "Checkout deleted")
+        else:
+            messages.info(request, "No checkout matching this reference was found")
+            return redirect(checkouts)
+
+
