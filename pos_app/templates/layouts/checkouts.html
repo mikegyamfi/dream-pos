@@ -42,8 +42,8 @@
                     </div>
                     {% if checkouts %}
                     {% for checkout in checkouts %}
-                        <div class="row justify-content-center">
-                            <div class="card p-4 justify-content-start col-lg-6 col-6">
+                        <div class="row">
+                            <div class="card p-4 col-lg-6 col-6">
                                 <h3>#{{ checkout.cart_reference }}</h3>
                                 <p class="mb-1">{{ checkout.created_at }}</p>
 {#                                <p>Total Amount: GHS{{ total }}</p>#}
