@@ -239,8 +239,14 @@
         $('body').on('keyup', ".discount", function(){
             let entered_value = this.value
             console.log(entered_value)
-            if (entered_value !== "") {
-                console.log(entered_value)
+            if (entered_value === "") {
+                $(".discount-row").css('display', 'none')
+                $(".new_price").css('display', 'none')
+                let balance = amount_paid-cart_total
+                document.querySelector(".balance").textContent = "GHS" + balance
+
+            }else{
+               console.log(entered_value)
                 $(".discount-row").css('display', 'table-row')
                 document.querySelector(".discount-amount").textContent = "GHS" + this.value
                 let new_amount = parseFloat(cart_total) - parseFloat(this.value)
@@ -248,11 +254,6 @@
                 $(".new_price").css('display', 'table-row')
                 document.querySelector(".discount-price").textContent = "GHS" + new_amount
                 document.querySelector(".balance").textContent = "GHS" + (amount_paid - new_amount)
-            }else if (entered_value === ""){
-                $(".discount-row").css('display', 'none')
-                $(".new_price").css('display', 'none')
-                let balance = amount_paid-cart_total
-                document.querySelector(".balance").textContent = "GHS" + balance
             }
         })
     function saveAndPrint(){
