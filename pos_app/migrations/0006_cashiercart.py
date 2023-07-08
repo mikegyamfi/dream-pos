@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
                 ('unit_price', models.FloatField()),
                 ('total_price', models.FloatField()),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pos_app.product')),
+                ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('user', models.ForeignKey(default=pos_app.models.get_user, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
