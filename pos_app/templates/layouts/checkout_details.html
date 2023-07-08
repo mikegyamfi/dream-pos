@@ -248,10 +248,11 @@
                 $(".new_price").css('display', 'table-row')
                 document.querySelector(".discount-price").textContent = "GHS" + new_amount
                 document.querySelector(".balance").textContent = "GHS" + (amount_paid - new_amount)
-            }else{
+            }else if (entered_value === ""){
                 $(".discount-row").css('display', 'none')
                 $(".new_price").css('display', 'none')
-                document.querySelector(".balance").textContent = "GHS" + (amount_paid -cart_total)
+                let balance = amount_paid-cart_total
+                document.querySelector(".balance").textContent = "GHS" + balance
             }
         })
     function saveAndPrint(){
