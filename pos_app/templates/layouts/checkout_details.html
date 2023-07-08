@@ -206,7 +206,7 @@
             console.log(balance)
             console.log(entered_value)
             document.querySelector(".amount-paid").textContent = "GHS" + this.value
-            if (this.value === ""){
+            if (this.value.isNaN){
                 $(".balance-row").css('display', 'none')
             }
             if (balance === 0){
