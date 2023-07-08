@@ -41,6 +41,8 @@
                             <div class="card p-4">
                                 <h3 class="mb-0">Purchase Details</h3>
                                 <hr class="mb-3">
+                                    <form>
+                                    {% csrf_token %}
                                     <input name="customer-name" class="form-control mb-2 customer-name" type="text" placeholder="Customer Name">
                                     <input name="customer-phone" class="form-control mb-2 customer-phone" type="text" placeholder="Customer Phone">
                                     <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
@@ -51,7 +53,8 @@
                                     </select>
                                     <input name="discount" class="form-control mb-2 discount" type="number" placeholder="Discount Amount">
 
-                                    <button onclick="saveAndPrint()" class="btn btn-success">Save and Print</button>
+                                    <button type="submit" onclick="saveAndPrint()" class="btn btn-success">Save and Print</button>
+                                        </form>
                             </div>
                         </div>
 
