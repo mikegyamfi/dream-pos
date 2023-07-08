@@ -214,13 +214,13 @@
             }
         })
 
-        $('body').on('keyup', ".payment-mode", function(){
+        $('body').on('change', ".payment-mode", function(){
             let entered_value = this.value
             console.log(entered_value)
             document.querySelector(".mode").textContent = this.value
         })
 
-        $('body').on('change', ".discount", function(){
+        $('body').on('keyup', ".discount", function(){
             let entered_value = this.value
             console.log(entered_value)
             if (entered_value !== "") {
