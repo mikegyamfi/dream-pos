@@ -50,11 +50,8 @@
                         <div class="mx-auto col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="mx-auto card invoice-card" style="width: 20rem" id="invoice">
                                 <div class="card-header p-4">
-                                     <h3 class="pt-2 d-inline-block mb-0">{{ shop.name }}</h3>
-                                    {% if shop.address %}
-                                        <small class="m-0 mb-3" style="display: block">{{ shop.shop_email }}</small>
-                                    {% endif %}
-                                    <div class=""> <h4 class="mb-0">Invoice #{{ num }}</h4>
+                                     <h3 style="font-size: 17px" class="pt-2 d-inline-block mb-0">{{ shop.name }}</h3>
+                                    <div class=""> <h4 style="font-size: 15px" class="mb-0">Invoice #{{ num }}</h4>
                                     Date: {{ date }}</div>
                                 </div>
                                 <div class="card-body">
@@ -78,19 +75,19 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Item</th>
-                                                    <th class="right">Unit Cost(₵)</th>
-                                                    <th class="center">Qty</th>
-                                                    <th class="right">Total(₵)</th>
+                                                    <th style="font-size: 13px">Item</th>
+                                                    <th style="font-size: 13px" class="right">Unit Cost(₵)</th>
+                                                    <th style="font-size: 13px" class="center">Qty</th>
+                                                    <th style="font-size: 13px" class="right">Total(₵)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             {% for item in items %}
                                                 <tr>
-                                                    <td style="width: 70%" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
-                                                    <td style="width: 10%" class="right">{{ item.price }}</td>
-                                                    <td style="width: 10%" class="center">{{ item.quantity }}</td>
-                                                    <td style="width: 10%" class="right">{{ item.total_price }}</td>
+                                                    <td style="width: 70%; font-size: 12px" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
+                                                    <td style="width: 10%; font-size: 12px" class="right">{{ item.price }}</td>
+                                                    <td style="width: 10%; font-size: 12px" class="center">{{ item.quantity }}</td>
+                                                    <td style="width: 10%; font-size: 12px" class="right">{{ item.total_price }}</td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>
@@ -104,34 +101,34 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="left">
-                                                            <strong class="text-dark">Total</strong>
+                                                            <small class="text-dark">Total</small>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark">GHS{{ total }}</strong>
+                                                            <small class="text-dark">GHS{{ total }}</small>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="left">
-                                                            <strong class="text-dark">Paid</strong>
+                                                            <small class="text-dark">Paid</small>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark">GHS{{ amount_paid }}</strong>
+                                                            <small class="text-dark">GHS{{ amount_paid }}</small>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="left">
-                                                            <strong class="text-dark">Payment Mode</strong>
+                                                            <small class="text-dark">Payment Mode</small>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark">{{ mode }}</strong>
+                                                            <small class="text-dark">{{ mode }}</small>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="left">
-                                                            <strong class="text-dark">Balance</strong>
+                                                            <small class="text-dark">Balance</small>
                                                         </td>
                                                         <td class="right">
-                                                            <strong class="text-dark">GHS{{ balance }}</strong>
+                                                            <small class="text-dark">GHS{{ balance }}</small>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -141,9 +138,9 @@
                                 </div>
                                 <div class="card-footer bg-white">
                                     {% if shop.address %}
-                                        <p class="mb-1">{{ shop.address }}</p>
+                                        <p style="font-size: 13px" class="mb-1">{{ shop.address }}</p>
                                     {% endif %}
-                                    <p class="m-0">Thank you! Come back again.</p>
+                                    <p style="font-size: 13px" class="m-0">Thank you! Come back again.</p>
                                 </div>
                             </div>
                         </div>
