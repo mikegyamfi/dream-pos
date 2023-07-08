@@ -4,7 +4,7 @@ from pos_app import models
 
 
 class DaysSaleAdmin(admin.ModelAdmin):
-    list_display = ['domain', 'product', 'quantity', 'price', 'total_price']
+    list_display = ['domain', 'product', 'quantity', 'price', 'total_price', 'date_created']
 
 
 class SoldItemAdmin(admin.ModelAdmin):
