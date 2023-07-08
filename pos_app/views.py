@@ -27,7 +27,7 @@ def home(request):
         else:
             amount_paid = 0
         cart_items = models.Cart.objects.filter(domain=shop.domain, user=request.user)
-        reference = helper.ref_generator(shop.shop_receipt_generation_prefix)
+        reference = cart_items[0].cart_reference
         cart_total = 0
         for i in cart_items:
             cart_total += i.total_price
