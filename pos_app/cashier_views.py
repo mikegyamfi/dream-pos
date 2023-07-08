@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from . import models
+from . import models, helper
 
 
 @login_required(login_url='login')
@@ -52,11 +52,13 @@ def send_to_cashier(request):
     shop = models.StoreInfo.objects.get(domain=user.domain)
 
     cart_items = models.Cart.objects.filter(user=user, domain=shop.domain)
+    new_reference = helper.ref_generator(shop.shop_receipt_generation_prefix)
 
     for item in cart_items:
+        print(item.cart_reference)
         new_cashier_cart_item = models.CashierCart.objects.create(
             user=models.CustomUser.objects.get(role="Cashier", domain=shop.domain),
-            cart_reference=item.cart_reference,
+            cart_reference=new_reference,
             product=item.product,
             domain=shop.domain,
             product_qty=item.product_qty,
@@ -65,7 +67,7 @@ def send_to_cashier(request):
         )
         new_cashier_cart_item.save()
     cart_items.delete()
-    messages.info(request, "Sent to Cashier")
+    messages.info(request, f"Sent to Cashier. Checkout reference is #{new_reference}")
     return redirect('home')
 
 
@@ -81,8 +83,9 @@ def delete_checkout(request, ref):
         if checkout_to_be_deleted:
             checkout_to_be_deleted.delete()
             messages.info(request, "Checkout deleted")
+            return redirect('checkouts')
         else:
             messages.info(request, "No checkout matching this reference was found")
-            return redirect(checkouts)
+            return redirect('checkouts')
 
 

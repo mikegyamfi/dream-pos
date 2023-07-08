@@ -40,10 +40,10 @@
                             </div>
                         </div>
                     </div>
-
+                    {% if checkouts %}
                     {% for checkout in checkouts %}
                         <div class="row justify-content-center">
-                            <div class="card p-4 justify-content-lg-start col-lg-6 col-12">
+                            <div class="card p-4 justify-content-start col-lg-6 col-6">
                                 <h3>#{{ checkout.cart_reference }}</h3>
                                 <p class="mb-1">{{ checkout.created_at }}</p>
                                 <p>Total Amount: GHS{{ checkout.total_price }}</p>
@@ -52,10 +52,9 @@
                                     <a href="{% url 'delete_checkout' ref=checkout.cart_reference %}" class="btn btn-danger">Delete</a>
                                 </div>
                             </div>
-
                         </div>
                     {% endfor %}
-
+                    {% endif %}
                 </div>
             </div>
         </div>
