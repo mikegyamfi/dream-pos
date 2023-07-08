@@ -253,7 +253,7 @@
 
                 $(".new_price").css('display', 'table-row')
                 document.querySelector(".discount-price").textContent = "GHS" + new_amount
-                document.querySelector(".balance").textContent = "GHS" + (amount_paid - new_amount)
+                document.querySelector(".balance").textContent = "GHS" + ($(".customer-amount").val() - new_amount)
             }
         })
     function saveAndPrint(){
