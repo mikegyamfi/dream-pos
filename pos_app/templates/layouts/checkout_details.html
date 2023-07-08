@@ -228,7 +228,7 @@
                 $(".discount-row").css('display', 'table-row')
                 document.querySelector(".discount-amount").textContent = "GHS" + this.value
                 let new_amount = parseFloat(cart_total) - parseFloat(this.value)
-                $(".new-price").css('display', 'table-row')
+                $(".new_price").css('display', 'table-row')
                 document.querySelector(".discount-price").textContent = "GHS" + new_amount
             }else{
                 $(".discount-row").css('display', 'none')
