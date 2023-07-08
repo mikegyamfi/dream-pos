@@ -206,11 +206,7 @@
             console.log(balance)
             console.log(entered_value)
             document.querySelector(".amount-paid").textContent = "GHS" + this.value
-            if (entered_value === ""){
-                console.log("yhp")
-                $(".balance-row").css('display', 'none')
-            }
-            if (balance === 0){
+            if (balance === 0 || entered_value === ""){
                 $(".balance-row").css('display', 'none')
             }else{
                 $(".balance-row").css('display', 'table-row')
