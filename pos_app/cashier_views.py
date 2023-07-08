@@ -15,8 +15,9 @@ def checkouts(request):
         return redirect('home')
     else:
         all_checkouts = models.CashierCart.objects.filter(domain=shop.domain).order_by('cart_reference', 'created_at').distinct('cart_reference')
-        total = models.CashierCart.objects.filter(domain=shop.domain)
-        for i in total:
+        all_c = models.CashierCart.objects.filter(domain=shop.domain)
+        total = 0
+        for i in all_c:
             print(i.total_price)
             total += i.total_price
         print(total)
