@@ -198,7 +198,7 @@
                                             <li class="list-group-item d-flex justify-content-end">
                                                 {% if cart_items %}
                                                     {% if shop.has_cashier %}
-                                                        <button href="{% url 'send_to_cashier' %}" type="submit" class="btn btn-sm btn-success">Send to Cashier</button>
+                                                        <a href="{% url 'send_to_cashier' %}" type="submit" class="btn btn-sm btn-success">Send to Cashier</a>
                                                     {% else %}
                                                         <button type="submit" class="btn btn-sm btn-success">Sell</button>
                                                     {% endif %}
