@@ -257,6 +257,12 @@
             }
         })
     function saveAndPrint(){
+        let name = $(".customer-name").val()
+        let contact = $(".customer-phone").val()
+        let amount_paid = $(".customer-amount").val()
+        let method = $(".payment-mode").val()
+        let cart_total = document.querySelector(".cart-total").value
+        let discount_amount = parseFloat(amount_paid) -  parseFloat($(".discount").val())
         $.ajax({
             method: "POST",
             url: 'save_details_of_purchase',
