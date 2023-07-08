@@ -242,7 +242,7 @@
             if (entered_value === "") {
                 $(".discount-row").css('display', 'none')
                 $(".new_price").css('display', 'none')
-                let balance = amount_paid-cart_total
+                let balance = $(".customer-amount").val()-cart_total
                 document.querySelector(".balance").textContent = "GHS" + balance
 
             }else{
