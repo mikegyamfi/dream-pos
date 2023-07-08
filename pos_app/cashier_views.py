@@ -15,9 +15,14 @@ def checkouts(request):
         return redirect('home')
     else:
         all_checkouts = models.CashierCart.objects.filter(domain=shop.domain).order_by('cart_reference', 'created_at').distinct('cart_reference')
+        total = 0
+        for i in all_checkouts:
+            total += i.total_price
+
         context = {
             'checkouts': all_checkouts,
             'shop_name': f"{shop.name} (Cashier Portal)",
+            'total': total
         }
         return render(request, 'layouts/checkouts.html', context=context)
 
