@@ -64,10 +64,10 @@
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="row mb-1 to_display px-2" style="display: none">
-                                        <div class="col-sm-6 d-flex">
+                                        <div class="col-sm-6">
                                             <h5 class="mb-0">To:</h5>
                                             <h6 class="text-dark mb-1 receipt-name"></h6>
-                                            <h6 class="receipt-phone justify-content-end"></h6>
+                                            <h6 class="receipt-phone"></h6>
                                         </div>
                                     </div>
                                     <div class="table-responsive-sm">
@@ -257,16 +257,16 @@
             }
         })
     function saveAndPrint(){
-        //$.ajax({
-        //    method: "POST",
-        //    url: 'save_details_of_purchase',
-        //    data : {
-        //        'name': name,
-        //        'contact': contact,
-        //        'amount_paid': amount_paid,
-        //        'mode': method
-        //    }
-        //})
+        $.ajax({
+            method: "POST",
+            url: 'save_details_of_purchase',
+            data : {
+                'name': name,
+                'contact': contact,
+                'amount_paid': amount_paid,
+                'mode': method
+            }
+        })
     }
     </script>
 {% endblock %}
