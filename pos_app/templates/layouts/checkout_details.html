@@ -60,6 +60,7 @@
                                 <div class="card-header px-1 pt-2">
                                      <h3 style="font-size: 17px" class="pt-1 d-inline-block mb-0">{{ shop.name }}</h3>
                                     <div class=""> <h4 style="font-size: 15px" class="mb-0">Invoice #{{ ref }}</h4>
+                                        <input type="hidden" class="ref" value="{{ ref }}">
                                     Date: {{ date }}</div>
                                 </div>
                                 <div class="card-body p-0">
@@ -182,6 +183,7 @@
         let method = $(".payment-mode").val()
         let cart_total = document.querySelector(".cart-total").value
         let discount_amount = parseFloat(amount_paid) -  parseFloat($(".discount").val())
+        let balance_to_be_sent = 0
 
         $('body').on('keyup', ".customer-name", function(){
             let entered_value = this.value
@@ -207,6 +209,7 @@
             let discount = $(".discount").val()
             if (discount !== ""){
                 let balance = entered_value - (cart_total - discount)
+                balance_to_be_sent = balance
                 console.log(balance)
                 console.log(entered_value)
                 document.querySelector(".amount-paid").textContent = "GHS" + this.value
@@ -243,6 +246,7 @@
                 $(".discount-row").css('display', 'none')
                 $(".new_price").css('display', 'none')
                 let balance = $(".customer-amount").val()-cart_total
+                balance_to_be_sent = balance
                 document.querySelector(".balance").textContent = "GHS" + balance
 
             }else{
@@ -254,6 +258,7 @@
                 $(".new_price").css('display', 'table-row')
                 document.querySelector(".discount-price").textContent = "GHS" + new_amount
                 document.querySelector(".balance").textContent = "GHS" + ($(".customer-amount").val() - new_amount)
+                balance_to_be_sent = ($(".customer-amount").val() - new_amount)
             }
         })
     function saveAndPrint(){
@@ -263,14 +268,21 @@
         let method = $(".payment-mode").val()
         let cart_total = document.querySelector(".cart-total").value
         let discount_amount = parseFloat(amount_paid) -  parseFloat($(".discount").val())
+        let ref = $(".ref").val()
+        let token = $("input[name=csrfmiddlewaretoken]").val();
         $.ajax({
             method: "POST",
-            url: 'save_details_of_purchase',
+            url: '/save_details_of_purchase/',
             data : {
                 'name': name,
                 'contact': contact,
                 'amount_paid': amount_paid,
-                'mode': method
+                'mode': method,
+                'ref': ref,
+                csrfmiddlewaretoken: token,
+            },
+            success: function (response) {
+                print()
             }
         })
     }

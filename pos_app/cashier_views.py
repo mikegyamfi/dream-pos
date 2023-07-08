@@ -1,5 +1,6 @@
 import datetime
 
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -96,4 +97,32 @@ def delete_checkout(request, ref):
             messages.info(request, "No checkout matching this reference was found")
             return redirect('checkouts')
 
+
+@login_required(login_url='login')
+def save_details(request):
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+    if request.method == "POST":
+        name = request.POST.get("name")
+        contact = request.POST.get("contact")
+        amount_paid = request.POST.get("amount_paid")
+        mode = request.POST.get("mode")
+        ref = request.POST.get("ref")
+
+        print(name)
+        print(contact)
+        print(amount_paid)
+        print(mode)
+
+        items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
+
+        for i in items:
+            print(i.user)
+            print(i.total_price)
+            print(i.unit_price)
+            print(i.product)
+            print(i.product_qty)
+            print(i.domain)
+            print(i)
+        return JsonResponse({'status': 'Done'})
 
