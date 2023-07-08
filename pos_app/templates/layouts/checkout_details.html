@@ -180,7 +180,8 @@
         let contact = $(".customer-phone").val()
         let amount_paid = $(".customer-amount").val()
         let method = $(".payment-mode").val()
-    let cart_total = document.querySelector(".cart-total").value
+        let cart_total = document.querySelector(".cart-total").value
+        let discount_amount = parseFloat(amount_paid) -  parseFloat($(".discount").val())
 
         $('body').on('keyup', ".customer-name", function(){
             let entered_value = this.value
@@ -203,14 +204,29 @@
             let entered_value = this.value
             console.log(cart_total)
             let balance = entered_value - cart_total
-            console.log(balance)
-            console.log(entered_value)
-            document.querySelector(".amount-paid").textContent = "GHS" + this.value
-            if (balance === 0 || entered_value === ""){
-                $(".balance-row").css('display', 'none')
-            }else{
-                $(".balance-row").css('display', 'table-row')
-               document.querySelector(".balance").textContent = "GHS" + balance.toString()
+            let discount = $(".discount").val()
+            if (discount !== ""){
+                let balance = entered_value - (cart_total - discount)
+                console.log(balance)
+                console.log(entered_value)
+                document.querySelector(".amount-paid").textContent = "GHS" + this.value
+                if (balance === 0 || entered_value === ""){
+                    $(".balance-row").css('display', 'none')
+                }else{
+                    $(".balance-row").css('display', 'table-row')
+                   document.querySelector(".balance").textContent = "GHS" + balance.toString()
+                }
+            }else {
+
+                console.log(balance)
+                console.log(entered_value)
+                document.querySelector(".amount-paid").textContent = "GHS" + this.value
+                if (balance === 0 || entered_value === "") {
+                    $(".balance-row").css('display', 'none')
+                } else {
+                    $(".balance-row").css('display', 'table-row')
+                    document.querySelector(".balance").textContent = "GHS" + balance.toString()
+                }
             }
         })
 
@@ -228,6 +244,7 @@
                 $(".discount-row").css('display', 'table-row')
                 document.querySelector(".discount-amount").textContent = "GHS" + this.value
                 let new_amount = parseFloat(cart_total) - parseFloat(this.value)
+
                 $(".new_price").css('display', 'table-row')
                 document.querySelector(".discount-price").textContent = "GHS" + new_amount
             }else{
