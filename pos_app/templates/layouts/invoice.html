@@ -58,12 +58,11 @@
                                     Date: {{ date }}</div>
                                 </div>
                                 <div class="card-body">
+                                    {% if name != "Null" or phone != "Null" %}
                                     <div class="row mb-4">
                                         <div class="col-sm-6">
                                             <h5 class="mb-3">From:</h5>                                            
                                             <h6 class="text-dark mb-1">{{ request.user }}</h6>
-                                         
-{#                                            <div><p>{{ shop_name }}</p></div>#}
                                             {% if shop.shop_contact %}
                                             <div><h6>Phone: 233{{ shop.shop_contact }}</h6></div>
                                             {% endif %}
@@ -74,6 +73,7 @@
                                             <div><h6>Phone: {{ phone }}</h6></div>
                                         </div>
                                     </div>
+                                    {% endif %}
                                     <div class="table-responsive-sm">
                                         <table class="table table-striped">
                                             <thead>
