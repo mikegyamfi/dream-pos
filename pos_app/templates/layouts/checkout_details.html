@@ -74,19 +74,19 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Item</th>
-                                                    <th class="right">Unit Cost(₵)</th>
-                                                    <th class="center">Qty</th>
-                                                    <th class="right">Total(₵)</th>
+                                                    <th style="font-size: 13px">Item</th>
+                                                    <th style="font-size: 13px" class="right">Unit Cost(₵)</th>
+                                                    <th style="font-size: 13px" class="center">Qty</th>
+                                                    <th style="font-size: 13px" class="right">Total(₵)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             {% for item in items %}
                                                 <tr>
-                                                    <td style="width: 70%; font-size: 13px" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
-                                                    <td style="width: 10%; font-size: 13px" class="right">{{ item.unit_price }}</td>
-                                                    <td style="width: 10%; font-size: 13px" class="center">{{ item.product_qty }}</td>
-                                                    <td style="width: 10%; font-size: 13px" class="right">{{ item.total_price }}</td>
+                                                    <td style="width: 70%; font-size: 12px" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
+                                                    <td style="width: 10%; font-size: 12px" class="right">{{ item.unit_price }}</td>
+                                                    <td style="width: 10%; font-size: 12px" class="center">{{ item.product_qty }}</td>
+                                                    <td style="width: 10%; font-size: 12px" class="right">{{ item.total_price }}</td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>
