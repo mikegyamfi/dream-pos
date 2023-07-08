@@ -49,6 +49,7 @@
                                         <option value="MoMo">MoMo</option>
                                         <option value="Card">Card</option>
                                     </select>
+                                    <input name="discount" class="form-control mb-2 discount" type="number" placeholder="Discount Amount">
 
                                     <button onclick="saveAndPrint()" class="btn btn-success">Save and Print</button>
                             </div>
@@ -106,6 +107,22 @@
                                                             <input class="cart-total" value="{{ total }}" type="hidden">
                                                         </td>
                                                     </tr>
+                                                    <tr class="discount-row" style="display: none">
+                                                        <td class="left">
+                                                            <strong class="text-dark">Discount</strong>
+                                                        </td>
+                                                        <td class="right">
+                                                            <strong class="text-dark discount-amount"></strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="new_price" style="display: none">
+                                                        <td class="left">
+                                                            <strong class="text-dark">Discounted Price</strong>
+                                                        </td>
+                                                        <td class="right">
+                                                            <strong class="text-dark discount-price"></strong>
+                                                        </td>
+                                                    </tr>
                                                     <tr>
                                                         <td class="left">
                                                             <strong class="text-dark">Paid</strong>
@@ -114,7 +131,7 @@
                                                             <strong class="text-dark amount-paid"></strong>
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr class="balance-row" style="display: none">
                                                         <td class="left">
                                                             <strong class="text-dark">Balance</strong>
                                                         </td>
@@ -163,6 +180,7 @@
         let contact = $(".customer-phone").val()
         let amount_paid = $(".customer-amount").val()
         let method = $(".payment-mode").val()
+    let cart_total = document.querySelector(".cart-total").value
 
         $('body').on('keyup', ".customer-name", function(){
             let entered_value = this.value
@@ -183,19 +201,38 @@
 
         $('body').on('keyup', ".customer-amount", function(){
             let entered_value = this.value
-            let cart_total = document.querySelector(".cart-total").value
             console.log(cart_total)
             let balance = entered_value - cart_total
             console.log(balance)
             console.log(entered_value)
             document.querySelector(".amount-paid").textContent = "GHS" + this.value
-            document.querySelector(".balance").textContent = "GHS" + balance.toString()
+            if (balance === 0){
+                $(".balance-row").css('display', 'none')
+            }else{
+                $(".balance-row").css('display', 'block')
+               document.querySelector(".balance").textContent = "GHS" + balance.toString()
+            }
         })
 
         $('body').on('change', ".payment-mode", function(){
             let entered_value = this.value
             console.log(entered_value)
             document.querySelector(".mode").textContent = this.value
+        })
+
+        $('body').on('change', ".discount", function(){
+            let entered_value = this.value
+            console.log(entered_value)
+            if (entered_value !== "") {
+                console.log(entered_value)
+                $(".discount-row").css('display', 'block')
+                document.querySelector(".discount-amount").textContent = "GHS" + this.value
+                let new_amount = parseFloat(cart_total) - parseFloat(this.value)
+                $(".new-price").css('display', 'block')
+                document.querySelector(".discount-price").textContent = "GHS" + new_amount
+            }else{
+                $(".discount-row").css('display', 'none')
+            }
         })
     function saveAndPrint(){
         //$.ajax({
