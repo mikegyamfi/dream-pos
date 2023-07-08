@@ -17,7 +17,9 @@ def checkouts(request):
         all_checkouts = models.CashierCart.objects.filter(domain=shop.domain).order_by('cart_reference', 'created_at').distinct('cart_reference')
         total = 0
         for i in all_checkouts:
+            print(i.total_price)
             total += i.total_price
+        print(total)
 
         context = {
             'checkouts': all_checkouts,
