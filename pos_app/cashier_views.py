@@ -118,15 +118,29 @@ def save_details(request):
         print(balance)
         print(discount)
 
+        if models.DaysSale.objects.filter(sale_reference=ref, domain=shop.domain).exists():
+            messages.success(request, "Sale already exists. Moving on to printing")
+            return JsonResponse({'status': "Done"})
+
         items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
 
-        # for i in items:
-        #     print(i.user)
-        #     print(i.total_price)
-        #     print(i.unit_price)
-        #     print(i.product)
-        #     print(i.product_qty)
-        #     print(i.domain)
-        #     print(i)
+        for item in items:
+            new_day_sale = models.DaysSale.objects.create(
+                user=request.user,
+                customer_name=name,
+                customer_phone=contact,
+                amount_paid=amount_paid,
+                balance=balance,
+                sale_reference=item.cart_reference,
+                discount=discount,
+                product=item.product,
+                quantity=item.product_qty,
+                payment_mode=mode,
+                price=item.product.price,
+                total_price=item.product_qty * item.product.price,
+                domain=shop.domain
+            )
+            new_day_sale.save()
+            messages.success(request, "Saved")
         return JsonResponse({'status': 'Done'})
 
