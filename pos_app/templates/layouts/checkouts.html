@@ -46,14 +46,18 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                                 <div class="card">
                                     <div class="card-header d-flex">
-                                        <h4 class="mb-0">#{{ checkout.cart_reference }}</h4>
+                                        <h4 class="mb-0">#{{ checkout.cart_reference }} <i class="fas fa-check-circle"></i></h4>
                                         <div class="ml-auto">
                                             <a class="toolbar" href="{% url 'delete_checkout' ref=checkout.cart_reference %}" role="button" id="dropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
                                     <div class="card-body">
                                         <p class="card-text">{{ checkout.created_at }}</p>
+                                        {% if not checkout.visited %}
                                         <a href="{% url 'checkout_details' ref=checkout.cart_reference %}" class="btn btn-primary">Checkout</a>
+                                        {% else %}
+                                         <a href="{% url 'checkout_details' ref=checkout.cart_reference %}" class="btn btn-primary">Revisit</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

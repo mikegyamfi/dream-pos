@@ -144,6 +144,8 @@ def save_details(request):
                 domain=shop.domain
             )
             new_day_sale.save()
+            item.visited = True
+            item.save()
         print("done")
         messages.success(request, "Saved")
         return JsonResponse({'status': 'Done'})
