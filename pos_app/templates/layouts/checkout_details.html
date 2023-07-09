@@ -273,6 +273,10 @@
         let discount_amount = parseFloat(amount_paid) -  parseFloat($(".discount").val())
         let ref = $(".ref").val()
         let balance_to_be_sent = document.querySelector(".balance").textContent
+        let matches = balance_to_be_sent.match(/(\d+)/);
+        if (matches) {
+            console.log(matches[0]);
+        }
         let discount = $(".discount").val()
         console.log(balance_to_be_sent)
         console.log(discount)
