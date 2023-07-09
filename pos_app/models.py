@@ -169,6 +169,7 @@ class CashierCart(models.Model):
     unit_price = models.FloatField()
     total_price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
+    visited = models.BooleanField(default=False)
 
 
 
