@@ -289,6 +289,8 @@
                 'amount_paid': amount_paid,
                 'mode': method,
                 'ref': ref,
+                'balance': matches[0],
+                'discount': discount,
                 csrfmiddlewaretoken: token,
             },
             success: function (response) {

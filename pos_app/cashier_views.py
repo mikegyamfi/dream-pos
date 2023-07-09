@@ -108,11 +108,15 @@ def save_details(request):
         amount_paid = request.POST.get("amount_paid")
         mode = request.POST.get("mode")
         ref = request.POST.get("ref")
+        balance = request.POST.get("balance")
+        discount = request.POST.get("discount")
 
         print(name)
         print(contact)
         print(amount_paid)
         print(mode)
+        print(balance)
+        print(discount)
 
         items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
 
