@@ -273,9 +273,12 @@
 
         }else{
             let cart_total = document.querySelector(".cart-total").value
-        let balance = amount_entered - cart_total
+            let balance = amount_entered - cart_total
             $(".balance-row").css('display', 'flex')
-        document.querySelector(".cart-balance").textContent = balance.toString()
+            document.querySelector(".cart-balance").textContent = balance.toString()
+            if ($(".discount").val() !== ""){
+                document.querySelector(".discount-price").textContent = (cart_total - $(".discount").val()).toString()
+            }
         }
         } )
 
@@ -284,7 +287,7 @@
             if (amount_entered === ""){
                 $(".discount-row").css('display', 'none')
             }else{
-                let discounted_price = parseFloat($(".customer-amount").val()) - parseFloat(this.value)
+                let discounted_price = parseFloat(document.querySelector(".cart-total").value) - parseFloat(this.value)
                 $(".discount-row").css('display', 'flex')
                 document.querySelector(".discount-price").textContent = discounted_price.toString()
             }
