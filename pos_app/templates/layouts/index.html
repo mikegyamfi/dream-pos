@@ -198,6 +198,10 @@
                                                 <span>Balance (GHS)</span>
                                                 <strong class="cart-balance"></strong>
                                             </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Discounted Price (GHS)</span>
+                                                <strong class="discount-price"></strong>
+                                            </li>
                                             {% endif %}
                                             <li class="list-group-item d-flex justify-content-end">
                                                 {% if cart_items %}
@@ -272,5 +276,17 @@
         document.querySelector(".cart-balance").textContent =  "₵" + balance
         }
         } )
+
+        $("body").on("keyup", ".discount", function(){
+            let amount_entered = this.value
+            if (amount_entered === ""){
+                document.querySelector(".discount-price").textContent = ""
+            }else{
+                let discounted_price = parseFloat($(".customer-amount").val()) - parseFloat(this.value)
+                document.querySelector(".discount-price").textContent = "₵" + discounted_price
+
+            }
+
+        })
     </script>
 {% endblock %}
