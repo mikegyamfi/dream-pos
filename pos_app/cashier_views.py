@@ -120,13 +120,13 @@ def save_details(request):
 
         items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
 
-        for i in items:
-            print(i.user)
-            print(i.total_price)
-            print(i.unit_price)
-            print(i.product)
-            print(i.product_qty)
-            print(i.domain)
-            print(i)
+        # for i in items:
+        #     print(i.user)
+        #     print(i.total_price)
+        #     print(i.unit_price)
+        #     print(i.product)
+        #     print(i.product_qty)
+        #     print(i.domain)
+        #     print(i)
         return JsonResponse({'status': 'Done'})
 
