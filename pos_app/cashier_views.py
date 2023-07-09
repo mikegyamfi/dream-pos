@@ -35,7 +35,9 @@ def checkouts(request):
 def checkout_details(request, ref):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
-    items = models.CashierCart.objects.filter(cart_reference=ref)
+    items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
+    item = items.first()
+    visited = item.visited
     date = datetime.datetime.now()
 
     total = 0
@@ -49,7 +51,8 @@ def checkout_details(request, ref):
         'items': items,
         'ref': ref,
         'date': date,
-        'total': total
+        'total': total,
+        'visited': visited
     }
 
     return render(request, "layouts/checkout_details.html", context=context)

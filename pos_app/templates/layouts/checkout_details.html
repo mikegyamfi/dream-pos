@@ -53,7 +53,7 @@
                                     </select>
                                     <input name="discount" class="form-control mb-2 discount" type="number" placeholder="Discount Amount">
 
-                                    <button onclick="saveAndPrint()" class="btn btn-success print">Save and Print</button>
+                                    <button onclick="saveAndPrint()" class="btn btn-success print">{% if not visited %}Save and Print{% else %}Print{% endif %}</button>
 
                             </div>
                         </div>
