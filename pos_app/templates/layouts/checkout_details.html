@@ -272,7 +272,7 @@
         let cart_total = document.querySelector(".cart-total").value
         let discount_amount = parseFloat(amount_paid) -  parseFloat($(".discount").val())
         let ref = $(".ref").val()
-        let balance_to_be_sent = $(".balance").textContent
+        let balance_to_be_sent = document.querySelector(".balance").textContent
         let discount = $(".discount").val()
         console.log(balance_to_be_sent)
         console.log(discount)
