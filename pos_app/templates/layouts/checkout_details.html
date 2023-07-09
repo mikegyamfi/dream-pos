@@ -277,7 +277,7 @@
         let balance_to_be_sent = document.querySelector(".balance").textContent
         let matches = balance_to_be_sent.match(/(\d+)/);
         console.log("This is the match")
-        console.log(matches[0])
+        console.log(matches ? matches[0]: 0)
         let discount = $(".discount").val()
         console.log(balance_to_be_sent)
         console.log(discount)
