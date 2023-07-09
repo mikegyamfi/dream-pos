@@ -59,10 +59,10 @@
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <div class="mx-auto card p-2 invoice-card" id="invoice" style="width: 155px;">
+                            <div class="mx-auto card p-2 invoice-card" id="invoice" style="width: 18rem;">
                                 <div class="card-header px-1 pt-2">
-                                     <h3 style="font-size: 12px" class="pt-1 d-inline-block mb-0">{{ shop.name }}</h3>
-                                    <div class=""> <h4 style="font-size: 12px" class="mb-0">Invoice #{{ ref }}</h4>
+                                     <h3 style="font-size: 17px" class="pt-1 d-inline-block mb-0">{{ shop.name }}</h3>
+                                    <div class=""> <h4 style="font-size: 15px" class="mb-0">Invoice #{{ ref }}</h4>
                                         <input type="hidden" class="ref" value="{{ ref }}">
                                     Date: {{ date }}</div>
                                 </div>
@@ -75,22 +75,22 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive-sm">
-                                        <table class="table table-striped" style="width: 155px; max-width: 155px">
+                                        <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th style="font-size: 12px">Item</th>
-                                                    <th style="font-size: 12px" class="right">Unit Cost(₵)</th>
-                                                    <th style="font-size: 12px" class="center">Qty</th>
-                                                    <th style="font-size: 12px" class="right">Total(₵)</th>
+                                                    <th style="font-size: 13px">Item</th>
+                                                    <th style="font-size: 13px" class="right">Unit Cost(₵)</th>
+                                                    <th style="font-size: 13px" class="center">Qty</th>
+                                                    <th style="font-size: 13px" class="right">Total(₵)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             {% for item in items %}
                                                 <tr>
-                                                    <td style="width: 65px; max-width: 75px; font-size: 12px" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
-                                                    <td style="width: 30px; font-size: 12px" class="right">{{ item.unit_price }}</td>
-                                                    <td style="width: 30px; font-size: 12px" class="center">{{ item.product_qty }}</td>
-                                                    <td style="width: 30px; font-size: 12px" class="right">{{ item.total_price }}</td>
+                                                    <td style="width: 70%; font-size: 12px" class="left strong">{{ item.product | capfirst }}({{item.product.category}})</td>
+                                                    <td style="width: 10%; font-size: 12px" class="right">{{ item.unit_price }}</td>
+                                                    <td style="width: 10%; font-size: 12px" class="center">{{ item.product_qty }}</td>
+                                                    <td style="width: 10%; font-size: 12px" class="right">{{ item.total_price }}</td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>
@@ -158,9 +158,9 @@
                                 </div>
                                 <div class="card-footer bg-white">
                                     {% if shop.address %}
-                                        <p style="font-size: 12px" class="mb-1">{{ shop.address }}</p>
+                                        <p style="font-size: 13px" class="mb-1">{{ shop.address }}</p>
                                     {% endif %}
-                                    <p style="font-size: 12px" class="m-0">Thank you! Come back again.</p>
+                                    <p style="font-size: 13px" class="m-0">Thank you! Come back again.</p>
                                 </div>
                             </div>
                         </div>
