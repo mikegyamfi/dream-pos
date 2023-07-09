@@ -54,6 +54,7 @@
                                     <input name="discount" class="form-control mb-2 discount" type="number" placeholder="Discount Amount">
 
                                     <button onclick="saveAndPrint()" class="btn btn-success print">Save and Print</button>
+
                             </div>
                         </div>
 
@@ -264,7 +265,7 @@
             }
         })
     function saveAndPrint(){
-
+        $(".print").text("Completing...")
         console.log("mmhm")
         let name = $(".customer-name").val()
         let contact = $(".customer-phone").val()
@@ -296,6 +297,7 @@
             },
             success: function (response) {
                 printDiv('invoice')
+                $(".print").text("Save and Print")
             }
         })
     }
