@@ -292,6 +292,7 @@
                 let discounted_price = parseFloat(document.querySelector(".cart-total").value) - parseFloat(this.value)
                 $(".discount-row").css('display', 'flex')
                 document.querySelector(".discount-price").textContent = discounted_price.toString()
+                document.querySelector(".cart-balance").textContent = ($(".customer-amount").val() - (discounted_price)).toString()
             }
 
         })
