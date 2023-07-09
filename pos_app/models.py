@@ -124,7 +124,7 @@ class DaysSale(models.Model):
         ("Card", "Card")
     )
     payment_mode = models.CharField(max_length=100, null=False, blank=False, choices=choices, default="Cash")
-    discount = models.CharField(null=True, blank=True)
+    discount = models.CharField(null=True, blank=True, max_length=100)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)
