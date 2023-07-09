@@ -143,6 +143,7 @@ class Migration(migrations.Migration):
                 ('sale_reference', models.CharField(max_length=200)),
                 ('customer_name', models.CharField(blank=True, max_length=100, null=True)),
                 ('customer_phone', models.CharField(blank=True, max_length=50, null=True)),
+                ('discount', models.CharField(blank=True, max_length=50, null=True)),
                 ('amount_paid', models.FloatField(blank=True, null=True)),
                 ('balance', models.FloatField(blank=True, null=True)),
                 ('domain', models.CharField(max_length=250)),
