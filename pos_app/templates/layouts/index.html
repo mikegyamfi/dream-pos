@@ -158,6 +158,8 @@
                                         {% csrf_token %}
                                         {% if cart_items %}
                                             {% if not shop.has_cashier %}
+                                                <details>
+                                                <summary>Add Purchase Info</summary>
                                                 <input name="customer-name" class="form-control mb-1" type="text" placeholder="Customer Name">
                                                 <input name="customer-phone" class="form-control mb-1" type="text" placeholder="Customer Phone">
                                                 <input name="customer-amount" class="form-control mb-2 customer-amount" type="number" placeholder="Amount Paid">
@@ -167,6 +169,7 @@
                                                     <option>Card</option>
                                                 </select>
                                                 <hr>
+                                                </details>
                                                 {% endif %}
                                         {% endif %}
                                         <ul class="list-group mb-3">
