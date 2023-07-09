@@ -123,8 +123,10 @@ def save_details(request):
             return JsonResponse({'status': "Done"})
 
         items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
+        print(items)
 
         for item in items:
+            print("saving")
             new_day_sale = models.DaysSale.objects.create(
                 user=request.user,
                 customer_name=name,
@@ -141,6 +143,7 @@ def save_details(request):
                 domain=shop.domain
             )
             new_day_sale.save()
-            messages.success(request, "Saved")
+        print("done")
+        messages.success(request, "Saved")
         return JsonResponse({'status': 'Done'})
 
