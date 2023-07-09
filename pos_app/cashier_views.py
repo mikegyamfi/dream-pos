@@ -120,6 +120,7 @@ def save_details(request):
 
         if models.DaysSale.objects.filter(sale_reference=ref, domain=shop.domain).exists():
             messages.success(request, "Sale already exists. Moving on to printing")
+            print("already exists")
             return JsonResponse({'status': "Done"})
 
         items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
