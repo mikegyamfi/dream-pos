@@ -53,7 +53,7 @@
                                     </select>
                                     <input name="discount" class="form-control mb-2 discount" type="number" placeholder="Discount Amount">
 
-                                    <button onclick="saveAndPrint()" class="btn btn-success print">Print</button>
+                                    <button onclick="saveAndPrint()" class="btn btn-success print">Save and Print</button>
 
                             </div>
                         </div>
@@ -291,7 +291,7 @@
                 'amount_paid': amount_paid,
                 'mode': method,
                 'ref': ref,
-                'balance': matches[0],
+                'balance': matches ? matches[0] : 0,
                 'discount': discount,
                 csrfmiddlewaretoken: token,
             },
