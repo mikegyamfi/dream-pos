@@ -273,7 +273,7 @@
         }else{
             let cart_total = document.querySelector(".cart-total").value
         let balance = amount_entered - cart_total
-        document.querySelector(".cart-balance").textContent =  "₵" + balance
+        document.querySelector(".cart-balance").textContent = balance
         }
         } )
 
@@ -283,7 +283,7 @@
                 document.querySelector(".discount-price").textContent = ""
             }else{
                 let discounted_price = parseFloat($(".customer-amount").val()) - parseFloat(this.value)
-                document.querySelector(".discount-price").textContent = "₵" + discounted_price
+                document.querySelector(".discount-price").textContent = discounted_price
 
             }
 
