@@ -194,11 +194,11 @@
                                                 <strong class="cart-total">₵{{ cart_total }}</strong>
                                             </li>
                                             {% if not shop.has_cashier %}
-                                            <li class="list-group-item d-flex justify-content-between">
+                                            <li style="display: none" class="list-group-item d-flex justify-content-between balance-row">
                                                 <span>Balance (GHS)</span>
                                                 <strong class="cart-balance"></strong>
                                             </li>
-                                            <li class="list-group-item d-flex justify-content-between">
+                                            <li style="display: none" class="list-group-item d-flex justify-content-between discount-row">
                                                 <span>Discounted Price (GHS)</span>
                                                 <strong class="discount-price"></strong>
                                             </li>
@@ -269,10 +269,12 @@
         $("body").on("keyup", ".customer-amount", function () {
             let amount_entered = this.value
         if (amount_entered === ""){
-            document.querySelector(".cart-balance").textContent =  "₵0"
+            $(".balance-row").css('display', 'none')
+
         }else{
             let cart_total = document.querySelector(".cart-total").value
         let balance = amount_entered - cart_total
+            $(".balance-row").css('display', 'flex')
         document.querySelector(".cart-balance").textContent = balance.toString()
         }
         } )
@@ -280,11 +282,11 @@
         $("body").on("keyup", ".discount", function(){
             let amount_entered = this.value
             if (amount_entered === ""){
-                document.querySelector(".discount-price").textContent = ""
+                $(".discount-row").css('display', 'none')
             }else{
                 let discounted_price = parseFloat($(".customer-amount").val()) - parseFloat(this.value)
+                $(".discount-row").css('display', 'flex')
                 document.querySelector(".discount-price").textContent = discounted_price.toString()
-
             }
 
         })
