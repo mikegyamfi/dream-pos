@@ -10,8 +10,8 @@ def get_user():
     return CustomUser.objects.get_or_create(id=1)[0].id
 
 
-def get_sale():
-    return DaySaleOrder.objects.get_or_create(id=1)[0].id
+# def get_sale():
+#     return DaySaleOrder.objects.get_or_create(id=1)[0].id
 
 
 class CustomUser(AbstractUser):
@@ -130,7 +130,7 @@ class DaySaleOrder(models.Model):
     )
     payment_mode = models.CharField(max_length=100, null=False, blank=False, choices=choices, default="Cash")
     discount = models.CharField(null=True, blank=True, max_length=100)
-    total_price = models.FloatField(null=False, blank=False)
+    total_price = models.FloatField(null=True, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -138,7 +138,7 @@ class DaySaleOrder(models.Model):
 
 
 class DaysSale(models.Model):
-    sale = models.ForeignKey(DaySaleOrder, on_delete=models.CASCADE, default=get_sale)
+    # sale = models.ForeignKey(DaySaleOrder, on_delete=models.CASCADE, default=get_sale)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)

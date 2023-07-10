@@ -150,7 +150,7 @@ def save_details(request):
             print("saving")
             new_day_sale = models.DaysSale.objects.create(
                 domain=shop.domain,
-                sale=new_day_sale_order,
+                # sale=new_day_sale_order,
                 product=item.product,
                 sale_reference=ref,
                 quantity=item.product_qty,
