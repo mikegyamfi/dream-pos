@@ -272,16 +272,17 @@
             $(".balance-row").css('display', 'none')
             $(".cart-balance").text("")
         }else{
-            let cart_total = document.querySelector(".cart-total").value
-            let balance = amount_entered - cart_total
-            $(".balance-row").css('display', 'flex')
-            document.querySelector(".cart-balance").textContent = balance.toString()
+
             if ($(".discount").val() !== ""){
                 let discount_price = cart_total - $(".discount").val()
                 document.querySelector(".discount-price").textContent = discount_price.toString()
                 document.querySelector(".cart-balance").textContent = ($(".customer-amount") - discount_price).toString()
-            }
-        }
+            }else{
+            let cart_total = document.querySelector(".cart-total").value
+            let balance = amount_entered - cart_total
+            $(".balance-row").css('display', 'flex')
+            document.querySelector(".cart-balance").textContent = balance.toString()
+        }}
         } )
 
         $("body").on("keyup", ".discount", function(){
