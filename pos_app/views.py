@@ -493,7 +493,7 @@ def days_sales(request):
             new_sale_order.save()
         for sale in sales_for_the_day:
             new_general_sale = models.SoldItem.objects.create(
-                sale=models.SoldOrder.objects.get(sale_reference=sale.sale_reference),
+                sale=models.SoldOrder.objects.filter(sale_reference=sale.sale_reference).first(),
                 sale_reference=sale.sale_reference,
                 domain=shop.domain,
                 product=sale.product,
