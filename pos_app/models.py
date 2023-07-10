@@ -143,7 +143,7 @@ class DaysSale(models.Model):
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)
     price = models.FloatField(null=False, blank=False)
-    total_price = models.FloatField(null=False, blank=False)
+    total_price = models.FloatField(null=True, blank=True)
     sale_reference = models.CharField(max_length=200)
     date_created = models.DateTimeField(auto_now_add=True)
 
