@@ -149,7 +149,7 @@ class Migration(migrations.Migration):
                 ('domain', models.CharField(max_length=250)),
                 ('quantity', models.PositiveIntegerField()),
                 ('price', models.FloatField()),
-                ('total_price', models.FloatField()),
+                ('total_price', models.FloatField(null=True)),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pos_app.product')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
