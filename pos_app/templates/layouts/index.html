@@ -273,7 +273,7 @@
             $(".cart-balance").text("")
         }else{
             if ($(".discount").val() !== ""){
-                let discount_price = cart_total - $(".discount").val()
+                let discount_price = $(".cart-total").val() - $(".discount").val()
                 console.log(discount_price)
                 document.querySelector(".discount-price").textContent = discount_price.toString()
                 console.log(this.value)
