@@ -34,28 +34,33 @@ def home(request):
             cart_total += i.total_price
         sales = []
         sale_ref = reference
+        new_day_sale_order = models.DaySaleOrder()
+        new_day_sale_order.domain = shop.domain
+        new_day_sale_order.customer_name = customer_name
+        new_day_sale_order.customer_phone = customer_phone
+        new_day_sale_order.total_price = cart_total
+        new_day_sale_order.discount = discount
+        new_day_sale_order.balance = amount_paid - cart_total if discount == "" else amount_paid - (cart_total-float(discount))
+        new_day_sale_order.amount_paid = amount_paid
+        new_day_sale_order.sale_reference = sale_ref
+        new_day_sale_order.user = request.user
+        new_day_sale_order.payment_mode = mode
+
+        new_day_sale_order.save()
         for item in cart_items:
             new_day_sale = models.DaysSale.objects.create(
                 user=request.user,
-                customer_name=customer_name,
-                customer_phone=customer_phone,
-                amount_paid=amount_paid,
-                balance=amount_paid - (item.product_qty * item.product.price),
                 sale_reference=sale_ref,
                 product=item.product,
                 quantity=item.product_qty,
-                payment_mode=mode,
-                price=item.product.price,
-                total_price=item.product_qty * item.product.price,
+                price=item.unit_price,
+                total_price=item.product_qty * item.unit_price,
                 domain=shop.domain
             )
             sales.append(new_day_sale)
             item.product.quantity_available -= item.product_qty
             item.product.save()
-        for sale in sales:
-            if sale.balance < 0:
-                sale.balance = 0
-            sale.save()
+            new_day_sale.save()
         cart_items.delete()
         messages.success(request, "Items sold")
         new_timeline = models.Timeline.objects.create(
@@ -64,9 +69,9 @@ def home(request):
             activity=f"Sold items worth GHS{cart_total}"
         )
         new_timeline.save()
-        if customer_name == '' or customer_phone == '':
-            return redirect('invoice', sale_reff=sales[0].sale_reference, name="Null", phone="Null", amount_paid=amount_paid, mode=mode)
-        return redirect('invoice', sale_reff=sales[0].sale_reference, name=customer_name, phone=customer_phone, amount_paid=amount_paid, mode=mode)
+        return redirect('invoice', sale_reff=sale_ref, name="Null" if customer_name == '' else customer_name,
+                        phone="Null" if customer_phone == '' else customer_phone, amount_paid=amount_paid, mode=mode,
+                        balance=amount_paid - cart_total if discount == "" else amount_paid - (cart_total-float(discount)), discount=discount if discount != "" else "Null")
     products = models.Product.objects.filter(domain=user.domain).order_by('name')
     day_sales = models.DaysSale.objects.filter(domain=user.domain)
     cart = models.Cart.objects.filter(domain=user.domain)
@@ -431,7 +436,7 @@ def sell_items(request):
     return redirect('invoice', sale_reff=sales[0].sale_reference)
 
 
-def invoice(request, sale_reff, name, phone, amount_paid, mode):
+def invoice(request, sale_reff, name, phone, amount_paid, mode, balance, discount):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
     customer_goods = models.DaysSale.objects.filter(domain=user.domain, sale_reference=sale_reff)
@@ -440,13 +445,6 @@ def invoice(request, sale_reff, name, phone, amount_paid, mode):
 
     for item in customer_goods:
         total += item.total_price
-
-    balance = 0
-
-    if amount_paid == '0':
-        balance = 0
-    else:
-        balance = float(amount_paid) - total
 
     context = {
         'shop_name': shop.name,
@@ -459,6 +457,7 @@ def invoice(request, sale_reff, name, phone, amount_paid, mode):
         'amount_paid': amount_paid,
         'balance': balance,
         'mode': mode,
+        'discount': discount,
         'shop': shop
     }
 
@@ -477,16 +476,26 @@ def days_sales(request):
     for sale in sale_order:
         total += sale.total_price
     if request.method == "POST":
+        for order in sale_order:
+            new_sale_order = models.SoldOrder.objects.create(
+                user=order.user,
+                domain=order.domain,
+                customer_name=order.customer_name,
+                customer_phone=order.customer_phone,
+                amount_paid=order.amount_paid,
+                payment_mode=order.payment_mode,
+                balance=order.balance,
+                discount=order.discount,
+                total_price=order.total_price,
+                sale_reference=order.sale_reference,
+                closed_date=datetime.today().date()
+            )
+            new_sale_order.save()
         for sale in sales_for_the_day:
             new_general_sale = models.SoldItem.objects.create(
+                sale=sale.sale,
                 sale_reference=sale.sale_reference,
-                user=request.user,
                 domain=shop.domain,
-                customer_name=sale.customer_name,
-                customer_phone=sale.customer_phone,
-                amount_paid=sale.amount_paid,
-                balance=sale.balance,
-                payment_mode=sale.payment_mode,
                 product=sale.product,
                 quantity=sale.quantity,
                 price=sale.price,
@@ -497,6 +506,7 @@ def days_sales(request):
         for sale in days_sales_list:
             sale.save()
         sales_for_the_day.delete()
+        sale_order.delete()
         today_date = datetime.now().date()
         new_day_sale = models.IndividualDaySale.objects.create(
             total_sales=total,

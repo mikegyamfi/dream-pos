@@ -108,20 +108,32 @@
                                                             <small class="text-dark">GHS{{ amount_paid }}</small>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td class="left">
-                                                            <small class="text-dark">Payment Mode</small>
-                                                        </td>
-                                                        <td class="right">
-                                                            <small class="text-dark">{{ mode }}</small>
-                                                        </td>
-                                                    </tr>
+                                                    {% if not balance == "0" or not balance == 0%}
                                                     <tr>
                                                         <td class="left">
                                                             <small class="text-dark">Balance</small>
                                                         </td>
                                                         <td class="right">
                                                             <small class="text-dark">GHS{{ balance }}</small>
+                                                        </td>
+                                                    </tr>
+                                                    {% endif %}
+                                                    {% if not discount == "Null" %}
+                                                    <tr>
+                                                        <td class="left">
+                                                            <small class="text-dark">Discount</small>
+                                                        </td>
+                                                        <td class="right">
+                                                            <small class="text-dark">GHS{{ discount }}</small>
+                                                        </td>
+                                                    </tr>
+                                                    {% endif %}
+                                                    <tr>
+                                                        <td class="left">
+                                                            <small class="text-dark">Payment Mode</small>
+                                                        </td>
+                                                        <td class="right">
+                                                            <small class="text-dark">{{ mode }}</small>
                                                         </td>
                                                     </tr>
                                                 </tbody>
