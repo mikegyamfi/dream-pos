@@ -10,6 +10,10 @@ def get_user():
     return CustomUser.objects.get_or_create(id=1)[0].id
 
 
+def get_sale():
+    return DaySaleOrder.objects.get_or_create(id=1)[0].id
+
+
 class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=200, blank=False, null=False)
     last_name = models.CharField(max_length=200, blank=False, null=False)
@@ -134,7 +138,7 @@ class DaySaleOrder(models.Model):
 
 
 class DaysSale(models.Model):
-    sale = models.ForeignKey(DaySaleOrder, on_delete=models.CASCADE)
+    sale = models.ForeignKey(DaySaleOrder, on_delete=models.CASCADE, default=get_sale)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)
