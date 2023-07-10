@@ -49,7 +49,7 @@ def home(request):
         new_day_sale_order.save()
         for item in cart_items:
             new_day_sale = models.DaysSale.objects.create(
-                user=request.user,
+                sale=new_day_sale_order,
                 sale_reference=sale_ref,
                 product=item.product,
                 quantity=item.product_qty,
