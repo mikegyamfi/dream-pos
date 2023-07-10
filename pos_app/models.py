@@ -90,11 +90,12 @@ class Cart(models.Model):
     total_price = models.FloatField()
 
 
-class SoldItem(models.Model):
+class SoldOrder(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    domain = models.CharField(max_length=250, null=False, blank=False)
     sale_reference = models.CharField(max_length=200)
-    customer_name = models.CharField(max_length=100, null=True, blank=True, default=None)
-    customer_phone = models.CharField(max_length=50, null=True, blank=True, default=None)
+    customer_name = models.CharField(max_length=100, null=True, blank=True)
+    customer_phone = models.CharField(max_length=50, null=True, blank=True)
     amount_paid = models.FloatField(null=True, blank=True)
     balance = models.FloatField(null=True, blank=True)
     choices = (
@@ -103,13 +104,23 @@ class SoldItem(models.Model):
         ("Card", "Card")
     )
     payment_mode = models.CharField(max_length=100, null=False, blank=False, choices=choices, default="Cash")
+    discount = models.CharField(null=True, blank=True, max_length=100)
+    total_price = models.FloatField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.sale_reference
+
+
+class SoldItem(models.Model):
+    # sale = models.ForeignKey(DaySaleOrder, on_delete=models.CASCADE, default=get_sale, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)
     price = models.FloatField(null=False, blank=False)
-    total_price = models.FloatField(null=False, blank=False)
+    total_price = models.FloatField(null=True, blank=True)
+    sale_reference = models.CharField(max_length=200)
     date_created = models.DateTimeField(auto_now_add=True)
-    closed_date = models.DateTimeField()
 
     def __str__(self):
         return str(self.product)
