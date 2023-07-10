@@ -274,7 +274,10 @@
         }else{
             if ($(".discount").val() !== ""){
                 let discount_price = cart_total - $(".discount").val()
+                console.log(discount_price)
                 document.querySelector(".discount-price").textContent = discount_price.toString()
+                console.log(this.value)
+                console.log($(".customer-amount").val())
                 document.querySelector(".cart-balance").textContent = ($(".customer-amount").val() - discount_price).toString()
             }else{
             let cart_total = document.querySelector(".cart-total").value
