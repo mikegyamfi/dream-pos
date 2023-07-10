@@ -471,9 +471,10 @@ def days_sales(request):
     shop = models.StoreInfo.objects.get(domain=user.domain)
     shop_name = shop.name
     sales_for_the_day = models.DaysSale.objects.filter(domain=shop.domain).order_by('date_created').reverse()
+    sale_order = models.DaySaleOrder.objects.filter(domain=shop.domain).order_by('created_at').reverse()
     total = 0
     days_sales_list = []
-    for sale in sales_for_the_day:
+    for sale in sale_order:
         total += sale.total_price
     if request.method == "POST":
         for sale in sales_for_the_day:
@@ -510,7 +511,7 @@ def days_sales(request):
         new_timeline.save()
         messages.success(request, f"Sales for the day closed. Total Sales for {today_date}: ₵{total}")
         return redirect('sales_for_the_day')
-    context = {'sales': sales_for_the_day, 'total': '{:,.2f}'.format(total), 'count': sales_for_the_day.count(), 'shop_name': shop_name}
+    context = {'sales': sale_order, 'total': '{:,.2f}'.format(total), 'count': sale_order.count(), 'shop_name': shop_name}
     return render(request, "layouts/products_sold.html", context=context)
 
 
