@@ -21,6 +21,7 @@ def home(request):
         customer_phone = request.POST.get("customer-phone")
         customer_name = request.POST.get("customer-name")
         amount_paid = request.POST.get("customer-amount")
+        discount = request.POST.get("discount")
         mode = request.POST.get("payment-mode")
         if amount_paid != "":
             amount_paid = float(amount_paid)

@@ -114,6 +114,16 @@ def save_details(request):
         balance = request.POST.get("balance")
         discount = request.POST.get("discount")
 
+        if models.DaySaleOrder.objects.filter(sale_reference=ref, domain=shop.domain).exists():
+            messages.success(request, "Sale already exists. Moving on to printing")
+            print("already exists")
+            return JsonResponse({'status': "Done"})
+
+        cashier_cart_items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
+        total = 0
+        for i in cashier_cart_items:
+            total += i.total_price
+
         print(name)
         print(contact)
         print(amount_paid)
@@ -121,32 +131,37 @@ def save_details(request):
         print(balance)
         print(discount)
 
-        if models.DaysSale.objects.filter(sale_reference=ref, domain=shop.domain).exists():
-            messages.success(request, "Sale already exists. Moving on to printing")
-            print("already exists")
-            return JsonResponse({'status': "Done"})
+        new_day_sale_order = models.DaySaleOrder()
+        new_day_sale_order.domain = shop.domain
+        new_day_sale_order.customer_name = name
+        new_day_sale_order.customer_phone = contact
+        new_day_sale_order.total_price = total
+        new_day_sale_order.discount = discount
+        new_day_sale_order.balance = balance
+        new_day_sale_order.amount_paid = amount_paid
+        new_day_sale_order.sale_reference = ref
+        new_day_sale_order.user = request.user
+        new_day_sale_order.payment_mode = mode
 
-        items = models.CashierCart.objects.filter(cart_reference=ref, domain=shop.domain)
-        print(items)
+        new_day_sale_order.save()
 
-        for item in items:
+
+        for item in cashier_cart_items:
             print("saving")
             new_day_sale = models.DaysSale.objects.create(
-                user=request.user,
-                customer_name=name,
-                customer_phone=contact,
-                amount_paid=amount_paid,
-                balance=balance,
-                sale_reference=item.cart_reference,
-                discount=discount,
+                domain=shop.domain,
+                sale=new_day_sale_order,
                 product=item.product,
+                sale_reference=ref,
                 quantity=item.product_qty,
-                payment_mode=mode,
-                price=item.product.price,
-                total_price=item.product_qty * item.product.price,
-                domain=shop.domain
+                price=item.unit_price,
+                total_price=item.product_qty * item.unit_price
             )
+            order_sale = models.Product.objects.get(id=item.product.id)
+            order_sale.quantity_available -= item.product_qty
+            order_sale.save()
             new_day_sale.save()
+
             item.visited = True
             item.save()
         print("done")
