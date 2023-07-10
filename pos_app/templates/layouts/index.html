@@ -288,6 +288,9 @@
             let amount_entered = this.value
             if (amount_entered === ""){
                 $(".discount-row").css('display', 'none')
+                $(".discount-price").text("")
+                let balance = $(".customer-amount").val()-$(".cart-total").val()
+                $(".cart-balance").text(balance)
             }else{
                 let discounted_price = parseFloat(document.querySelector(".cart-total").value) - parseFloat(this.value)
                 $(".discount-row").css('display', 'flex')
