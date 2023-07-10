@@ -107,6 +107,7 @@ class SoldOrder(models.Model):
     discount = models.CharField(null=True, blank=True, max_length=100)
     total_price = models.FloatField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    closed_at = models.DateField()
 
     def __str__(self):
         return self.sale_reference
@@ -121,6 +122,7 @@ class SoldItem(models.Model):
     total_price = models.FloatField(null=True, blank=True)
     sale_reference = models.CharField(max_length=200)
     date_created = models.DateTimeField(auto_now_add=True)
+    closed_at = models.DateField()
 
     def __str__(self):
         return str(self.product)
