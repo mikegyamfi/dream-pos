@@ -118,7 +118,7 @@ class SoldOrder(models.Model):
 
 
 class SoldItem(models.Model):
-    # sale = models.ForeignKey(SoldOrder, on_delete=models.CASCADE, default=get_sold, null=True)
+    sale = models.ForeignKey(SoldOrder, on_delete=models.CASCADE, default=get_sold, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)
