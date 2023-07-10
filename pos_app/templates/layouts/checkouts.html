@@ -48,7 +48,7 @@
                                     <div class="card-header d-flex">
                                         <h4 class="mb-0">#{{ checkout.cart_reference }} {% if checkout.visited %}<i class="fas fa-check-circle text-success"></i>{% endif %}</h4>
                                         <div class="ml-auto">
-                                            <a class="toolbar" href="{% url 'delete_checkout' ref=checkout.cart_reference %}" role="button" id="dropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-trash"></i></a>
+                                            <a href="{% url 'delete_checkout' ref=checkout.cart_reference %}"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </div>
                                     <div class="card-body">
