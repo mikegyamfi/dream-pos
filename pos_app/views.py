@@ -667,4 +667,7 @@ def shop_info(request):
     return render(request, 'layouts/profile.html', context=context)
 
 
+# @login_required(login_url='login')
+# def delete_day_sale(request, pk):
+#     day_sale = models.
 
