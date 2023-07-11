@@ -16,7 +16,7 @@ def get_sale():
 
 
 def get_sold():
-    return SoldOrder.objects.get_or_create(id=1)[0].id
+    return SoldOrder.objects.all().first().id
 
 
 class CustomUser(AbstractUser):
