@@ -17,12 +17,12 @@ class Migration(migrations.Migration):
             name='sale',
             field=models.ForeignKey(default=pos_app.models.get_sale, null=True, on_delete=django.db.models.deletion.CASCADE, to='pos_app.daysaleorder'),
         ),
-        migrations.AddField(
-            model_name='solditem',
-            name='sale',
-            field=models.ForeignKey(default=pos_app.models.get_sold, null=True,
-                                    on_delete=django.db.models.deletion.CASCADE, to='pos_app.soldorder'),
-        ),
+        # migrations.AddField(
+        #     model_name='solditem',
+        #     name='sale',
+        #     field=models.ForeignKey(default=pos_app.models.get_sold, null=True,
+        #                             on_delete=django.db.models.deletion.CASCADE, to='pos_app.soldorder'),
+        # ),
         migrations.AlterField(
             model_name='daysaleorder',
             name='total_price',
