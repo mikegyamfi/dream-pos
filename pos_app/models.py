@@ -11,7 +11,8 @@ def get_user():
 
 
 def get_sale():
-    return DaySaleOrder.objects.get_or_create(id=1)[0].id
+    ppp = DaySaleOrder.objects.all().first()
+    return ppp
 
 
 def get_sold():
@@ -118,7 +119,7 @@ class SoldOrder(models.Model):
 
 
 class SoldItem(models.Model):
-    # sale = models.ForeignKey(SoldOrder, on_delete=models.CASCADE, default=get_sold, null=True)
+    sale = models.ForeignKey(SoldOrder, on_delete=models.CASCADE, default=get_sold, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     domain = models.CharField(max_length=250, null=False, blank=False)
     quantity = models.PositiveIntegerField(null=False, blank=False)
