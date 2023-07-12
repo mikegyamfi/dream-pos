@@ -533,6 +533,7 @@ def all_sales(request):
     all_sales_items = models.SoldOrder.objects.filter(domain=shop.domain).order_by('created_at').reverse()
     total = 0
     for sale in all_sales_items:
+        print(sale)
         total += sale.total_price
 
     context = {'sales': all_sales_items, 'total': '{:,.2f}'.format(total), 'shop_name': shop_name}
