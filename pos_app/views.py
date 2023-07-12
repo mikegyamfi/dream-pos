@@ -530,7 +530,7 @@ def all_sales(request):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
     shop_name = shop.name
-    all_sales_items = models.SoldItem.objects.filter(domain=shop.domain).order_by('date_created').reverse()
+    all_sales_items = models.SoldOrder.objects.filter(domain=shop.domain).order_by('created_at').reverse()
     total = 0
     for sale in all_sales_items:
         total += sale.total_price

@@ -60,11 +60,12 @@
                                         <table class="table" id="myTable">
                                             <thead>
                                                 <tr>
+                                                    <th>#</th>
                                                     <th>Date</th>
-                                                    <th>Product</th>
-                                                    <th>Quantity</th>
-                                                    <th>Unit Price</th>
                                                     <th>Total Price</th>
+                                                    <th>Amount Paid</th>
+                                                    <th>Discount</th>
+                                                    <th>Payment Mode</th>
                                                 </tr>
                                             </thead>
 
@@ -72,11 +73,12 @@
                                                 {% if sales %}
                                                     {% for sale in sales %}
                                                         <tr>
-                                                            <td>{{ sale.date_created }}</td>
-                                                            <td>{{ sale.product | capfirst }}</td>
-                                                            <td>{{ sale.quantity }}</td>
-                                                            <td><span class="font-weight-bold">₵</span>{{ sale.price }}</td>
+                                                             <td>{{ sale.sale_reference }}</td>
+                                                            <td>{{ sale.created_at }}</td>
                                                             <td>₵{{ sale.total_price }}</td>
+                                                            <td>₵{{ sale.amount_paid }}</td>
+                                                            <td>₵{{ sale.discount }}</td>
+                                                            <td>{{ sale.payment_mode }}</td>
                                                         </tr>
                                                     {% endfor %}
                                                 {% else %}
