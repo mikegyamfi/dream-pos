@@ -32,7 +32,7 @@ class CustomUserForm(UserCreationForm):
 
 class AddProductForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=None, to_field_name='name', empty_label=None,
-                                      widget=forms.Select(attrs={'class': 'form-control'}))
+                                      widget=forms.Select(attrs={'class': 'form-control', 'autofocus': True}))
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}))
     cost_price = forms.FloatField(widget=forms.NumberInput(attrs={'class': 'form-control', 'step': 0.1}), required=False, initial=0)
