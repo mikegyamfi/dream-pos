@@ -167,8 +167,6 @@ def logout_page(request):
 
 
 @sync_to_async
-@login_required(login_url='login')
-@async_to_sync
 async def add_product(request):
     sleep(10)
     user = models.CustomUser.objects.get(id=request.user.id)
