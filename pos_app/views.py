@@ -3,7 +3,7 @@ from itertools import groupby
 from operator import attrgetter
 from time import sleep
 
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -168,6 +168,7 @@ def logout_page(request):
 
 @sync_to_async
 @login_required(login_url='login')
+@async_to_sync
 async def add_product(request):
     sleep(10)
     user = models.CustomUser.objects.get(id=request.user.id)
