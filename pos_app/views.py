@@ -204,7 +204,7 @@ async def add_product(request):
                 size=size
             )
             sleep(10)
-            new_product.save()
+            await new_product.save()
             new_timeline = models.Timeline.objects.create(
                 user=request.user,
                 domain=shop.domain,
