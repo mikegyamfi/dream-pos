@@ -166,7 +166,8 @@ def logout_page(request):
     return redirect('home')
 
 
-async def add_product(request):
+@sync_to_async
+def add_product(request):
     sleep(10)
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
@@ -202,7 +203,7 @@ async def add_product(request):
                 size=size
             )
             sleep(10)
-            await new_product.save()
+            new_product.save()
             new_timeline = models.Timeline.objects.create(
                 user=request.user,
                 domain=shop.domain,
