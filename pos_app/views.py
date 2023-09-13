@@ -166,7 +166,6 @@ def logout_page(request):
     return redirect('home')
 
 
-@sync_to_async
 async def add_product(request):
     sleep(10)
     user = models.CustomUser.objects.get(id=request.user.id)
