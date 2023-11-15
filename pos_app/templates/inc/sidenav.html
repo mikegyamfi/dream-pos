@@ -68,7 +68,7 @@
 {#                                </li>#}
 {#                            </ul>#}
 {#                        {% endif %}#}
-
+                            {% if request.user.role == "Admin" %}
                             <li class="nav-divider">
                                 Admin Panel
                             </li>
@@ -94,7 +94,7 @@
                                     </ul>
                                 </div>
                             </li>
-
+                            {% endif %}
 
                         </ul>
                     </div>
