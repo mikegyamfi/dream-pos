@@ -1,7 +1,9 @@
 from datetime import datetime
 from itertools import groupby
 from operator import attrgetter
+from time import sleep
 
+from asgiref.sync import sync_to_async, async_to_sync
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -164,8 +166,8 @@ def logout_page(request):
     return redirect('home')
 
 
-@login_required(login_url='login')
 def add_product(request):
+    sleep(10)
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
     shop_name = shop.name
@@ -199,7 +201,7 @@ def add_product(request):
                 quantity_available=quantity,
                 size=size
             )
-
+            sleep(10)
             new_product.save()
             new_timeline = models.Timeline.objects.create(
                 user=request.user,
