@@ -60,12 +60,12 @@
                                         <table class="table" id="myTable">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Date</th>
+                                                     <th>#</th>
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
                                                     <th>Total Price</th>
-                                                    <th>Amount Paid</th>
-                                                    <th>Discount</th>
-                                                    <th>Payment Mode</th>
+                                                    <th>Date Created</th>
                                                 </tr>
                                             </thead>
 
@@ -73,12 +73,13 @@
                                                 {% if sales %}
                                                     {% for sale in sales %}
                                                         <tr>
-                                                             <td>{{ sale.sale_reference }}</td>
-                                                            <td>{{ sale.created_at }}</td>
+                                                            <td>{{ sale.sale_reference }}</td>
+                                                            <td>{{ sale.product }}</td>
+                                                            <td>{{ sale.quantity }}</td>
+                                                            <td>₵{{ sale.price }}</td>
                                                             <td>₵{{ sale.total_price }}</td>
-                                                            <td>₵{{ sale.amount_paid }}</td>
-                                                            <td>₵{{ sale.discount }}</td>
-                                                            <td>{{ sale.payment_mode }}</td>
+                                                            <td>{{ sale.date_created }}</td>
+{#                                                            <td><a href="{% url 'delete_day_sale' pk=sale.id %}"><i class="fa fa-trash"></i></a></td>#}
                                                         </tr>
                                                     {% endfor %}
                                                 {% else %}

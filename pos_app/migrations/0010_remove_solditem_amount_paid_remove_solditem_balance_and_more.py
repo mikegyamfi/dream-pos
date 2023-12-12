@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
                 ('discount', models.CharField(blank=True, max_length=100, null=True)),
                 ('total_price', models.FloatField(blank=True, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('closed_date', models.DateField()),
+                ('closed_date', models.DateField(null=True)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

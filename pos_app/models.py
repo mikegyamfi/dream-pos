@@ -16,7 +16,7 @@ def get_sale():
 
 
 def get_sold():
-    return SoldOrder.objects.all().first().id
+    return SoldOrder.objects.get_or_create(id=1, user_id=1)[0].id
 
 
 class CustomUser(AbstractUser):
@@ -112,7 +112,7 @@ class SoldOrder(models.Model):
     discount = models.CharField(null=True, blank=True, max_length=100)
     total_price = models.FloatField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    closed_date = models.DateField()
+    closed_date = models.DateField(null=True, auto_now_add=True)
 
     def __str__(self):
         return self.sale_reference

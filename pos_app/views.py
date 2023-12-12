@@ -512,7 +512,8 @@ def days_sales(request):
         today_date = datetime.now().date()
         new_day_sale = models.IndividualDaySale.objects.create(
             total_sales=total,
-            domain=shop.domain
+            domain=shop.domain,
+            day=datetime.today().date()
         )
         new_day_sale.save()
         new_timeline = models.Timeline.objects.create(
@@ -523,7 +524,7 @@ def days_sales(request):
         new_timeline.save()
         messages.success(request, f"Sales for the day closed. Total Sales for {today_date}: ₵{total}")
         return redirect('sales_for_the_day')
-    context = {'sales': sale_order, 'total': '{:,.2f}'.format(total), 'count': sale_order.count(), 'shop_name': shop_name}
+    context = {'sales': sales_for_the_day, 'total': '{:,.2f}'.format(total), 'count': sales_for_the_day.count(), 'shop_name': shop_name}
     return render(request, "layouts/products_sold.html", context=context)
 
 
@@ -532,7 +533,7 @@ def all_sales(request):
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
     shop_name = shop.name
-    all_sales_items = models.SoldOrder.objects.filter(domain=shop.domain).order_by('created_at').reverse()
+    all_sales_items = models.SoldItem.objects.filter(domain=shop.domain).order_by('date_created').reverse()
     total = 0
     for sale in all_sales_items:
         print(sale.total_price)
