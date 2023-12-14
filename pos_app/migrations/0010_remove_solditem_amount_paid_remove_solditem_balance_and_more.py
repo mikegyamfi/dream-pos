@@ -71,9 +71,4 @@ class Migration(migrations.Migration):
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
-        # migrations.AddField(
-        #     model_name='solditem',
-        #     name='sale',
-        #     field=models.ForeignKey(default=pos_app.models.get_sold, null=True, on_delete=django.db.models.deletion.CASCADE, to='pos_app.soldorder'),
-        # ),
     ]
