@@ -13,11 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='solditem',
-            name='sale',
-            field=models.ForeignKey(default=pos_app.models.get_sold, null=True, on_delete=django.db.models.deletion.CASCADE, to='pos_app.soldorder'),
-        ),
         migrations.AlterField(
             model_name='individualdaysale',
             name='day',
