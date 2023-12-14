@@ -11,8 +11,7 @@ def get_user():
 
 
 def get_sale():
-    ppp = DaySaleOrder.objects.all().first()
-    return ppp
+    return DaySaleOrder.objects.get_or_create(id=1, user_id=1)[0].id
 
 
 def get_sold():
