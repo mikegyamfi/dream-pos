@@ -121,6 +121,7 @@ class Migration(migrations.Migration):
                 ('date_created', models.DateTimeField(auto_now_add=True)),
                 ('closed_date', models.DateTimeField()),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pos_app.product')),
+                ('sale', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pos_app.soldorder')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
