@@ -49,6 +49,9 @@ class StoreInfo(models.Model):
     shop_receipt_generation_prefix = models.CharField(max_length=100, null=True, blank=True)
     code = models.PositiveIntegerField(null=False, blank=False)
 
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -176,6 +179,9 @@ class IndividualDaySale(models.Model):
     checked = models.BooleanField(max_length=100, default=False)
     time_of_check = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.day}-{self.total_sales}"
+
 
 class RestockHistory(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -185,12 +191,18 @@ class RestockHistory(models.Model):
     price = models.FloatField(null=False, blank=False)
     restock_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f"{self.user} - {self.product} -{self.quantity}"
+
 
 class Timeline(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     domain = models.CharField(max_length=200, null=False, blank=False)
     activity = models.CharField(max_length=500, null=False, blank=False)
     time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user} - {self.activity}"
 
 
 class CashierCart(models.Model):
