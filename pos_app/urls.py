@@ -39,7 +39,8 @@ urlpatterns = [
     path('delete_checkout/<str:ref>', cashier_views.delete_checkout, name='delete_checkout'),
     path('save_details_of_purchase/', cashier_views.save_details, name='save_details'),
 
-    path('google272847792544ccb7.html', views.verification, name='google272847792544ccb7.html')
+    path('google272847792544ccb7.html', views.verification, name='google272847792544ccb7.html'),
+    path('sale_detail/<str:ref>', views.sale_detail, name='sale_detail'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

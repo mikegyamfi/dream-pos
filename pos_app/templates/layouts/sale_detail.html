@@ -19,21 +19,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="d-inline-block">
-                                            <h5 class="text-muted">Day's Sales</h5>
-                                            <h2 class="mb-0">₵{{ total }}</h2>
-                                        </div>
-                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
-                                            <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-inline-block">
-                                            <h5 class="text-muted">Items Count</h5>
-                                            <h2 class="mb-0">{{ count }}</h2>
+                                            <h5 class="text-muted">Sale Amount</h5>
+                                            <h2 class="mb-0">₵{{ order.total_price }}</h2>
                                         </div>
                                         <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
                                             <i class="fa fa-money-bill-alt fa-fw fa-sm text-brand"></i>
@@ -48,16 +35,22 @@
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="page-header">
-                                    <h2 class="pageheader-title">Today's Sales</h2>
-                                    <form action="" method="post">
-                                        {% csrf_token %}
-                                       <button type="submit" class="btn btn-outline-primary d-flex ml-auto">Close the Day</button>
-                                    </form>
+                                    <h2 class="pageheader-title">Sale {{ order.sale_reference }} Details</h2>
+                                    <div class="row">
+                                        <p class="col-lg-6">Customer Name: {{ order.customer_name }}</p>
+                                        <p class="col-lg-6">Customer Number: {{ order.customer_phone }}</p>
+                                        <p class="col-lg-6">Amount Paid: {{ order.amount_paid }}</p>
+                                        <p class="col-lg-6">Balance: {{ order.balance }}</p>
+                                    </div>
+{#                                    <form action="" method="post">#}
+{#                                        {% csrf_token %}#}
+{#                                       <button type="submit" class="btn btn-outline-primary d-flex ml-auto">Close the Day</button>#}
+{#                                    </form>#}
                                     <div class="page-breadcrumb">
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
-                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Product</a></li>
-                                                <li class="breadcrumb-item active" aria-current="page">Product Sold</li>
+                                                <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Sale</a></li>
+                                                <li class="breadcrumb-item active" aria-current="page">Sale Details</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -67,19 +60,18 @@
 
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="card">
-                                <h5 class="card-header">Today's Sales</h5>
+                                <h5 class="card-header">Sale Details {{ order.sale_reference }}</h5>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table" id="myTable">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Date</th>
+                                                     <th>#</th>
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
                                                     <th>Total Price</th>
-                                                    <th>Amount Paid</th>
-                                                    <th>Discount</th>
-                                                    <th>Payment Mode</th>
-                                                    <th>Action</th>
+                                                    <th>Date Created</th>
                                                 </tr>
                                             </thead>
 
@@ -88,12 +80,11 @@
                                                     {% for sale in sales %}
                                                         <tr>
                                                             <td>{{ sale.sale_reference }}</td>
-                                                            <td>{{ sale.created_at }}</td>
+                                                            <td>{{ sale.product }}</td>
+                                                            <td>{{ sale.quantity }}</td>
+                                                            <td>₵{{ sale.price }}</td>
                                                             <td>₵{{ sale.total_price }}</td>
-                                                            <td>₵{{ sale.amount_paid }}</td>
-                                                            <td>₵{{ sale.discount }}</td>
-                                                            <td>{{ sale.payment_mode }}</td>
-                                                            <td><a class="btn btn-sm btn-primary" href="{% url 'sale_detail' ref=sale.sale_reference %}">Sale Breakdown</a></td>
+                                                            <td>{{ sale.date_created }}</td>
 {#                                                            <td><a href="{% url 'delete_day_sale' pk=sale.id %}"><i class="fa fa-trash"></i></a></td>#}
                                                         </tr>
                                                     {% endfor %}

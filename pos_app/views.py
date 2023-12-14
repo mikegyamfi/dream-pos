@@ -524,7 +524,7 @@ def days_sales(request):
         new_timeline.save()
         messages.success(request, f"Sales for the day closed. Total Sales for {today_date}: ₵{total}")
         return redirect('sales_for_the_day')
-    context = {'sales': sales_for_the_day, 'total': '{:,.2f}'.format(total), 'count': sales_for_the_day.count(), 'shop_name': shop_name}
+    context = {'sales': sale_order, 'total': '{:,.2f}'.format(total), 'count': sale_order.count(), 'shop_name': shop_name}
     return render(request, "layouts/products_sold.html", context=context)
 
 
@@ -674,4 +674,20 @@ def shop_info(request):
 # @login_required(login_url='login')
 # def delete_day_sale(request, pk):
 #     day_sale = models.
+
+
+def sale_detail(request, ref):
+    print(ref)
+    sale_items = models.DaysSale.objects.filter(sale_reference=ref)
+    order = models.DaySaleOrder.objects.get(sale_reference=ref)
+    user = models.CustomUser.objects.get(id=request.user.id)
+    shop = models.StoreInfo.objects.get(domain=user.domain)
+
+    context = {
+        'shop_name': shop.name,
+        'sales': sale_items,
+        'order': order
+    }
+
+    return render(request, "layouts/sale_detail.html", context=context)
 
