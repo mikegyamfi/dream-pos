@@ -19,7 +19,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'dream-pos-dalw5.ondigitalocean.app',
     'pos.dedreamteam.com',
-    '127.0.0.1'
+    '127.0.0.1',
+    'kingbeapos.ddttechnologies.com'
 ]
 
 
