@@ -167,7 +167,6 @@ def logout_page(request):
 
 
 def add_product(request):
-    sleep(10)
     user = models.CustomUser.objects.get(id=request.user.id)
     shop = models.StoreInfo.objects.get(domain=user.domain)
     shop_name = shop.name
@@ -201,7 +200,6 @@ def add_product(request):
                 quantity_available=quantity,
                 size=size
             )
-            sleep(10)
             new_product.save()
             new_timeline = models.Timeline.objects.create(
                 user=request.user,
