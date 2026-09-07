@@ -1,5 +1,6 @@
 from pathlib import Path
 
+import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -95,17 +96,11 @@ WSGI_APPLICATION = 'pos.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': config("DATABASE_HOST"),
-        'PORT': config("DATABASE_PORT"),
-        'NAME': 'ded4klu8897vhl',
-        'USER': config("DATABASE_USERNAME"),
-        'PASSWORD': config("DATABASE_PASSWORD"),
-        'OPTIONS': {
-            'sslmode': 'require'
-        }
-    }
+    'default': dj_database_url.parse(
+        config("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True,
+    )
 }
 
 
