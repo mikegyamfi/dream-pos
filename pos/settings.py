@@ -21,7 +21,8 @@ ALLOWED_HOSTS = [
     'dream-pos-dalw5.ondigitalocean.app',
     'pos.dedreamteam.com',
     '127.0.0.1',
-    'kingbeapos.ddttechnologies.com'
+    'kingbeapos.ddttechnologies.com',
+    'kinbea-1526473b981b.herokuapp.com'
 ]
 
 
