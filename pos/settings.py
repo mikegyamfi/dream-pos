@@ -25,6 +25,10 @@ ALLOWED_HOSTS = [
     'kinbea-1526473b981b.herokuapp.com'
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://kinbea-1526473b981b.herokuapp.com',
+]
+
 
 # Application definition
 
